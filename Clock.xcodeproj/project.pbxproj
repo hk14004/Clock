@@ -14,6 +14,11 @@
 		D441D3C424E80E5900ACCC4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D441D3C224E80E5900ACCC4E /* LaunchScreen.storyboard */; };
 		D441D3CF24E80E5900ACCC4E /* ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3CE24E80E5900ACCC4E /* ClockTests.swift */; };
 		D441D3DA24E80E5900ACCC4E /* ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3D924E80E5900ACCC4E /* ClockUITests.swift */; };
+		D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3E724E8288800ACCC4E /* TimerViewController.swift */; };
+		D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */; };
+		D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */; };
+		D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */; };
+		D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,11 @@
 		D441D3D524E80E5900ACCC4E /* ClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D441D3D924E80E5900ACCC4E /* ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockUITests.swift; sourceTree = "<group>"; };
 		D441D3DB24E80E5900ACCC4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D441D3E724E8288800ACCC4E /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
+		D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewController.swift; sourceTree = "<group>"; };
+		D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +109,11 @@
 			children = (
 				D441D3B424E80E5500ACCC4E /* AppDelegate.swift */,
 				D441D3B824E80E5500ACCC4E /* ViewController.swift */,
+				D441D3E724E8288800ACCC4E /* TimerViewController.swift */,
+				D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */,
+				D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */,
+				D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */,
+				D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */,
 				D441D3C024E80E5900ACCC4E /* Assets.xcassets */,
 				D441D3C224E80E5900ACCC4E /* LaunchScreen.storyboard */,
 				D441D3C524E80E5900ACCC4E /* Info.plist */,
@@ -255,7 +270,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */,
 				D441D3B924E80E5500ACCC4E /* ViewController.swift in Sources */,
+				D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */,
+				D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */,
+				D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */,
+				D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */,
 				D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */,
 				D441D3BF24E80E5500ACCC4E /* Clock.xcdatamodeld in Sources */,
 			);
