@@ -19,6 +19,8 @@ class TimerViewController: UIViewController {
     
     private lazy var startButton: UIButton = UIButton()
     
+    private lazy var cancelButton: UIButton = UIButton()
+    
     private let minutesAndseconds: [Int] = makeIntArray(from: 0, to: 59)
     
     private let hours: [Int] = makeIntArray(from: 0, to: 23)
@@ -28,12 +30,13 @@ class TimerViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(named: "Secondary")
         setupTimePickerView()
-        setupStartButon()
+        setupStartButton()
+        setupCancelButton()
     }
     
     func setupTimePickerView() {
         view.addSubview(timePickerView)
-
+        
         // Contraints
         timePickerView.translatesAutoresizingMaskIntoConstraints = false
         timePickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
@@ -41,37 +44,64 @@ class TimerViewController: UIViewController {
         timePickerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
     }
     
-    func setupStartButon() {
+    func setupStartButton() {
         // Configure button
         startButton.setTitle("Start", for: .normal)
         startButton.setTitleColor(.green, for: .normal)
         startButton.layer.cornerRadius = 38
         startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
         /// Add padded stroke
-        let strokeView = UIView()
-        strokeView.backgroundColor = .clear
-        strokeView.layer.borderColor = startButton.backgroundColor?.cgColor
-        strokeView.layer.borderWidth = 2.0;
-        strokeView.layer.cornerRadius = 40
-        /// Add start button as subview of stroke view
-        strokeView.addSubview(startButton)
+        let strokeView = addPaddedStroke(button: startButton)
         
         // Add button via stroke to main view
-         view.addSubview(strokeView)
+        view.addSubview(strokeView)
         
         // Contraints
-        startButton.translatesAutoresizingMaskIntoConstraints = false
-        strokeView.translatesAutoresizingMaskIntoConstraints = false
-        /// Pin  start button to stroke view with a bit of padding
-        startButton.topAnchor.constraint(equalTo: strokeView.topAnchor, constant: 3).isActive = true
-        startButton.leadingAnchor.constraint(equalTo: strokeView.leadingAnchor, constant: 3).isActive = true
-        startButton.trailingAnchor.constraint(equalTo: strokeView.trailingAnchor, constant: -3).isActive = true
-        startButton.bottomAnchor.constraint(equalTo: strokeView.bottomAnchor, constant: -3).isActive = true
-        /// Align stroke view via button
         strokeView.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
         strokeView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
         strokeView.widthAnchor.constraint(equalToConstant: 80).isActive = true
         strokeView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    }
+    
+    func setupCancelButton() {
+        // Configure button
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitleColor(.gray, for: .normal)
+        cancelButton.layer.cornerRadius = 38
+        cancelButton.backgroundColor = UIColor(named: "Primary")
+        /// Add padded stroke
+        let strokeView = addPaddedStroke(button: cancelButton)
+        
+        // Add button via stroke to main view
+        view.addSubview(strokeView)
+        
+        // Contraints
+        strokeView.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
+        strokeView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+        strokeView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        strokeView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    }
+    
+    private func addPaddedStroke(button: UIButton) -> UIView {
+        /// Add padded stroke
+        let strokeView = UIView()
+        strokeView.backgroundColor = .clear
+        strokeView.layer.borderColor = button.backgroundColor?.cgColor
+        strokeView.layer.borderWidth = 2.0
+        strokeView.layer.cornerRadius = 40
+        /// Add start button as subview of stroke view
+        strokeView.addSubview(button)
+        
+        // Contraints
+        button.translatesAutoresizingMaskIntoConstraints = false
+        strokeView.translatesAutoresizingMaskIntoConstraints = false
+        /// Pin  start button to stroke view with a bit of padding
+        button.topAnchor.constraint(equalTo: strokeView.topAnchor, constant: 3).isActive = true
+        button.leadingAnchor.constraint(equalTo: strokeView.leadingAnchor, constant: 3).isActive = true
+        button.trailingAnchor.constraint(equalTo: strokeView.trailingAnchor, constant: -3).isActive = true
+        button.bottomAnchor.constraint(equalTo: strokeView.bottomAnchor, constant: -3).isActive = true
+        
+        return strokeView
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -103,7 +133,7 @@ extension TimerViewController: UIPickerViewDelegate {
         for view in pickerView.subviews where view.frame.size.height < 1 {
             view.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
         }
-
+        
         let label = UILabel()
         label.textAlignment = NSTextAlignment.center
         label.textColor = .white
