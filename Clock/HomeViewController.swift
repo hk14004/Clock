@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Clock
 //
 //  Created by Hardijs on 15/08/2020.
