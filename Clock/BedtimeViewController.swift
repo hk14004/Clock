@@ -12,4 +12,8 @@ class BedtimeViewController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(named: "Secondary")
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
