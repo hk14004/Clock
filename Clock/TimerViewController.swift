@@ -14,8 +14,6 @@ class TimerViewController: UIViewController {
         var view = UIPickerView()
         view.dataSource = self
         view.delegate = self
-        view.setValue(UIColor.white, forKeyPath: "textColor")
-        view.backgroundColor = .clear
         return view
     }()
     
@@ -61,19 +59,30 @@ extension TimerViewController: UIPickerViewDataSource {
             return NSNotFound
         }
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch component {
-        case 0:
-            return "\(hours[row]) hours"
-        case 1:
-            return "\(minutesAndseconds[row]) min"
-        case 2:
-            return "\(minutesAndseconds[row]) sec"
-        default:
-            return nil
-        }
-    }
 }
 
-extension TimerViewController: UIPickerViewDelegate {}
+extension TimerViewController: UIPickerViewDelegate {
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        // Find seperator and change color
+        for view in pickerView.subviews where view.frame.size.height < 1 {
+            view.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        }
+
+        let label = UILabel()
+        label.textAlignment = NSTextAlignment.center
+        label.textColor = .white
+        
+        switch component {
+        case 0:
+            label.text = "\(hours[row]) hours"
+        case 1:
+            label.text = "\(minutesAndseconds[row]) min"
+        case 2:
+            label.text = "\(minutesAndseconds[row]) sec"
+        default:
+            return label
+        }
+        
+        return label
+    }
+}
