@@ -16,6 +16,7 @@ class TimerClockFaceView: UIView {
         label.textColor = .white
         label.backgroundColor = .clear
         label.textAlignment = .center
+        label.font = UIFont(name: "arial", size: 80)
         return label
     }()
     
