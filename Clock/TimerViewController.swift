@@ -44,12 +44,23 @@ class TimerViewController: UIViewController {
         timePickerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
     }
     
+    @objc func startButtonPressed(sender: UIButton!) {
+        print("Start button tapped")
+    }
+    
+    @objc func cancelButtonPressed(sender: UIButton!) {
+        print("Cancel button tapped")
+    }
+    
     func setupStartButton() {
         // Configure button
         startButton.setTitle("Start", for: .normal)
         startButton.setTitleColor(.green, for: .normal)
         startButton.layer.cornerRadius = 38
         startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
+        startButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
+        startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
+        
         /// Add padded stroke
         let strokeView = addPaddedStroke(button: startButton)
         
@@ -69,6 +80,9 @@ class TimerViewController: UIViewController {
         cancelButton.setTitleColor(.gray, for: .normal)
         cancelButton.layer.cornerRadius = 38
         cancelButton.backgroundColor = UIColor(named: "Primary")
+        cancelButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
+        cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+        
         /// Add padded stroke
         let strokeView = addPaddedStroke(button: cancelButton)
         

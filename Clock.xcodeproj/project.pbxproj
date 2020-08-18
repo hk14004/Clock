@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D431BE5324EBCD0900F989BD /* UIButton.swift */; };
 		D43A2A0524EA736800315B5D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A2A0424EA736800315B5D /* Functions.swift */; };
 		D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B424E80E5500ACCC4E /* AppDelegate.swift */; };
 		D441D3B924E80E5500ACCC4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B824E80E5500ACCC4E /* HomeViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D431BE5324EBCD0900F989BD /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		D441D3B124E80E5500ACCC4E /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D441D3B424E80E5500ACCC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D431BE5224EBCCEB00F989BD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D431BE5324EBCD0900F989BD /* UIButton.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D43A2A0324EA734200315B5D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +127,7 @@
 		D441D3B324E80E5500ACCC4E /* Clock */ = {
 			isa = PBXGroup;
 			children = (
+				D431BE5224EBCCEB00F989BD /* Extensions */,
 				D43A2A0324EA734200315B5D /* Utility */,
 				D441D3B424E80E5500ACCC4E /* AppDelegate.swift */,
 				D441D3B824E80E5500ACCC4E /* HomeViewController.swift */,
@@ -286,6 +297,7 @@
 				D43A2A0524EA736800315B5D /* Functions.swift in Sources */,
 				D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */,
 				D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */,
+				D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */,
 				D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */,
 				D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */,
 				D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */,
