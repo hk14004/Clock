@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D41FEF6824EBFA0600C6DE27 /* TimeStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEF6724EBFA0600C6DE27 /* TimeStateEnum.swift */; };
+		D41FEF6A24EBFA5300C6DE27 /* TimerViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEF6924EBFA5300C6DE27 /* TimerViewModelDelegate.swift */; };
+		D41FEF6C24EBFAC400C6DE27 /* PickedTimeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEF6B24EBFAC400C6DE27 /* PickedTimeStruct.swift */; };
+		D41FEF6E24EBFB9400C6DE27 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEF6D24EBFB9400C6DE27 /* Constants.swift */; };
 		D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D431BE5324EBCD0900F989BD /* UIButton.swift */; };
+		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
 		D43A2A0524EA736800315B5D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A2A0424EA736800315B5D /* Functions.swift */; };
 		D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B424E80E5500ACCC4E /* AppDelegate.swift */; };
 		D441D3B924E80E5500ACCC4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B824E80E5500ACCC4E /* HomeViewController.swift */; };
@@ -41,7 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D41FEF6724EBFA0600C6DE27 /* TimeStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStateEnum.swift; sourceTree = "<group>"; };
+		D41FEF6924EBFA5300C6DE27 /* TimerViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModelDelegate.swift; sourceTree = "<group>"; };
+		D41FEF6B24EBFAC400C6DE27 /* PickedTimeStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedTimeStruct.swift; sourceTree = "<group>"; };
+		D41FEF6D24EBFB9400C6DE27 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D431BE5324EBCD0900F989BD /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		D441D3B124E80E5500ACCC4E /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D441D3B424E80E5500ACCC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,12 +98,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D41FEF6624EBF9E300C6DE27 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D41FEF6724EBFA0600C6DE27 /* TimeStateEnum.swift */,
+				D41FEF6924EBFA5300C6DE27 /* TimerViewModelDelegate.swift */,
+				D41FEF6B24EBFAC400C6DE27 /* PickedTimeStruct.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		D431BE5224EBCCEB00F989BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				D431BE5324EBCD0900F989BD /* UIButton.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4368EA024EBD50F00D7B5C9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D4368EA124EBD51F00D7B5C9 /* Timer */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D4368EA124EBD51F00D7B5C9 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				D441D3E724E8288800ACCC4E /* TimerViewController.swift */,
+				D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */,
+				D41FEF6624EBF9E300C6DE27 /* Support */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 		D43A2A0324EA734200315B5D /* Utility */ = {
@@ -127,11 +165,11 @@
 		D441D3B324E80E5500ACCC4E /* Clock */ = {
 			isa = PBXGroup;
 			children = (
+				D4368EA024EBD50F00D7B5C9 /* Scenes */,
 				D431BE5224EBCCEB00F989BD /* Extensions */,
 				D43A2A0324EA734200315B5D /* Utility */,
 				D441D3B424E80E5500ACCC4E /* AppDelegate.swift */,
 				D441D3B824E80E5500ACCC4E /* HomeViewController.swift */,
-				D441D3E724E8288800ACCC4E /* TimerViewController.swift */,
 				D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */,
 				D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */,
 				D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */,
@@ -140,6 +178,7 @@
 				D441D3C224E80E5900ACCC4E /* LaunchScreen.storyboard */,
 				D441D3C524E80E5900ACCC4E /* Info.plist */,
 				D441D3BD24E80E5500ACCC4E /* Clock.xcdatamodeld */,
+				D41FEF6D24EBFB9400C6DE27 /* Constants.swift */,
 			);
 			path = Clock;
 			sourceTree = "<group>";
@@ -293,13 +332,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */,
+				D41FEF6824EBFA0600C6DE27 /* TimeStateEnum.swift in Sources */,
 				D441D3B924E80E5500ACCC4E /* HomeViewController.swift in Sources */,
+				D41FEF6C24EBFAC400C6DE27 /* PickedTimeStruct.swift in Sources */,
+				D41FEF6A24EBFA5300C6DE27 /* TimerViewModelDelegate.swift in Sources */,
+				D41FEF6E24EBFB9400C6DE27 /* Constants.swift in Sources */,
 				D43A2A0524EA736800315B5D /* Functions.swift in Sources */,
 				D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */,
 				D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */,
 				D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */,
 				D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */,
 				D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */,
+				D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */,
 				D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */,
 				D441D3BF24E80E5500ACCC4E /* Clock.xcdatamodeld in Sources */,
 			);
