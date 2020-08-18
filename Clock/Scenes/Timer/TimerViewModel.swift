@@ -10,17 +10,33 @@ import Foundation
 
 class TimerViewModel {
     
+    // Mark: Properties
+        
     weak var delegate: TimerViewModelDelegate?
-    
+        
+    private lazy var countdownTimer: Timer = Timer()
+
     private(set) var timerState: TimerState = .notStarted {
         didSet {
             delegate?.timerStateChanged(state: timerState)
         }
     }
     
-    private var pickedTime: PickedTime = PickedTime() {
+    private var pickedTime: TimeStruct = TimeStruct() {
         didSet {
             delegate?.timerPickedTimeChanged(time: pickedTime)
+        }
+    }
+    
+    private var countDownTimeLeft: TimeStruct = TimeStruct() {
+        didSet {
+            delegate?.countdownTimeChanged(timeString: createTimeLeftLabel(h: countDownTimeLeft.hours,
+                                                                           m: countDownTimeLeft.minutes,
+                                                                           s: countDownTimeLeft.seconds))
+            if countDownTimeLeft.getTotalTimeInSeconds() < 1 {
+                stopTimer()
+                alarm()
+            }
         }
     }
     
@@ -29,7 +45,17 @@ class TimerViewModel {
         self.delegate = delegate
         
         // TODO: Get from user defaults initial picked time
-        setSelectedTime(h: 6, m: 6, s: 6)
+        setSelectedTime(h: 1, m: 0, s: 1)
+    }
+    
+    // Mark: Methods
+    
+    private func alarm() {
+        delegate?.countdownTimerRanOut()
+    }
+    
+    @objc private func decremenCountdownTimer(timer: Timer) {
+        countDownTimeLeft.decrement(by: 1)
     }
     
     func pressStartButton() {
@@ -38,10 +64,21 @@ class TimerViewModel {
             return
         }
         timerState = .running
+        countDownTimeLeft = pickedTime
+        startTimer()
+    }
+    
+    private func startTimer() {
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(decremenCountdownTimer), userInfo: nil, repeats: true)
+    }
+    
+    private func stopTimer() {
+        countdownTimer.invalidate()
     }
     
     func pressCancelButton() {
         timerState = .notStarted
+        stopTimer()
     }
     
     func pressResumeButton() {
@@ -50,6 +87,7 @@ class TimerViewModel {
             return
         }
         timerState = .running
+        startTimer()
     }
     
     func pressPauseButton() {
@@ -58,10 +96,44 @@ class TimerViewModel {
             return
         }
         timerState = .paused
+        stopTimer()
     }
     
     func setSelectedTime(h: Int, m: Int, s: Int) {
         print("VM: Set picked time h:\(h) m:\(m), s:\(s)")
-        pickedTime = PickedTime(pickedHours: h, pickedMinutes: m, pickedSeconds: s)
+        pickedTime = TimeStruct(hours: h, minutes: m, seconds: s)
+    }
+    
+    private func createTimeLeftLabel(h: Int, m: Int, s: Int) -> String {
+        var timeLeftString = ""
+        
+        // Process hours
+        if h > 0 {
+            timeLeftString += "\(h)"
+            /// Add divider -> :
+            timeLeftString += ":"
+        }
+        
+        // Process minutes and seconds
+        func processMinutesAndSeconds(n: Int) {
+            if n > 0 {
+                if n < 10 {
+                    timeLeftString += "0\(n)"
+                } else {
+                    timeLeftString += "\(n)"
+                }
+            } else {
+                timeLeftString += "00"
+            }
+        }
+        
+        processMinutesAndSeconds(n: m)
+        
+        /// Add divider -> :
+        timeLeftString += ":"
+        
+        processMinutesAndSeconds(n: s)
+        
+        return timeLeftString
     }
 }

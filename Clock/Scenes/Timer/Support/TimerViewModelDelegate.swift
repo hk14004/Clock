@@ -10,5 +10,7 @@ import Foundation
 
 protocol TimerViewModelDelegate: class {
     func timerStateChanged(state: TimerState)
-    func timerPickedTimeChanged(time: PickedTime)
+    func timerPickedTimeChanged(time: TimeStruct)
+    func countdownTimeChanged(timeString: String)
+    func countdownTimerRanOut()
 }

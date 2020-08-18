@@ -12,7 +12,7 @@ class TimerViewController: UIViewController {
     
     // MARK: Properties
     
-    private lazy var timerViewModel: TimerViewModel = {
+    private(set) lazy var timerViewModel: TimerViewModel = {
         let viewModel = TimerViewModel(delegate: self)
         return viewModel
     }()
@@ -23,6 +23,8 @@ class TimerViewController: UIViewController {
         view.delegate = self
         return view
     }()
+    
+    private lazy var timerClockFace: TimerClockFaceView = TimerClockFaceView()
     
     private lazy var startButton: UIButton = UIButton()
     
@@ -39,6 +41,7 @@ class TimerViewController: UIViewController {
         self.view.backgroundColor = UIColor(named: "Secondary")
         setupTimePickerView()
         setupTimerButtons()
+        setupTimerClockFace()
     }
     
     // MARK: Setup methods
@@ -50,8 +53,22 @@ class TimerViewController: UIViewController {
         setupCancelButton()
     }
     
+    func setupTimerClockFace() {
+        view.addSubview(timerClockFace)
+        timerClockFace.isHidden = timerViewModel.timerState == .notStarted ? true : false
+
+        // Contraints
+        timerClockFace.translatesAutoresizingMaskIntoConstraints = false
+        timerClockFace.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+        timerClockFace.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        timerClockFace.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+        timerClockFace.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -30).isActive = true
+
+    }
+    
     func setupTimePickerView() {
         view.addSubview(timePickerView)
+        timePickerView.isHidden = timerViewModel.timerState != .notStarted ? true : false
         
         // Contraints
         timePickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -116,7 +133,7 @@ class TimerViewController: UIViewController {
         pauseButton.backgroundColor = UIColor(red: 41/255, green: 26/255, blue: 1/255, alpha: 1)
         pauseButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3), forState: .highlighted)
         pauseButton.addTarget(self, action: #selector(pauseButtonPressed), for: .touchUpInside)
-        pauseButton.isHidden = timerViewModel.timerState != .paused ? true : false
+        pauseButton.isHidden = timerViewModel.timerState != .running ? true : false
         
         /// Add padded stroke
         //let strokeView = addPaddedStroke(button: pauseButton)
@@ -264,10 +281,18 @@ extension TimerViewController: UIPickerViewDelegate {
 }
 
 extension TimerViewController: TimerViewModelDelegate {
-    func timerPickedTimeChanged(time: PickedTime) {
-        timePickerView.selectRow(time.pickedHours, inComponent: 0, animated: true)
-        timePickerView.selectRow(time.pickedMinutes, inComponent: 1, animated: true)
-        timePickerView.selectRow(time.pickedSeconds, inComponent: 2, animated: true)
+    func countdownTimerRanOut() {
+        // TODO: WARN
+    }
+    
+    func countdownTimeChanged(timeString: String) {
+        timerClockFace.setCountdownTime(timeString: timeString)
+    }
+
+    func timerPickedTimeChanged(time: TimeStruct) {
+        timePickerView.selectRow(time.hours, inComponent: 0, animated: true)
+        timePickerView.selectRow(time.minutes, inComponent: 1, animated: true)
+        timePickerView.selectRow(time.seconds, inComponent: 2, animated: true)
         print("VM requests new time to be picked \(time)")
     }
     
@@ -278,14 +303,20 @@ extension TimerViewController: TimerViewModelDelegate {
             startButton.isHidden = false
             pauseButton.isHidden = true
             resumeButton.isHidden = true
+            timerClockFace.isHidden = true
+            timePickerView.isHidden = false
         case .paused:
             startButton.isHidden = true
             pauseButton.isHidden = true
             resumeButton.isHidden = false
+            timerClockFace.isHidden = false
+            timePickerView.isHidden = true
         case .running:
             startButton.isHidden = true
             pauseButton.isHidden = false
             resumeButton.isHidden = true
+            timerClockFace.isHidden = false
+            timePickerView.isHidden = true
         }
     }
 }
