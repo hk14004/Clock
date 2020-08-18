@@ -39,6 +39,7 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "Secondary")
+        self.timerViewModel = TimerViewModel(delegate: self)
         setupTimePickerView()
         setupTimerButtons()
         setupTimerClockFace()
@@ -55,7 +56,6 @@ class TimerViewController: UIViewController {
     
     func setupTimerClockFace() {
         view.addSubview(timerClockFace)
-        timerClockFace.isHidden = timerViewModel.timerState == .notStarted ? true : false
 
         // Contraints
         timerClockFace.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,6 @@ class TimerViewController: UIViewController {
     
     func setupTimePickerView() {
         view.addSubview(timePickerView)
-        timePickerView.isHidden = timerViewModel.timerState != .notStarted ? true : false
         
         // Contraints
         timePickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +84,6 @@ class TimerViewController: UIViewController {
         startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
         startButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
         startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
-        startButton.isHidden = timerViewModel.timerState != .notStarted ? true : false
         /// Add padded stroke
         //let strokeView = addPaddedStroke(button: startButton)
         
@@ -109,7 +107,6 @@ class TimerViewController: UIViewController {
         resumeButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
         resumeButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
         resumeButton.addTarget(self, action: #selector(resumeButtonPressed), for: .touchUpInside)
-        resumeButton.isHidden = timerViewModel.timerState != .paused ? true : false
         /// Add padded stroke
         //let strokeView = addPaddedStroke(button: startButton)
         
@@ -133,7 +130,6 @@ class TimerViewController: UIViewController {
         pauseButton.backgroundColor = UIColor(red: 41/255, green: 26/255, blue: 1/255, alpha: 1)
         pauseButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3), forState: .highlighted)
         pauseButton.addTarget(self, action: #selector(pauseButtonPressed), for: .touchUpInside)
-        pauseButton.isHidden = timerViewModel.timerState != .running ? true : false
         
         /// Add padded stroke
         //let strokeView = addPaddedStroke(button: pauseButton)
@@ -180,12 +176,10 @@ class TimerViewController: UIViewController {
     
     @objc func startButtonPressed(sender: UIButton!) {
         timerViewModel.pressStartButton()
-        print("Start button tapped")
     }
     
     @objc func cancelButtonPressed(sender: UIButton!) {
         timerViewModel.pressCancelButton()
-        print("Cancel button tapped")
     }
     
     @objc func resumeButtonPressed(sender: UIButton) {
@@ -218,6 +212,14 @@ class TimerViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    private func fadeOutStartButton() {
+        startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 0.5)
+    }
+    
+    private func fadeInStartButton() {
+        startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
     }
 }
 
@@ -299,7 +301,8 @@ extension TimerViewController: TimerViewModelDelegate {
     func timerStateChanged(state: TimerState) {
         // Change available buttons etc
         switch state {
-        case .notStarted:
+        case .canStart:
+            fadeInStartButton()
             startButton.isHidden = false
             pauseButton.isHidden = true
             resumeButton.isHidden = true
@@ -317,6 +320,13 @@ extension TimerViewController: TimerViewModelDelegate {
             resumeButton.isHidden = true
             timerClockFace.isHidden = false
             timePickerView.isHidden = true
+        case .canNotStart:
+            startButton.isHidden = false
+            pauseButton.isHidden = true
+            resumeButton.isHidden = true
+            timerClockFace.isHidden = true
+            timePickerView.isHidden = false
+            fadeOutStartButton()
         }
     }
 }

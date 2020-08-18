@@ -16,15 +16,16 @@ class TimerViewModel {
         
     private lazy var countdownTimer: Timer = Timer()
 
-    private(set) var timerState: TimerState = .notStarted {
+    private(set) var timerState: TimerState = .canStart {
         didSet {
             delegate?.timerStateChanged(state: timerState)
         }
     }
-    
+        
     private var pickedTime: TimeStruct = TimeStruct() {
         didSet {
             delegate?.timerPickedTimeChanged(time: pickedTime)
+            verifyPicketTime()
         }
     }
     
@@ -41,11 +42,12 @@ class TimerViewModel {
     }
     
     // Init
-    init(delegate: TimerViewModelDelegate) {
+    required init(delegate: TimerViewModelDelegate) {
         self.delegate = delegate
         
         // TODO: Get from user defaults initial picked time
         setSelectedTime(h: 1, m: 0, s: 1)
+        verifyPicketTime()
     }
     
     // Mark: Methods
@@ -54,13 +56,20 @@ class TimerViewModel {
         delegate?.countdownTimerRanOut()
     }
     
+    private func verifyPicketTime() {
+        if pickedTime.getTotalTimeInSeconds() < 1 {
+            timerState = .canNotStart
+        } else {
+            timerState = .canStart
+        }
+    }
+    
     @objc private func decremenCountdownTimer(timer: Timer) {
         countDownTimeLeft.decrement(by: 1)
     }
     
     func pressStartButton() {
-        guard timerState == .notStarted else {
-            print("BUG: ViewController should not be able to call start if not in notStarted state")
+        guard timerState == .canStart else {
             return
         }
         timerState = .running
@@ -77,7 +86,7 @@ class TimerViewModel {
     }
     
     func pressCancelButton() {
-        timerState = .notStarted
+        verifyPicketTime()
         stopTimer()
     }
     

@@ -9,7 +9,8 @@
 import Foundation
 
 enum TimerState {
-    case notStarted
+    case canNotStart
+    case canStart
     case paused
     case running
 }
