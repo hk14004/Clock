@@ -11,17 +11,26 @@ import Foundation
 class TimerViewModel {
     
     // Mark: Properties
-        
-    weak var delegate: TimerViewModelDelegate?
-        
-    private lazy var countdownTimer: Timer = Timer()
-
-    private(set) var timerState: TimerState = .canStart {
+    
+    weak var delegate: TimerViewModelDelegate? {
         didSet {
+            if delegate == nil { return }
+            attach()
+        }
+    }
+    
+    private lazy var countdownTimer: Timer = Timer()
+    
+    private(set) var timerState: TimerState = .initalizing {
+        didSet {
+            if timerState == oldValue { return }
+            previousTimerState = oldValue
             delegate?.timerStateChanged(state: timerState)
         }
     }
-        
+    
+    private(set) var previousTimerState: TimerState = .initalizing
+    
     private var pickedTime: TimeStruct = TimeStruct() {
         didSet {
             delegate?.timerPickedTimeChanged(time: pickedTime)
@@ -41,16 +50,11 @@ class TimerViewModel {
         }
     }
     
-    // Init
-    required init(delegate: TimerViewModelDelegate) {
-        self.delegate = delegate
-        
-        // TODO: Get from user defaults initial picked time
-        setSelectedTime(h: 1, m: 0, s: 1)
-        verifyPicketTime()
-    }
-    
     // Mark: Methods
+    
+    private func attach() {
+        setSelectedTime(h: 0, m: 1, s: 1)
+    }
     
     private func alarm() {
         delegate?.countdownTimerRanOut()

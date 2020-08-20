@@ -13,4 +13,5 @@ enum TimerState {
     case canStart
     case paused
     case running
+    case initalizing
 }
