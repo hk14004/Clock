@@ -173,7 +173,7 @@ class TimerCircleCountdownView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.addSublayer(createCountdownStrokeLayer(color: .darkGray))
+        layer.addSublayer(createCountdownStrokeLayer(color: UIColor.darkGray.withAlphaComponent(0.5)))
         animatedCountdownStrokeLayer = createCountdownStrokeLayer(color: .orange)
         layer.addSublayer(animatedCountdownStrokeLayer)
     }
