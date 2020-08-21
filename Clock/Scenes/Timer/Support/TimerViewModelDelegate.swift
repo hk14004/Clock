@@ -13,4 +13,5 @@ protocol TimerViewModelDelegate: class {
     func timerPickedTimeChanged(time: TimeStruct)
     func countdownTimeChanged(timeString: String)
     func countdownTimerRanOut()
+    func countdownTimerRanOutTimeChanged(timeString: String)
 }

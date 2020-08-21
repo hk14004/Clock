@@ -252,6 +252,10 @@ extension TimerViewController: UIPickerViewDelegate {
 }
 
 extension TimerViewController: TimerViewModelDelegate {
+    func countdownTimerRanOutTimeChanged(timeString: String) {
+        timerClockFace.setTimerStopTimeLabelText(timeString)
+    }
+    
     func countdownTimerRanOut() {
         // TODO: WARN
     }
@@ -287,12 +291,14 @@ extension TimerViewController: TimerViewModelDelegate {
             timerClockFace.isHidden = false
             timePickerView.isHidden = true
             timerClockFace.countdownCircle.pauseCountdownAnimation()
+            timerClockFace.fadeOutRunOutTime()
         case .running:
             startButton.isHidden = true
             pauseButton.isHidden = false
             resumeButton.isHidden = true
             timerClockFace.isHidden = false
             timePickerView.isHidden = true
+            timerClockFace.fadeInRunOutTime()
             if timerViewModel.previousTimerState == .paused {
                 timerClockFace.countdownCircle.resumeCountdownAnimation()
             } else {

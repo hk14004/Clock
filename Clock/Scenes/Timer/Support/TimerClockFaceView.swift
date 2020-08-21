@@ -20,6 +20,16 @@ class TimerClockFaceView: UIView {
         return label
     }()
     
+    private var timerStopTimeLabel: UILabel = {
+        var label = UILabel()
+        label.text = "XX:XX"
+        label.textColor = .gray
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        label.font = UIFont(name: "arial", size: 20)
+        return label
+    }()
+    
     private(set) var countdownCircle: TimerCircleCountdownView!
     
     override init(frame: CGRect) {
@@ -27,6 +37,7 @@ class TimerClockFaceView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         addCircle()
         addCountdownLabel()
+        addTimerStopTimeLabel()
         self.backgroundColor = .clear
     }
     
@@ -44,6 +55,16 @@ class TimerClockFaceView: UIView {
         timeLeftLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
     }
     
+    private func addTimerStopTimeLabel() {
+        addSubview(timerStopTimeLabel)
+        
+        timerStopTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        timerStopTimeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        timerStopTimeLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+        timerStopTimeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        timerStopTimeLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+    }
+    
     private func addCircle() {
         countdownCircle = TimerCircleCountdownView()
         addSubview(countdownCircle)
@@ -57,6 +78,18 @@ class TimerClockFaceView: UIView {
     
     func setCountdownTime(timeString: String) {
         self.timeLeftLabel.text = timeString
+    }
+    
+    func setTimerStopTimeLabelText(_ text: String) {
+        self.timerStopTimeLabel.text = text
+    }
+    
+    func fadeOutRunOutTime() {
+        timerStopTimeLabel.textColor = UIColor.darkGray.withAlphaComponent(0.5)
+    }
+    
+    func fadeInRunOutTime() {
+        timerStopTimeLabel.textColor = UIColor.gray.withAlphaComponent(1)
     }
 }
 

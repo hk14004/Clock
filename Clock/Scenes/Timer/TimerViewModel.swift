@@ -25,7 +25,13 @@ class TimerViewModel {
     
     private var pausedTime: Date?
     
-    private var endTime: Date?
+    private var endTime: Date? {
+        didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            delegate?.countdownTimerRanOutTimeChanged(timeString: dateFormatter.string(from: endTime!))
+        }
+    }
     
     private(set) var timerState: TimerState = .initalizing {
         didSet {
