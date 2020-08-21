@@ -21,6 +21,12 @@ class TimerViewModel {
     
     private lazy var countdownTimer: Timer = Timer()
     
+    private var startTime: Date?
+    
+    private var pausedTime: Date?
+    
+    private var endTime: Date?
+    
     private(set) var timerState: TimerState = .initalizing {
         didSet {
             if timerState == oldValue { return }
@@ -64,34 +70,57 @@ class TimerViewModel {
         if pickedTime.getTotalTimeInSeconds() < 1 {
             timerState = .canNotStart
         } else {
-            timerState = .canStart
+            if previousTimerState == .canNotStart || previousTimerState == .initalizing {
+                timerState = .canStart
+            }
         }
     }
     
     @objc private func decremenCountdownTimer(timer: Timer) {
-        countDownTimeLeft.decrement(by: 1)
+        let secondsLeft: Int = Int(Date().distance(to: endTime!).rounded(.up))
+        var t = TimeStruct()
+        t.setTime(inSeconds: secondsLeft)
+        countDownTimeLeft = t
+    }
+    
+    private func startTimer() {
+        timerState = .running
+        countDownTimeLeft = pickedTime
+        startTime = Date()
+        endTime = Date(timeInterval: TimeInterval(exactly: Double(pickedTime.getTotalTimeInSeconds()))!, since: startTime!)
+        countdownTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(decremenCountdownTimer), userInfo: nil, repeats: true)
+    }
+    
+    private func resumeTimer() {
+        timerState = .running
+        let pauseInterval = pausedTime?.distance(to: Date())
+        endTime?.addTimeInterval(pauseInterval!)
+        countdownTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(decremenCountdownTimer), userInfo: nil, repeats: true)
+    }
+    
+    private func stopTimer() {
+        timerState = .canStart
+        countdownTimer.invalidate()
+    }
+    
+    private func pauseTimer() {
+        timerState = .paused
+        pausedTime = Date()
+        countdownTimer.invalidate()
+    }
+    
+    func pressCancelButton() {
+        guard timerState == .running || timerState == .paused else {
+            return
+        }
+        stopTimer()
     }
     
     func pressStartButton() {
         guard timerState == .canStart else {
             return
         }
-        timerState = .running
-        countDownTimeLeft = pickedTime
         startTimer()
-    }
-    
-    private func startTimer() {
-        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(decremenCountdownTimer), userInfo: nil, repeats: true)
-    }
-    
-    private func stopTimer() {
-        countdownTimer.invalidate()
-    }
-    
-    func pressCancelButton() {
-        verifyPicketTime()
-        stopTimer()
     }
     
     func pressResumeButton() {
@@ -99,8 +128,7 @@ class TimerViewModel {
             print("BUG: ViewController should not be able to call resume if not in paused state")
             return
         }
-        timerState = .running
-        startTimer()
+        resumeTimer()
     }
     
     func pressPauseButton() {
@@ -108,8 +136,7 @@ class TimerViewModel {
             print("BUG: ViewController should not be able to call pause if not in running state")
             return
         }
-        timerState = .paused
-        stopTimer()
+        pauseTimer()
     }
     
     func setSelectedTime(h: Int, m: Int, s: Int) {
