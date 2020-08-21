@@ -45,13 +45,13 @@ class TimerClockFaceView: UIView {
     }
     
     private func addCircle() {
-        countdownCircle = TimerCircleCountdownView(frame: CGRect(x: 150, y: 150, width: frame.width, height: frame.height))
+        countdownCircle = TimerCircleCountdownView()
         addSubview(countdownCircle)
         
         countdownCircle.translatesAutoresizingMaskIntoConstraints = false
         countdownCircle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-        countdownCircle.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        countdownCircle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        countdownCircle.topAnchor.constraint(equalTo: self.centerYAnchor, constant: 30).isActive = true
+        countdownCircle.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         countdownCircle.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
     }
     
@@ -64,19 +64,19 @@ class TimerCircleCountdownView: UIView {
     
     private var countdownTime: Int = 0
     
-    private var countdownStrokeLayer: CAShapeLayer!
+    private var animatedCountdownStrokeLayer: CAShapeLayer!
     
     func setCoundownTime(seconds: Int) {
         countdownTime = seconds
     }
     
-    func createCountdownStrokeLayer() -> CAShapeLayer {
-        let path = UIBezierPath(arcCenter: center, radius: 100, startAngle: 3 * .pi/2, endAngle: -.pi/2, clockwise: false)
+    func createCountdownStrokeLayer(color: UIColor) -> CAShapeLayer {
+        let path = UIBezierPath(arcCenter: center, radius: 170, startAngle: 3 * .pi/2, endAngle: -.pi/2, clockwise: false)
         let circleLayer = CAShapeLayer()
         circleLayer.path = path.cgPath
-        circleLayer.strokeColor = UIColor.orange.cgColor
+        circleLayer.strokeColor = color.cgColor
         circleLayer.fillColor = UIColor.clear.cgColor
-        circleLayer.lineWidth = 5
+        circleLayer.lineWidth = 8
         return circleLayer
     }
     
@@ -91,34 +91,35 @@ class TimerCircleCountdownView: UIView {
     
     func startCountdownAnimation() {
         let anim = createCountdownAnimation()
-        countdownStrokeLayer.speed = 1.0
-        countdownStrokeLayer.lineCap = .round
-        countdownStrokeLayer.add(anim, forKey: "")
+        animatedCountdownStrokeLayer.speed = 1.0
+        animatedCountdownStrokeLayer.lineCap = .round
+        animatedCountdownStrokeLayer.add(anim, forKey: "")
     }
     
     func pauseCountdownAnimation(){
-        let pausedTime : CFTimeInterval = countdownStrokeLayer.convertTime(CACurrentMediaTime(), from: nil)
-        countdownStrokeLayer.speed = 0.0
-        countdownStrokeLayer.timeOffset = pausedTime
+        let pausedTime : CFTimeInterval = animatedCountdownStrokeLayer.convertTime(CACurrentMediaTime(), from: nil)
+        animatedCountdownStrokeLayer.speed = 0.0
+        animatedCountdownStrokeLayer.timeOffset = pausedTime
     }
     
     func resumeCountdownAnimation(){
-        let pausedTime = countdownStrokeLayer.timeOffset
-        countdownStrokeLayer.speed = 1.0
-        countdownStrokeLayer.timeOffset = 0.0
-        countdownStrokeLayer.beginTime = 0.0
-        let timeSincePause = countdownStrokeLayer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
-        countdownStrokeLayer.beginTime = timeSincePause
+        let pausedTime = animatedCountdownStrokeLayer.timeOffset
+        animatedCountdownStrokeLayer.speed = 1.0
+        animatedCountdownStrokeLayer.timeOffset = 0.0
+        animatedCountdownStrokeLayer.beginTime = 0.0
+        let timeSincePause = animatedCountdownStrokeLayer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        animatedCountdownStrokeLayer.beginTime = timeSincePause
     }
     
     func cancelCountdownAnimation() {
-        countdownStrokeLayer.removeAllAnimations()
+        animatedCountdownStrokeLayer.removeAllAnimations()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        countdownStrokeLayer = createCountdownStrokeLayer()
-        layer.addSublayer(countdownStrokeLayer)
+        layer.addSublayer(createCountdownStrokeLayer(color: .darkGray))
+        animatedCountdownStrokeLayer = createCountdownStrokeLayer(color: .orange)
+        layer.addSublayer(animatedCountdownStrokeLayer)
     }
     
     required init?(coder: NSCoder) {
