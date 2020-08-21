@@ -70,9 +70,7 @@ class TimerViewModel {
         if pickedTime.getTotalTimeInSeconds() < 1 {
             timerState = .canNotStart
         } else {
-            if previousTimerState == .canNotStart || previousTimerState == .initalizing {
-                timerState = .canStart
-            }
+            timerState = .canStart
         }
     }
     
@@ -99,7 +97,7 @@ class TimerViewModel {
     }
     
     private func stopTimer() {
-        timerState = .canStart
+        verifyPicketTime()
         countdownTimer.invalidate()
     }
     
