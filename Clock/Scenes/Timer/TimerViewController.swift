@@ -80,8 +80,7 @@ class TimerViewController: UIViewController {
         startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
         startButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
         startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
-        /// Add padded stroke
-        //let strokeView = addPaddedStroke(button: startButton)
+        startButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: startButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
         view.addSubview(startButton)
@@ -103,8 +102,7 @@ class TimerViewController: UIViewController {
         resumeButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
         resumeButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
         resumeButton.addTarget(self, action: #selector(resumeButtonPressed), for: .touchUpInside)
-        /// Add padded stroke
-        //let strokeView = addPaddedStroke(button: startButton)
+        resumeButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: resumeButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
         view.addSubview(resumeButton)
@@ -126,9 +124,7 @@ class TimerViewController: UIViewController {
         pauseButton.backgroundColor = UIColor(red: 41/255, green: 26/255, blue: 1/255, alpha: 1)
         pauseButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3), forState: .highlighted)
         pauseButton.addTarget(self, action: #selector(pauseButtonPressed), for: .touchUpInside)
-        
-        /// Add padded stroke
-        //let strokeView = addPaddedStroke(button: pauseButton)
+        pauseButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: pauseButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
         view.addSubview(pauseButton)
@@ -150,18 +146,17 @@ class TimerViewController: UIViewController {
         cancelButton.backgroundColor = UIColor(named: "Primary")
         cancelButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
-        
-        /// Add padded stroke
-        let strokeView = addPaddedStroke(button: cancelButton)
+        cancelButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: cancelButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
-        view.addSubview(strokeView)
+        view.addSubview(cancelButton)
         
         // Contraints
-        strokeView.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
-        strokeView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
-        strokeView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        strokeView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
+        cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+        cancelButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        cancelButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     // MARK: Handling user input
@@ -183,28 +178,6 @@ class TimerViewController: UIViewController {
     }
     
     //MARK: MISC
-    
-    private func addPaddedStroke(button: UIButton) -> UIView {
-        /// Add padded stroke
-        let strokeView = UIView()
-        strokeView.backgroundColor = .clear
-        strokeView.layer.borderColor = button.backgroundColor?.cgColor
-        strokeView.layer.borderWidth = 2.0
-        strokeView.layer.cornerRadius = 40
-        /// Add start button as subview of stroke view
-        strokeView.addSubview(button)
-        
-        // Contraints
-        button.translatesAutoresizingMaskIntoConstraints = false
-        strokeView.translatesAutoresizingMaskIntoConstraints = false
-        /// Pin  start button to stroke view with a bit of padding
-        button.topAnchor.constraint(equalTo: strokeView.topAnchor, constant: 3).isActive = true
-        button.leadingAnchor.constraint(equalTo: strokeView.leadingAnchor, constant: 3).isActive = true
-        button.trailingAnchor.constraint(equalTo: strokeView.trailingAnchor, constant: -3).isActive = true
-        button.bottomAnchor.constraint(equalTo: strokeView.bottomAnchor, constant: -3).isActive = true
-        
-        return strokeView
-    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
