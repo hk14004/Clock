@@ -144,7 +144,11 @@ class TimerViewModel {
     }
     
     func setSelectedTime(h: Int, m: Int, s: Int) {
-        print("VM: Set picked time h:\(h) m:\(m), s:\(s)")
+        // Do not allow to set picked time after timer started. Possible start during picker animation.
+        if  timerState == .running || timerState == .paused {
+            delegate?.timerPickedTimeChanged(time: pickedTime)
+            return
+        }
         pickedTime = TimeStruct(hours: h, minutes: m, seconds: s)
     }
     
