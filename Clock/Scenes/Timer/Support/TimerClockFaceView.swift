@@ -30,6 +30,13 @@ class TimerClockFaceView: UIView {
         return label
     }()
     
+    private var timerStopTimeLabelImage: UIImageView = {
+        let image = UIImage(systemName: "bell.fill")
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = .gray
+        return imageView
+    }()
+    
     private(set) var countdownCircle: TimerCircleCountdownView!
     
     override init(frame: CGRect) {
@@ -37,7 +44,7 @@ class TimerClockFaceView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         addCircle()
         addCountdownLabel()
-        addTimerStopTimeLabel()
+        addTimerStopTimeView()
         self.backgroundColor = .clear
     }
     
@@ -55,14 +62,28 @@ class TimerClockFaceView: UIView {
         timeLeftLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
     }
     
-    private func addTimerStopTimeLabel() {
-        addSubview(timerStopTimeLabel)
+    private func addTimerStopTimeView() {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
         
+        container.addSubview(timerStopTimeLabel)
+        addSubview(container)
+        container.addSubview(timerStopTimeLabelImage)
+        
+        container.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        container.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        container.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        container.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+
         timerStopTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         timerStopTimeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-        timerStopTimeLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+        timerStopTimeLabel.topAnchor.constraint(equalTo: container.centerYAnchor, constant: 0).isActive = true
         timerStopTimeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         timerStopTimeLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        
+        timerStopTimeLabelImage.translatesAutoresizingMaskIntoConstraints = false
+        timerStopTimeLabelImage.centerXAnchor.constraint(equalTo: self.timerStopTimeLabel.centerXAnchor, constant: -40).isActive = true
+        timerStopTimeLabelImage.centerYAnchor.constraint(equalTo: self.timerStopTimeLabel.centerYAnchor, constant: 0).isActive = true
     }
     
     private func addCircle() {
@@ -86,10 +107,12 @@ class TimerClockFaceView: UIView {
     
     func fadeOutRunOutTime() {
         timerStopTimeLabel.textColor = UIColor.darkGray.withAlphaComponent(0.5)
+        timerStopTimeLabelImage.tintColor = UIColor.darkGray.withAlphaComponent(0.5)
     }
     
     func fadeInRunOutTime() {
         timerStopTimeLabel.textColor = UIColor.gray.withAlphaComponent(1)
+        timerStopTimeLabelImage.tintColor = UIColor.gray.withAlphaComponent(1)
     }
 }
 
@@ -129,13 +152,13 @@ class TimerCircleCountdownView: UIView {
         animatedCountdownStrokeLayer.add(anim, forKey: "")
     }
     
-    func pauseCountdownAnimation(){
+    func pauseCountdownAnimation() {
         let pausedTime : CFTimeInterval = animatedCountdownStrokeLayer.convertTime(CACurrentMediaTime(), from: nil)
         animatedCountdownStrokeLayer.speed = 0.0
         animatedCountdownStrokeLayer.timeOffset = pausedTime
     }
     
-    func resumeCountdownAnimation(){
+    func resumeCountdownAnimation() {
         let pausedTime = animatedCountdownStrokeLayer.timeOffset
         animatedCountdownStrokeLayer.speed = 1.0
         animatedCountdownStrokeLayer.timeOffset = 0.0
