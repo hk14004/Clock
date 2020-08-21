@@ -279,8 +279,12 @@ extension TimerViewController: TimerViewModelDelegate {
             startButton.isHidden = false
             pauseButton.isHidden = true
             resumeButton.isHidden = true
-            timerClockFace.isHidden = true
-            timePickerView.isHidden = false
+            UIView.animate(withDuration: 0.25) {
+                self.timerClockFace.isHidden = true
+                self.timerClockFace.alpha = 0
+                self.timePickerView.isHidden = false
+                self.timePickerView.alpha = 1
+            }
             if timerViewModel.previousTimerState == .running || timerViewModel.previousTimerState == .paused {
                 timerClockFace.countdownCircle.cancelCountdownAnimation()
             }
@@ -296,8 +300,12 @@ extension TimerViewController: TimerViewModelDelegate {
             startButton.isHidden = true
             pauseButton.isHidden = false
             resumeButton.isHidden = true
-            timerClockFace.isHidden = false
-            timePickerView.isHidden = true
+            UIView.animate(withDuration: 0.25) {
+                self.timerClockFace.isHidden = false
+                self.timerClockFace.alpha = 1
+                self.timePickerView.isHidden = true
+                self.timePickerView.alpha = 0
+            }
             timerClockFace.fadeInRunOutTime()
             if timerViewModel.previousTimerState == .paused {
                 timerClockFace.countdownCircle.resumeCountdownAnimation()
