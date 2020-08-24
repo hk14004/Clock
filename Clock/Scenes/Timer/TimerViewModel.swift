@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class TimerViewModel {
     
@@ -70,6 +71,16 @@ class TimerViewModel {
     
     private func alarm() {
         delegate?.countdownTimerRanOut()
+        guard let sound = Bundle.main.url(forResource: "Radar", withExtension: "mp3") else { return }
+        audioPlayer = try? AVAudioPlayer(contentsOf: sound)
+        audioPlayer?.numberOfLoops = -1
+        audioPlayer?.play()
+    }
+    
+    private var audioPlayer: AVAudioPlayer?
+    func stopAlarm() {
+        print("Alarm is stopping")
+        audioPlayer?.stop()
     }
     
     private func verifyPicketTime() {

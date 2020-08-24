@@ -257,7 +257,11 @@ extension TimerViewController: TimerViewModelDelegate {
     }
     
     func countdownTimerRanOut() {
-        // TODO: WARN
+        let alert = UIAlertController(title: "Alarm", message: nil, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Stop", style: .cancel, handler: { (action) in
+            self.timerViewModel.stopAlarm()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func countdownTimeChanged(timeString: String) {
