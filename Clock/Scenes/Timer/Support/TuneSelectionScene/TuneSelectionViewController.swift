@@ -52,15 +52,17 @@ class TuneSelectionViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 23).isActive = true
-
-
+    }
+    
+    @objc func dismissSelf() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func setupCancelButton() {
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.setTitleColor(UIColor.orange, for: .normal)
+        cancelButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
         view.addSubview(cancelButton)
-        
         
         // Contraints
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
