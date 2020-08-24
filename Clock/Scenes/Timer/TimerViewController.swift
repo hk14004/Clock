@@ -31,6 +31,8 @@ class TimerViewController: UIViewController {
     
     private lazy var cancelButton: UIButton = UIButton()
     
+    private lazy var changeTuneButton: TunePickerButton = TunePickerButton()
+    
     // MARK: UIViewController methods
     
     override func viewDidLoad() {
@@ -40,6 +42,7 @@ class TimerViewController: UIViewController {
         setupTimePickerView()
         setupTimerButtons()
         setupTimerClockFace()
+        setupChangeTuneButton()
     }
     
     // MARK: Setup methods
@@ -70,6 +73,26 @@ class TimerViewController: UIViewController {
         timePickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         timePickerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
         timePickerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+    }
+        
+    func setupChangeTuneButton() {
+        view.addSubview(changeTuneButton)
+        
+        changeTuneButton.setTitle("When Timer Ends", for: .normal)
+        changeTuneButton.setTitleColor(.white, for: .normal)
+        changeTuneButton.layer.cornerRadius = 10
+        changeTuneButton.backgroundColor = UIColor(named: "Primary")
+        changeTuneButton.setBackgroundColor(color: .darkGray, forState: .highlighted)
+        changeTuneButton.addTarget(self, action: #selector(showTunePickerPopoverView), for: .touchUpInside)
+        changeTuneButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        changeTuneButton.contentHorizontalAlignment = .left
+        
+        // Constraints
+        changeTuneButton.translatesAutoresizingMaskIntoConstraints = false
+        changeTuneButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+        changeTuneButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        changeTuneButton.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 30).isActive = true
+        changeTuneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupStartButton() {
@@ -175,6 +198,10 @@ class TimerViewController: UIViewController {
     
     @objc func resumeButtonPressed(sender: UIButton) {
         timerViewModel.pressResumeButton()
+    }
+    
+    @objc func showTunePickerPopoverView() {
+        print("Show popover")
     }
     
     //MARK: MISC
