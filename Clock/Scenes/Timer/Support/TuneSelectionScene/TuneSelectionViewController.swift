@@ -15,58 +15,23 @@ class TuneSelectionViewController: UIViewController {
     private var titleLabel: UILabel = UILabel()
     
     private var setButton: UIButton = UIButton()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "Primary")
-        setupHeader()
+        setupNavigationBar()
     }
     
-    private func setupHeader() {
-        setupCancelButton()
-        setupTitle()
-        setupSetButton()
-    }
-    
-    private func setupSetButton() {
-        setButton.setTitle("Set", for: .normal)
-        setButton.setTitleColor(UIColor.orange, for: .normal)
-        view.addSubview(setButton)
-        
-        
-        // Contraints
-        setButton.translatesAutoresizingMaskIntoConstraints = false
-        setButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
-        setButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
-
-    }
-    
-    private func setupTitle() {
-        titleLabel.text = "When Timer Ends"
-        titleLabel.textColor = .white
-        
-        view.addSubview(titleLabel)
-        
-        // Constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 23).isActive = true
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.barTintColor = UIColor(named: "Primary")
+        navigationController?.navigationBar.tintColor = .orange
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        title = "When Timer Ends"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissSelf))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(dismissSelf))
     }
     
     @objc func dismissSelf() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    private func setupCancelButton() {
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.setTitleColor(UIColor.orange, for: .normal)
-        cancelButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
-        view.addSubview(cancelButton)
-        
-        // Contraints
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
-        cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
     }
 }
