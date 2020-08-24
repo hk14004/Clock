@@ -27,6 +27,7 @@
 		D46EAA6124F3D07D00321B41 /* Radar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D46EAA6024F3D07D00321B41 /* Radar.mp3 */; };
 		D46EAA6324F3E7CF00321B41 /* Beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D46EAA6224F3E7CF00321B41 /* Beep.mp3 */; };
 		D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6424F3F67100321B41 /* TunePickerButton.swift */; };
+		D46EAA6824F4059F00321B41 /* TuneSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */; };
 		D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */; };
 		D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */; };
 		D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */; };
@@ -76,6 +77,7 @@
 		D46EAA6024F3D07D00321B41 /* Radar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Radar.mp3; path = ../../../../../Downloads/Radar.mp3; sourceTree = "<group>"; };
 		D46EAA6224F3E7CF00321B41 /* Beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Beep.mp3; path = ../../../../../Downloads/Beep.mp3; sourceTree = "<group>"; };
 		D46EAA6424F3F67100321B41 /* TunePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunePickerButton.swift; sourceTree = "<group>"; };
+		D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionViewController.swift; sourceTree = "<group>"; };
 		D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewController.swift; sourceTree = "<group>"; };
 		D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		D41FEF6624EBF9E300C6DE27 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				D46EAA6624F4055900321B41 /* TuneSelectionScene */,
 				D41FEF6724EBFA0600C6DE27 /* TimeStateEnum.swift */,
 				D41FEF6F24EC042600C6DE27 /* TimerClockFaceView.swift */,
 				D41FEF6924EBFA5300C6DE27 /* TimerViewModelDelegate.swift */,
@@ -219,6 +222,14 @@
 				D441D3DB24E80E5900ACCC4E /* Info.plist */,
 			);
 			path = ClockUITests;
+			sourceTree = "<group>";
+		};
+		D46EAA6624F4055900321B41 /* TuneSelectionScene */ = {
+			isa = PBXGroup;
+			children = (
+				D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */,
+			);
+			path = TuneSelectionScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +367,7 @@
 				D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */,
 				D41FEF6824EBFA0600C6DE27 /* TimeStateEnum.swift in Sources */,
 				D441D3B924E80E5500ACCC4E /* HomeViewController.swift in Sources */,
+				D46EAA6824F4059F00321B41 /* TuneSelectionViewController.swift in Sources */,
 				D41FEF6C24EBFAC400C6DE27 /* TimeStruct.swift in Sources */,
 				D41FEF6A24EBFA5300C6DE27 /* TimerViewModelDelegate.swift in Sources */,
 				D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */,
