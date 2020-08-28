@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class TimerViewModel {
+class TimerViewModel: NSObject {
     
     // Mark: Properties
     
@@ -63,15 +63,40 @@ class TimerViewModel {
         }
     }
     
+    var defaultTune: Tune {
+        get {
+            let decoded  = UserDefaults.standard.object(forKey: DEFAULT_TUNE_KEY) as! Data
+            return NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Tune
+        }
+    }
+    
     // Mark: Methods
     
     private func attach() {
         setSelectedTime(h: 0, m: 1, s: 1)
     }
     
+    override init() {
+        super.init()
+        listenForDefaultTuneChange()
+    }
+    
+    deinit {
+        UserDefaults.standard.removeObserver(self, forKeyPath: DEFAULT_TUNE_KEY)
+    }
+    
+    private func listenForDefaultTuneChange() {
+        UserDefaults.standard.addObserver(self, forKeyPath: DEFAULT_TUNE_KEY, options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        delegate?.defaultTuneChanged(tune: defaultTune)
+    }
+
+    
     private func alarm() {
         delegate?.countdownTimerRanOut()
-        guard let sound = Bundle.main.url(forResource: "Radar", withExtension: "mp3") else { return }
+        guard let sound = Bundle.main.url(forResource: defaultTune.name, withExtension: defaultTune.format, subdirectory: "Tunes") else { return }
         audioPlayer = try? AVAudioPlayer(contentsOf: sound)
         audioPlayer?.numberOfLoops = -1
         audioPlayer?.play()
@@ -79,7 +104,6 @@ class TimerViewModel {
     
     private var audioPlayer: AVAudioPlayer?
     func stopAlarm() {
-        print("Alarm is stopping")
         audioPlayer?.stop()
     }
     

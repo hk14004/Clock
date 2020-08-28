@@ -47,11 +47,10 @@ class TuneSelectionViewModel: NSObject {
     }
     
     private static func getDefaultTune() -> Tune {
-        guard let defaultTuneName: String = UserDefaults.standard.string(forKey: DEFAULT_TUNE_KEY) else {
-            return FALLBACK_DEFAULT_TUNE
-        }
-        
-        return Tune(name: defaultTuneName, format: "mp3")
+        let decoded  = UserDefaults.standard.object(forKey: DEFAULT_TUNE_KEY) as! Data
+        let decodedTune = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Tune
+
+        return decodedTune
     }
     
     func selectTune(at: Int) {
@@ -59,5 +58,13 @@ class TuneSelectionViewModel: NSObject {
             currentDefault.isdefault = false
         }
         tuneCellViewModels[at].isdefault = true
+    }
+    
+    func save() {
+        if let currentDefaultViewModel = tuneCellViewModels.first(where: { $0.isdefault }) {
+            let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: currentDefaultViewModel.tune, requiringSecureCoding: false)
+
+            UserDefaults.standard.set(encodedData, forKey: DEFAULT_TUNE_KEY)
+        }
     }
 }

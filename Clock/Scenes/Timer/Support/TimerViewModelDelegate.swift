@@ -14,4 +14,5 @@ protocol TimerViewModelDelegate: class {
     func countdownTimeChanged(timeString: String)
     func countdownTimerRanOut()
     func countdownTimerRanOutTimeChanged(timeString: String)
+    func defaultTuneChanged(tune: Tune)
 }

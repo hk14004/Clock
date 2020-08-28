@@ -86,6 +86,7 @@ class TimerViewController: UIViewController {
         changeTuneButton.addTarget(self, action: #selector(showTunePickerPopoverView), for: .touchUpInside)
         changeTuneButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         changeTuneButton.contentHorizontalAlignment = .left
+        changeTuneButton.setTuneName(timerViewModel.defaultTune.name)
         
         // Constraints
         changeTuneButton.translatesAutoresizingMaskIntoConstraints = false
@@ -282,6 +283,11 @@ extension TimerViewController: UIPickerViewDelegate {
 }
 
 extension TimerViewController: TimerViewModelDelegate {
+    
+    func defaultTuneChanged(tune: Tune) {
+        changeTuneButton.setTuneName(tune.name)
+    }
+    
     func countdownTimerRanOutTimeChanged(timeString: String) {
         timerClockFace.setTimerStopTimeLabelText(timeString)
     }

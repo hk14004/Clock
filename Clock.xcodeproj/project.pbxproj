@@ -15,9 +15,9 @@
 		D430670024F946AC00DEB487 /* Tune.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43066FF24F946AC00DEB487 /* Tune.swift */; };
 		D430670224F9483000DEB487 /* TuneSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */; };
 		D430670424F9668D00DEB487 /* TuneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430670324F9668D00DEB487 /* TuneCellViewModel.swift */; };
+		D430670624F9783200DEB487 /* Tunes in Resources */ = {isa = PBXBuildFile; fileRef = D430670524F9783200DEB487 /* Tunes */; };
 		D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D431BE5324EBCD0900F989BD /* UIButton.swift */; };
 		D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */; };
-		D435C63124F8460600E171C6 /* Tunes in Resources */ = {isa = PBXBuildFile; fileRef = D435C63024F8460600E171C6 /* Tunes */; };
 		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
 		D43A2A0524EA736800315B5D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A2A0424EA736800315B5D /* Functions.swift */; };
 		D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B424E80E5500ACCC4E /* AppDelegate.swift */; };
@@ -62,9 +62,9 @@
 		D43066FF24F946AC00DEB487 /* Tune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tune.swift; sourceTree = "<group>"; };
 		D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionViewModel.swift; sourceTree = "<group>"; };
 		D430670324F9668D00DEB487 /* TuneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneCellViewModel.swift; sourceTree = "<group>"; };
+		D430670524F9783200DEB487 /* Tunes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tunes; sourceTree = "<group>"; };
 		D431BE5324EBCD0900F989BD /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
-		D435C63024F8460600E171C6 /* Tunes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tunes; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		D441D3B124E80E5500ACCC4E /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,7 +184,7 @@
 		D441D3B324E80E5500ACCC4E /* Clock */ = {
 			isa = PBXGroup;
 			children = (
-				D435C63024F8460600E171C6 /* Tunes */,
+				D430670524F9783200DEB487 /* Tunes */,
 				D4368EA024EBD50F00D7B5C9 /* Scenes */,
 				D431BE5224EBCCEB00F989BD /* Extensions */,
 				D43A2A0324EA734200315B5D /* Utility */,
@@ -225,9 +225,9 @@
 			isa = PBXGroup;
 			children = (
 				D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */,
+				D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */,
 				D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */,
 				D43066FF24F946AC00DEB487 /* Tune.swift */,
-				D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */,
 				D430670324F9668D00DEB487 /* TuneCellViewModel.swift */,
 			);
 			path = TuneSelectionScene;
@@ -337,8 +337,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D430670624F9783200DEB487 /* Tunes in Resources */,
 				D441D3C424E80E5900ACCC4E /* LaunchScreen.storyboard in Resources */,
-				D435C63124F8460600E171C6 /* Tunes in Resources */,
 				D441D3C124E80E5900ACCC4E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

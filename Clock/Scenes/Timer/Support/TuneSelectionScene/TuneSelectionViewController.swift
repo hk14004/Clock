@@ -33,11 +33,16 @@ class TuneSelectionViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         title = "When Timer Ends"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissSelf))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(dismissSelf))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(setTapped))
     }
     
     @objc func dismissSelf() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func setTapped() {
+        tuneSelectionViewModel.save()
+        dismissSelf()
     }
     
     private func setupTableView() {
