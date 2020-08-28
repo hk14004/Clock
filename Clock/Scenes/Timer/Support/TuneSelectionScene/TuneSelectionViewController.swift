@@ -18,13 +18,18 @@ class TuneSelectionViewController: UIViewController {
     
     private let tableView: UITableView = UITableView()
         
-    private var selectedCell: Int?
+    private var selectedCellIndex: Int?
+    
+    private var tuneList: [Tune] = []
+    
+    private var cells: [TuneSelectionCell] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "Primary")
+        view.backgroundColor = UIColor(named: "Primary")
         setupNavigationBar()
         setupTableView()
+        tuneList = getTunes()
     }
     
     private func setupNavigationBar() {
@@ -34,6 +39,21 @@ class TuneSelectionViewController: UIViewController {
         title = "When Timer Ends"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissSelf))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(dismissSelf))
+    }
+    
+    private func getTunes() -> [Tune] {
+        // Get all tune urls
+        guard let urls: [URL] = Bundle.main.urls(forResourcesWithExtension: nil, subdirectory: "Tunes") else {
+            return []
+        }
+        
+        // Create tune array
+        let tunes: [Tune] = urls.compactMap {
+            let split = $0.lastPathComponent.split(separator: ".")
+            return Tune(name: "\(split[0])", format: "\(split[1])")
+        }
+        
+        return tunes
     }
     
     @objc func dismissSelf() {
@@ -58,19 +78,25 @@ class TuneSelectionViewController: UIViewController {
 
 extension TuneSelectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCell = indexPath.row
+        if let selectionIndex = selectedCellIndex {
+            cells[selectionIndex].setUnSelectedd()
+        }
+        selectedCellIndex = indexPath.row
+        cells[indexPath.row].setSelectedd()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension TuneSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return tuneList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "TuneSelectCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TuneSelectCell", for: indexPath)
         let g = cell as! TuneSelectionCell
-        g.setup(tuneName: "Something")
+        g.setup(tune: tuneList[indexPath.row])
+        cells.insert(g, at: indexPath.row)
         return g
     }
 }

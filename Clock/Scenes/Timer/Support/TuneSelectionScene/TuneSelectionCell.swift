@@ -24,8 +24,8 @@ class TuneSelectionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(tuneName: String) {
-        self.tuneName.text = tuneName
+    func setup(tune: Tune) {
+        self.tuneName.text = tune.name
     }
     
     private func setupViews() {
@@ -35,6 +35,7 @@ class TuneSelectionCell: UITableViewCell {
     
     private func setupCheckImage() {
         selectionImage.tintColor = .orange
+        selectionImage.isHidden = true
         contentView.addSubview(selectionImage)
         selectionImage.translatesAutoresizingMaskIntoConstraints = false
         selectionImage.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 0).isActive = true
@@ -50,5 +51,13 @@ class TuneSelectionCell: UITableViewCell {
         tuneName.leadingAnchor.constraint(equalTo: selectionImage.trailingAnchor, constant: 15).isActive = true
         tuneName.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 0).isActive = true
         tuneName.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0).isActive = true
+    }
+    
+    func setSelectedd() {
+        selectionImage.isHidden = false
+    }
+    
+    func setUnSelectedd() {
+        selectionImage.isHidden = true
     }
 }
