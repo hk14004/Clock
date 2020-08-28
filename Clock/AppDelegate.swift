@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Set default tune if not set
+        if UserDefaults.standard.object(forKey: DEFAULT_TUNE_KEY) as? Data == nil {
+            setDefaultTune(FALLBACK_DEFAULT_TUNE)
+        }
+        
         //Create a window that is the same size as the screen
         window = UIWindow(frame: UIScreen.main.bounds)
         // Create a view controller
@@ -24,7 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = viewController
         // Show the window
         window?.makeKeyAndVisible()
+        
         return true
+    }
+    
+    private func setDefaultTune(_ tune: Tune) {
+        let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: tune, requiringSecureCoding: false)
+        UserDefaults.standard.set(encodedData, forKey: DEFAULT_TUNE_KEY)
     }
 
     // MARK: - Core Data stack
