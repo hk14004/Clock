@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension TuneSelectionCell: TuneCellViewModelDelegate {
+    func defaultValueChanged(isDefault: Bool) {
+        if isDefault {
+            setSelectedd()
+        } else {
+            setUnSelectedd()
+        }
+    }
+}
+
 class TuneSelectionCell: UITableViewCell {
     
     private var selectionImage: UIImageView = UIImageView(image: UIImage(systemName: "checkmark"))
@@ -24,8 +34,10 @@ class TuneSelectionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(tune: Tune) {
-        self.tuneName.text = tune.name
+    func setup(viewModel: TuneCellViewModel) {
+        self.tuneName.text = viewModel.tune.name
+        viewModel.delegate = self
+        defaultValueChanged(isDefault: viewModel.isdefault)
     }
     
     private func setupViews() {

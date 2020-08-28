@@ -13,3 +13,7 @@ let SECONDS: [Int] = makeIntArray(from: 0, to: 59)
 let MINUTES: [Int] = makeIntArray(from: 0, to: 59)
 
 let HOURS: [Int] = makeIntArray(from: 0, to: 23)
+
+let DEFAULT_TUNE_KEY = "DEFAULT_TUNE"
+
+let FALLBACK_DEFAULT_TUNE = Tune(name: "Radar", format: "mp3")
