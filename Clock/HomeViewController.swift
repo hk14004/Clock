@@ -64,6 +64,6 @@ class HomeViewController: UITabBarController {
         
         viewControllers = [worldClockVC, alarmVC, bedtimeVC, stopwatch, timer]
         
-        selectedViewController = timer
+        selectedViewController = stopwatch
     }
 }
