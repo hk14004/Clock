@@ -230,8 +230,8 @@
 		D448654624FD577300EF1505 /* Stopwatch */ = {
 			isa = PBXGroup;
 			children = (
-				D448654724FD5E7F00EF1505 /* StopwatchFaceCollection */,
 				D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */,
+				D448654724FD5E7F00EF1505 /* StopwatchFaceCollection */,
 			);
 			path = Stopwatch;
 			sourceTree = "<group>";

@@ -10,12 +10,38 @@ import UIKit
 
 class StopwatchFaceCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    private lazy var pageControl: UIPageControl = UIPageControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = .red
+        collectionView?.backgroundColor = .clear
         collectionView?.register(StopwatchDigitalClockFaceCell.self, forCellWithReuseIdentifier: "digitalCell")
         collectionView?.register(StopwatchAnalogClockFaceCell.self, forCellWithReuseIdentifier: "analogCell")
         collectionView?.isPagingEnabled = true
+        
+        setupPageControl()
+    }
+    
+    @objc private func pageControlTapHandler(sender:UIPageControl) {
+        collectionView.scrollToItem(at: IndexPath(row: sender.currentPage, section: 0), at: .centeredHorizontally, animated: true)
+    }
+    
+    private func setupPageControl() {
+        pageControl.numberOfPages = 2
+        pageControl.currentPage = 0
+        pageControl.addTarget(self, action: #selector(pageControlTapHandler(sender:)), for: .touchUpInside)
+        
+        view.addSubview(pageControl)
+        
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let x = scrollView.contentOffset.x
+        let w = scrollView.bounds.size.width
+        pageControl.currentPage = Int(ceil(x/w))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -23,7 +49,7 @@ class StopwatchFaceCollectionViewController: UICollectionViewController, UIColle
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return pageControl.numberOfPages
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
