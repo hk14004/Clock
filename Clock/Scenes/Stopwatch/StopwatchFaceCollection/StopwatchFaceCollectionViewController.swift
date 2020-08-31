@@ -14,10 +14,12 @@ class StopwatchFaceCollectionViewController: UICollectionViewController, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = .clear
-        collectionView?.register(StopwatchDigitalClockFaceCell.self, forCellWithReuseIdentifier: "digitalCell")
-        collectionView?.register(StopwatchAnalogClockFaceCell.self, forCellWithReuseIdentifier: "analogCell")
-        collectionView?.isPagingEnabled = true
+        collectionView.backgroundColor = .clear
+        collectionView.register(StopwatchDigitalClockFaceCell.self, forCellWithReuseIdentifier: "digitalCell")
+        collectionView.register(StopwatchAnalogClockFaceCell.self, forCellWithReuseIdentifier: "analogCell")
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         
         setupPageControl()
     }
