@@ -21,11 +21,28 @@ class StopwatchViewController: UIViewController {
     
     private var startButton: UIButton = UIButton()
     
+    private var tableView: UITableView = UITableView()
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(named: "Secondary")
         setupClocks()
         setupLapButton()
         setupStartButton()
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        tableView.register(StopwatchCell.self, forCellReuseIdentifier: "StopwatchCell")
+        tableView.dataSource = self
+        tableView.rowHeight = 44
+        tableView.delegate = self
+        tableView.backgroundColor = .clear
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: 40).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
     
     private func setupClocks() {
@@ -67,9 +84,7 @@ class StopwatchViewController: UIViewController {
         lapButton.layer.cornerRadius = 38
         lapButton.backgroundColor = UIColor(named: "Primary")
         lapButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
-
         lapButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: lapButton.backgroundColor!, borderWidth: 2)
-        
         
         view.addSubview(lapButton)
         
@@ -78,10 +93,24 @@ class StopwatchViewController: UIViewController {
         lapButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
         lapButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
          lapButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+}
+
+extension StopwatchViewController: UITableViewDelegate {
+
+}
+
+extension StopwatchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StopwatchCell", for: indexPath)
+        return cell
     }
 }

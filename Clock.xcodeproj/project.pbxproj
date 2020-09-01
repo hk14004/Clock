@@ -17,6 +17,8 @@
 		D430670424F9668D00DEB487 /* TuneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430670324F9668D00DEB487 /* TuneCellViewModel.swift */; };
 		D430670624F9783200DEB487 /* Tunes in Resources */ = {isa = PBXBuildFile; fileRef = D430670524F9783200DEB487 /* Tunes */; };
 		D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D431BE5324EBCD0900F989BD /* UIButton.swift */; };
+		D43274E924FE33FF001A1C8E /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */; };
+		D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */; };
 		D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */; };
 		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
 		D43A2A0524EA736800315B5D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A2A0424EA736800315B5D /* Functions.swift */; };
@@ -67,6 +69,8 @@
 		D430670324F9668D00DEB487 /* TuneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneCellViewModel.swift; sourceTree = "<group>"; };
 		D430670524F9783200DEB487 /* Tunes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tunes; sourceTree = "<group>"; };
 		D431BE5324EBCD0900F989BD /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
+		D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCell.swift; sourceTree = "<group>"; };
 		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -231,7 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */,
+				D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */,
 				D448654724FD5E7F00EF1505 /* StopwatchFaceCollection */,
+				D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */,
 			);
 			path = Stopwatch;
 			sourceTree = "<group>";
@@ -399,9 +405,11 @@
 				D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */,
 				D41FEF6A24EBFA5300C6DE27 /* TimerViewModelDelegate.swift in Sources */,
 				D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */,
+				D43274E924FE33FF001A1C8E /* StopwatchViewModel.swift in Sources */,
 				D41FEF6E24EBFB9400C6DE27 /* Constants.swift in Sources */,
 				D430670424F9668D00DEB487 /* TuneCellViewModel.swift in Sources */,
 				D43A2A0524EA736800315B5D /* Functions.swift in Sources */,
+				D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */,
 				D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */,
 				D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */,
 				D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */,
