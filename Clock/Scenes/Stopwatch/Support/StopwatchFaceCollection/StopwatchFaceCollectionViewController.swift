@@ -12,6 +12,8 @@ class StopwatchFaceCollectionViewController: UICollectionViewController, UIColle
     
     private lazy var pageControl: UIPageControl = UIPageControl()
     
+    private(set) var digitalClockCell: StopwatchDigitalClockFaceCell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .clear
@@ -59,6 +61,7 @@ class StopwatchFaceCollectionViewController: UICollectionViewController, UIColle
         
         if indexPath.row == 0 {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "digitalCell", for: indexPath)
+            digitalClockCell = cell as? StopwatchDigitalClockFaceCell
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "analogCell", for: indexPath)
         }

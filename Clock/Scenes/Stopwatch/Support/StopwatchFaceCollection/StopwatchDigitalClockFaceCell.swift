@@ -14,7 +14,8 @@ class StopwatchDigitalClockFaceCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "00:00,00"
         label.textColor = .white
-        label.font = UIFont(descriptor: label.font.fontDescriptor, size: 70)
+        label.font = UIFont(name: "arial", size: 80)
+        label.textAlignment = .center
         return label
     }()
     
@@ -31,8 +32,11 @@ class StopwatchDigitalClockFaceCell: UICollectionViewCell {
         addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
-        label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
+        label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80).isActive = true
+        
+        label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
+        label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+
     }
     
     func setTime(string: String) {

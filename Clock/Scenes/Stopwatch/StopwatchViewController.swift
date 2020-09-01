@@ -193,6 +193,11 @@ extension StopwatchViewController: UITableViewDataSource {
 }
 
 extension StopwatchViewController: StopwatchViewModelDelegate {
+    
+    func stopwatchTimeChanged(timeString: String) {
+        clockFaceCollectionViewController.digitalClockCell?.setTime(string: timeString)
+    }
+    
     func stopwatchStateChanged(state: StopwatchState) {
         switch state {
         case .idle:
