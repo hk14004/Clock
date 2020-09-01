@@ -17,18 +17,47 @@ class StopwatchViewController: UIViewController {
         return vc
     }()
     
+    private var stopwatchViewModel: StopwatchViewModel = StopwatchViewModel()
+    
     private var lapButton: UIButton = UIButton()
     
     private var startButton: UIButton = UIButton()
     
+    private var stopButton: UIButton = UIButton()
+    
+    private var resetButton: UIButton = UIButton()
+    
     private var tableView: UITableView = UITableView()
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(named: "Secondary")
+        view.backgroundColor = UIColor(named: "Secondary")
+        stopwatchViewModel.delegate = self
         setupClocks()
+        setupButtons()
+        setupTableView()
+    }
+    
+    @objc func lapButtonPressed() {
+        stopwatchViewModel.addLap()
+    }
+    
+    @objc func startButtonPressed() {
+        stopwatchViewModel.startStopwatch()
+    }
+    
+    @objc func stopButtonPressed() {
+        stopwatchViewModel.stopStopwatch()
+    }
+    
+    @objc func resetButtonPressed() {
+        stopwatchViewModel.resetStopwatch()
+    }
+    
+    private func setupButtons() {
         setupLapButton()
         setupStartButton()
-        setupTableView()
+        setupStopButton()
+        setupResetButton()
     }
     
     private func setupTableView() {
@@ -58,12 +87,13 @@ class StopwatchViewController: UIViewController {
     
     private func setupStartButton() {
         // Configure button
+        startButton.isHidden = stopwatchViewModel.stopwatchState == .running ? true : false
         startButton.setTitle("Start", for: .normal)
         startButton.setTitleColor(.green, for: .normal)
         startButton.layer.cornerRadius = 38
         startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
         startButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
-        //startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
+        startButton.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         startButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: startButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
@@ -78,13 +108,60 @@ class StopwatchViewController: UIViewController {
         startButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
+    private func setupStopButton() {
+        // Configure button
+        stopButton.isHidden = stopwatchViewModel.stopwatchState != .running ? true : false
+        stopButton.setTitle("Stop", for: .normal)
+        stopButton.setTitleColor(.red, for: .normal)
+        stopButton.layer.cornerRadius = 38
+        stopButton.backgroundColor = UIColor(red: 61/255, green: 22/255, blue: 19/255, alpha: 1)
+        stopButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
+        stopButton.addTarget(self, action: #selector(stopButtonPressed), for: .touchUpInside)
+        stopButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: stopButton.backgroundColor!, borderWidth: 2)
+        
+        // Add button via stroke to main view
+        view.addSubview(stopButton)
+        
+        // Contraints
+        stopButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        stopButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
+        stopButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        stopButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        stopButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    }
+    
+    private func setupResetButton() {
+        resetButton.isHidden = stopwatchViewModel.stopwatchState == .stopped ? false : true
+        resetButton.setTitle("Reset", for: .normal)
+        resetButton.setTitleColor(.gray, for: .normal)
+        resetButton.layer.cornerRadius = 38
+        resetButton.backgroundColor = UIColor(named: "Primary")
+        resetButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
+        resetButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: resetButton.backgroundColor!, borderWidth: 2)
+        resetButton.addTarget(self, action: #selector(resetButtonPressed), for: .touchUpInside)
+        
+        
+        view.addSubview(resetButton)
+        
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        resetButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        resetButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
+        resetButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        resetButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    }
+    
+    
+    
     private func setupLapButton() {
+        lapButton.isHidden = stopwatchViewModel.stopwatchState == .stopped ? true : false
         lapButton.setTitle("Lap", for: .normal)
         lapButton.setTitleColor(.gray, for: .normal)
         lapButton.layer.cornerRadius = 38
         lapButton.backgroundColor = UIColor(named: "Primary")
         lapButton.setBackgroundColor(color: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), forState: .highlighted)
         lapButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: lapButton.backgroundColor!, borderWidth: 2)
+        lapButton.addTarget(self, action: #selector(lapButtonPressed), for: .touchUpInside)
         
         view.addSubview(lapButton)
         
@@ -92,7 +169,7 @@ class StopwatchViewController: UIViewController {
         lapButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
         lapButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
         lapButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-         lapButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        lapButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -101,16 +178,38 @@ class StopwatchViewController: UIViewController {
 }
 
 extension StopwatchViewController: UITableViewDelegate {
-
+    
 }
 
 extension StopwatchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StopwatchCell", for: indexPath)
         return cell
+    }
+}
+
+extension StopwatchViewController: StopwatchViewModelDelegate {
+    func stopwatchStateChanged(state: StopwatchState) {
+        switch state {
+        case .idle:
+            startButton.isHidden = false
+            stopButton.isHidden = true
+            resetButton.isHidden = true
+            lapButton.isHidden = false
+        case .running:
+            startButton.isHidden = true
+            stopButton.isHidden = false
+            resetButton.isHidden = true
+            lapButton.isHidden = false
+        case .stopped:
+            startButton.isHidden = false
+            stopButton.isHidden = true
+            resetButton.isHidden = false
+            lapButton.isHidden = true
+        }
     }
 }
