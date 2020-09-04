@@ -114,5 +114,23 @@ class StopwatchViewModel {
     func addLap() {
         lapOffsetTime += laps.first?.lapTime ?? 0
         laps.insert(StopwatchCellViewModel(), at: 0)
+        setFastestAndSlowestLap()
+    }
+    
+    private func setFastestAndSlowestLap() {
+        var validLaps = laps
+        validLaps.removeFirst()
+        guard validLaps.count >= 2 else {
+            return
+        }
+        
+        let sortedLaps = validLaps.sorted(by: { (time1, time2) -> Bool in
+            return time1.lapTime < time2.lapTime
+        })
+        
+        sortedLaps.forEach { $0.lapState = .moderate }
+    
+        sortedLaps.first?.lapState = .fastest
+        sortedLaps.last?.lapState = .slowest
     }
 }

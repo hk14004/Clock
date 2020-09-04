@@ -10,19 +10,29 @@ import UIKit
 
 class StopwatchCell: UITableViewCell {
     
+    private var viewModel: StopwatchCellViewModel?
+    
     private(set) lazy var lapLabel: UILabel = {
         let label = UILabel()
         label.text = "Lap X"
-        label.textColor = .white
+        label.textColor = cellTextColor
         return label
     }()
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.text = "00:00,00"
-        label.textColor = .white
+        label.font = UIFont(name: "arial", size: label.font.fontDescriptor.pointSize)
+        label.textColor = cellTextColor
         return label
     }()
+    
+    private var cellTextColor: UIColor = .white {
+        didSet {
+            lapLabel.textColor = cellTextColor
+            timeLabel.textColor = cellTextColor
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,7 +51,6 @@ class StopwatchCell: UITableViewCell {
         setupTimeLabel()
     }
     
-    
     private func setupLapLabel() {
         contentView.addSubview(lapLabel)
         lapLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -55,9 +64,27 @@ class StopwatchCell: UITableViewCell {
         timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         timeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
     }
+    
+    func setup(with model: StopwatchCellViewModel) {
+        viewModel?.delegate = nil
+        viewModel = model
+        viewModel?.delegate = self
+        lapStateChanged(state: model.lapState)
+    }
 }
 
 extension StopwatchCell: StopwatchCellViewModelDelegate {
+    func lapStateChanged(state: LapState) {
+        switch state {
+        case .fastest:
+            cellTextColor = .green
+        case .slowest:
+            cellTextColor = .red
+        case .moderate:
+            cellTextColor = .white
+        }
+    }
+    
     func stopwatchTimeChanged(timeString: String) {
         timeLabel.text = timeString
     }

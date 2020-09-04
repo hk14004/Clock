@@ -188,7 +188,8 @@ extension StopwatchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StopwatchCell", for: indexPath) as! StopwatchCell
 
         cell.lapLabel.text = "Lap \( stopwatchViewModel.laps.count - indexPath.row)"
-        stopwatchViewModel.laps[indexPath.row].delegate = cell
+        let cellViewModel =  stopwatchViewModel.laps[indexPath.row]
+        cell.setup(with: cellViewModel)
         return cell
     }
 }

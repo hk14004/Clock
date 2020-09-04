@@ -21,8 +21,15 @@ class StopwatchCellViewModel {
             delegate?.stopwatchTimeChanged(timeString: StopwatchViewModel.createRunTimeString(distance: lapTime))
         }
     }
+    
+    var lapState: LapState = .moderate {
+        didSet {
+            delegate?.lapStateChanged(state: lapState)
+        }
+    }
 }
 
 protocol StopwatchCellViewModelDelegate: class {
     func stopwatchTimeChanged(timeString: String)
+    func lapStateChanged(state: LapState)
 }

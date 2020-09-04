@@ -32,6 +32,7 @@
 		D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3E724E8288800ACCC4E /* TimerViewController.swift */; };
 		D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */; };
 		D446179125025FC900A2551F /* StopwatchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D446179025025FC900A2551F /* StopwatchCellViewModel.swift */; };
+		D4461793250299ED00A2551F /* LapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4461792250299ED00A2551F /* LapState.swift */; };
 		D448654924FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D448654824FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift */; };
 		D448654D24FD871B00EF1505 /* StopwatchDigitalClockFaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D448654C24FD871B00EF1505 /* StopwatchDigitalClockFaceCell.swift */; };
 		D448654F24FD874600EF1505 /* StopwatchAnalogClockFaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D448654E24FD874600EF1505 /* StopwatchAnalogClockFaceCell.swift */; };
@@ -92,6 +93,7 @@
 		D441D3E724E8288800ACCC4E /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		D446179025025FC900A2551F /* StopwatchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCellViewModel.swift; sourceTree = "<group>"; };
+		D4461792250299ED00A2551F /* LapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapState.swift; sourceTree = "<group>"; };
 		D448654824FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFaceCollectionViewController.swift; sourceTree = "<group>"; };
 		D448654C24FD871B00EF1505 /* StopwatchDigitalClockFaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchDigitalClockFaceCell.swift; sourceTree = "<group>"; };
 		D448654E24FD874600EF1505 /* StopwatchAnalogClockFaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchAnalogClockFaceCell.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				D448654724FD5E7F00EF1505 /* StopwatchFaceCollection */,
 				D463897B24FE79E60000673D /* StopwatchState.swift */,
+				D4461792250299ED00A2551F /* LapState.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				D41FEF6C24EBFAC400C6DE27 /* TimeStruct.swift in Sources */,
 				D430670024F946AC00DEB487 /* Tune.swift in Sources */,
 				D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */,
+				D4461793250299ED00A2551F /* LapState.swift in Sources */,
 				D41FEF6A24EBFA5300C6DE27 /* TimerViewModelDelegate.swift in Sources */,
 				D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */,
 				D43274E924FE33FF001A1C8E /* StopwatchViewModel.swift in Sources */,
