@@ -10,7 +10,11 @@ import UIKit
 
 class StopwatchCellViewModel {
         
-    weak var delegate: StopwatchCellViewModelDelegate?
+    weak var delegate: StopwatchCellViewModelDelegate? {
+        didSet {
+            delegate?.stopwatchTimeChanged(timeString: StopwatchViewModel.createRunTimeString(distance: lapTime))
+        }
+    }
     
     var lapTime: TimeInterval = 0 {
         didSet {

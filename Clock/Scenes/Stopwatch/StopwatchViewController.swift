@@ -141,7 +141,6 @@ class StopwatchViewController: UIViewController {
         resetButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: resetButton.backgroundColor!, borderWidth: 2)
         resetButton.addTarget(self, action: #selector(resetButtonPressed), for: .touchUpInside)
         
-        
         view.addSubview(resetButton)
         
         resetButton.translatesAutoresizingMaskIntoConstraints = false
@@ -150,8 +149,6 @@ class StopwatchViewController: UIViewController {
         resetButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         resetButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
-    
-    
     
     private func setupLapButton() {
         lapButton.isEnabled = stopwatchViewModel.stopwatchState == .running ? true : false
@@ -190,7 +187,7 @@ extension StopwatchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StopwatchCell", for: indexPath) as! StopwatchCell
 
-        cell.lapLabel.text = "Lap \(indexPath.row + 1)"
+        cell.lapLabel.text = "Lap \( stopwatchViewModel.laps.count - indexPath.row)"
         stopwatchViewModel.laps[indexPath.row].delegate = cell
         return cell
     }

@@ -35,7 +35,7 @@ class StopwatchViewModel {
     private var stopwatchRunTime: TimeInterval = 0 {
         didSet {
             delegate?.stopwatchTimeChanged(timeString: StopwatchViewModel.createRunTimeString(distance: stopwatchRunTime))
-            laps.last?.lapTime = stopwatchRunTime - lapOffsetTime
+            laps.first?.lapTime = stopwatchRunTime - lapOffsetTime
         }
     }
     
@@ -112,7 +112,7 @@ class StopwatchViewModel {
     }
     
     func addLap() {
-        lapOffsetTime += laps.last?.lapTime ?? 0
-        laps.append(StopwatchCellViewModel())
+        lapOffsetTime += laps.first?.lapTime ?? 0
+        laps.insert(StopwatchCellViewModel(), at: 0)
     }
 }
