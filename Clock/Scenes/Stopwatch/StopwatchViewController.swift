@@ -154,6 +154,7 @@ class StopwatchViewController: UIViewController {
     
     
     private func setupLapButton() {
+        lapButton.isEnabled = stopwatchViewModel.stopwatchState == .running ? true : false
         lapButton.isHidden = stopwatchViewModel.stopwatchState == .stopped ? true : false
         lapButton.setTitle("Lap", for: .normal)
         lapButton.setTitleColor(.gray, for: .normal)
@@ -183,16 +184,23 @@ extension StopwatchViewController: UITableViewDelegate {
 
 extension StopwatchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return stopwatchViewModel.laps.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StopwatchCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StopwatchCell", for: indexPath) as! StopwatchCell
+
+        cell.lapLabel.text = "Lap \(indexPath.row + 1)"
+        stopwatchViewModel.laps[indexPath.row].delegate = cell
         return cell
     }
 }
 
 extension StopwatchViewController: StopwatchViewModelDelegate {
+    func lapsChanged() {
+        tableView.reloadData()
+    }
+    
     
     func stopwatchTimeChanged(timeString: String) {
         clockFaceCollectionViewController.digitalClockCell?.setTime(string: timeString)
@@ -205,11 +213,13 @@ extension StopwatchViewController: StopwatchViewModelDelegate {
             stopButton.isHidden = true
             resetButton.isHidden = true
             lapButton.isHidden = false
+            lapButton.isEnabled = false
         case .running:
             startButton.isHidden = true
             stopButton.isHidden = false
             resetButton.isHidden = true
             lapButton.isHidden = false
+            lapButton.isEnabled = true
         case .stopped:
             startButton.isHidden = false
             stopButton.isHidden = true

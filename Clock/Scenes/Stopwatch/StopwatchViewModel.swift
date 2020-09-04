@@ -11,6 +11,7 @@ import UIKit
 protocol StopwatchViewModelDelegate: class {
     func stopwatchStateChanged(state: StopwatchState)
     func stopwatchTimeChanged(timeString: String)
+    func lapsChanged()
 }
 
 class StopwatchViewModel {
@@ -33,11 +34,20 @@ class StopwatchViewModel {
     
     private var stopwatchRunTime: TimeInterval = 0 {
         didSet {
-            delegate?.stopwatchTimeChanged(timeString: createRunTimeString(distance: stopwatchRunTime))
+            delegate?.stopwatchTimeChanged(timeString: StopwatchViewModel.createRunTimeString(distance: stopwatchRunTime))
+            laps.last?.lapTime = stopwatchRunTime - lapOffsetTime
         }
     }
     
-    private func createRunTimeString(distance: TimeInterval) -> String {
+    private(set) var laps: [StopwatchCellViewModel] = [] {
+        didSet {
+            delegate?.lapsChanged()
+        }
+    }
+    
+    private var lapOffsetTime: TimeInterval = 0
+    
+    static func createRunTimeString(distance: TimeInterval) -> String {
         let minutes = Int((distance / 60).rounded(.down))
         let seconds = Int((distance - Double(minutes * 60) ).rounded(.down))
         let miliSecondsDouble: Double = distance - Double(minutes * 60) - Double(seconds)
@@ -74,6 +84,7 @@ class StopwatchViewModel {
     func startStopwatch() {
         if stopwatchState == .idle { // First start
             startTime = Date()
+            addLap()
         } else { // Resume stopwatch
             let pausedTime = stoppedTime?.distance(to: Date())
             startTime = startTime?.addingTimeInterval(pausedTime!)
@@ -96,14 +107,12 @@ class StopwatchViewModel {
         startTime = nil
         stopwatchRunTime = 0
         stopwatchState = .idle
+        lapOffsetTime = 0
+        laps = []
     }
     
     func addLap() {
-        guard stopwatchState == .running else {
-            return
-        }
-        print("VM: adding lap")
+        lapOffsetTime += laps.last?.lapTime ?? 0
+        laps.append(StopwatchCellViewModel())
     }
 }
-
-

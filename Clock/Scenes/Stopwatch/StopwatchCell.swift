@@ -10,16 +10,16 @@ import UIKit
 
 class StopwatchCell: UITableViewCell {
     
-    private lazy var lapLabel: UILabel = {
+    private(set) lazy var lapLabel: UILabel = {
         let label = UILabel()
-        label.text = "LAP"
+        label.text = "Lap X"
         label.textColor = .white
         return label
     }()
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Time"
+        label.text = "00:00,00"
         label.textColor = .white
         return label
     }()
@@ -54,5 +54,11 @@ class StopwatchCell: UITableViewCell {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         timeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
+    }
+}
+
+extension StopwatchCell: StopwatchCellViewModelDelegate {
+    func stopwatchTimeChanged(timeString: String) {
+        timeLabel.text = timeString
     }
 }
