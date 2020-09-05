@@ -33,7 +33,10 @@ class TuneSelectionViewModel: NSObject {
     
     private static func getAvailableTunes() -> [Tune] {
         // Get all tune urls
-        guard let urls: [URL] = Bundle.main.urls(forResourcesWithExtension: nil, subdirectory: "Tunes") else {
+        guard
+            let urls: [URL] = Bundle.main.urls(forResourcesWithExtension: "caf", subdirectory: nil),
+            !urls.isEmpty
+        else {
             return []
         }
         

@@ -15,7 +15,6 @@
 		D430670024F946AC00DEB487 /* Tune.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43066FF24F946AC00DEB487 /* Tune.swift */; };
 		D430670224F9483000DEB487 /* TuneSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */; };
 		D430670424F9668D00DEB487 /* TuneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430670324F9668D00DEB487 /* TuneCellViewModel.swift */; };
-		D430670624F9783200DEB487 /* Tunes in Resources */ = {isa = PBXBuildFile; fileRef = D430670524F9783200DEB487 /* Tunes */; };
 		D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D431BE5324EBCD0900F989BD /* UIButton.swift */; };
 		D43274E924FE33FF001A1C8E /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */; };
 		D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */; };
@@ -39,6 +38,8 @@
 		D463897C24FE79E60000673D /* StopwatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463897B24FE79E60000673D /* StopwatchState.swift */; };
 		D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6424F3F67100321B41 /* TunePickerButton.swift */; };
 		D46EAA6824F4059F00321B41 /* TuneSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */; };
+		D4CBD6AC2503B782001FE005 /* Beep.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4CBD6AB2503B782001FE005 /* Beep.caf */; };
+		D4CBD6B02503B867001FE005 /* Radar.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4CBD6AF2503B867001FE005 /* Radar.caf */; };
 		D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */; };
 		D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */; };
 		D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */; };
@@ -70,13 +71,13 @@
 		D43066FF24F946AC00DEB487 /* Tune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tune.swift; sourceTree = "<group>"; };
 		D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionViewModel.swift; sourceTree = "<group>"; };
 		D430670324F9668D00DEB487 /* TuneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneCellViewModel.swift; sourceTree = "<group>"; };
-		D430670524F9783200DEB487 /* Tunes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tunes; sourceTree = "<group>"; };
 		D431BE5324EBCD0900F989BD /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
 		D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCell.swift; sourceTree = "<group>"; };
 		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		D43C5DFE2503A29300089881 /* Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clock.entitlements; sourceTree = "<group>"; };
 		D441D3B124E80E5500ACCC4E /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D441D3B424E80E5500ACCC4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D441D3B824E80E5500ACCC4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +101,8 @@
 		D463897B24FE79E60000673D /* StopwatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchState.swift; sourceTree = "<group>"; };
 		D46EAA6424F3F67100321B41 /* TunePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunePickerButton.swift; sourceTree = "<group>"; };
 		D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionViewController.swift; sourceTree = "<group>"; };
+		D4CBD6AB2503B782001FE005 /* Beep.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Beep.caf; sourceTree = "<group>"; };
+		D4CBD6AF2503B867001FE005 /* Radar.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Radar.caf; sourceTree = "<group>"; };
 		D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewController.swift; sourceTree = "<group>"; };
 		D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +204,8 @@
 		D441D3B324E80E5500ACCC4E /* Clock */ = {
 			isa = PBXGroup;
 			children = (
-				D430670524F9783200DEB487 /* Tunes */,
+				D4CBD6AA2503B75E001FE005 /* Alerts */,
+				D43C5DFE2503A29300089881 /* Clock.entitlements */,
 				D4368EA024EBD50F00D7B5C9 /* Scenes */,
 				D431BE5224EBCCEB00F989BD /* Extensions */,
 				D43A2A0324EA734200315B5D /* Utility */,
@@ -279,6 +283,15 @@
 				D430670324F9668D00DEB487 /* TuneCellViewModel.swift */,
 			);
 			path = TuneSelectionScene;
+			sourceTree = "<group>";
+		};
+		D4CBD6AA2503B75E001FE005 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				D4CBD6AB2503B782001FE005 /* Beep.caf */,
+				D4CBD6AF2503B867001FE005 /* Radar.caf */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,7 +398,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D430670624F9783200DEB487 /* Tunes in Resources */,
+				D4CBD6B02503B867001FE005 /* Radar.caf in Resources */,
+				D4CBD6AC2503B782001FE005 /* Beep.caf in Resources */,
 				D441D3C424E80E5900ACCC4E /* LaunchScreen.storyboard in Resources */,
 				D441D3C124E80E5900ACCC4E /* Assets.xcassets in Resources */,
 			);
@@ -606,6 +620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Clock/Clock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PA272Y5JK8;
 				INFOPLIST_FILE = Clock/Info.plist;
@@ -625,6 +640,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Clock/Clock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PA272Y5JK8;
 				INFOPLIST_FILE = Clock/Info.plist;

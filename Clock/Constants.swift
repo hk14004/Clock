@@ -16,4 +16,4 @@ let HOURS: [Int] = makeIntArray(from: 0, to: 23)
 
 let DEFAULT_TUNE_KEY = "DEFAULT_TUNE"
 
-let FALLBACK_DEFAULT_TUNE = Tune(name: "Radar", format: "mp3")
+let FALLBACK_DEFAULT_TUNE = Tune(name: "Beep", format: "caf")

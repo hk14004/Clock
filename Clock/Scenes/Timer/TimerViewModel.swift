@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AVFoundation
+import UserNotifications
 
 class TimerViewModel: NSObject {
     
@@ -58,7 +58,6 @@ class TimerViewModel: NSObject {
                                                                            s: countDownTimeLeft.seconds))
             if countDownTimeLeft.getTotalTimeInSeconds() < 1 {
                 stopTimer()
-                alarm()
             }
         }
     }
@@ -69,6 +68,8 @@ class TimerViewModel: NSObject {
             return NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Tune
         }
     }
+    
+    private var alarmNotificationUUID = UUID().uuidString
     
     // Mark: Methods
     
@@ -94,17 +95,28 @@ class TimerViewModel: NSObject {
     }
 
     
-    private func alarm() {
-        delegate?.countdownTimerRanOut()
-        guard let sound = Bundle.main.url(forResource: defaultTune.name, withExtension: defaultTune.format, subdirectory: "Tunes") else { return }
-        audioPlayer = try? AVAudioPlayer(contentsOf: sound)
-        audioPlayer?.numberOfLoops = -1
-        audioPlayer?.play()
+    private func scheduleAlarmNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Alarm"
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("\(defaultTune.name).\(defaultTune.format)"))
+
+        let time = TimeInterval(countDownTimeLeft.getTotalTimeInSeconds())
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: time, repeats: false)
+
+        // Create the request
+        let request = UNNotificationRequest(identifier: alarmNotificationUUID,
+                    content: content, trigger: trigger)
+
+        // Schedule the request
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request, withCompletionHandler: nil)
     }
     
-    private var audioPlayer: AVAudioPlayer?
-    func stopAlarm() {
-        audioPlayer?.stop()
+    private func cancelNotificationAlarm() {
+        if countDownTimeLeft.getTotalTimeInSeconds() > 0 {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [alarmNotificationUUID])
+        }
     }
     
     private func verifyPicketTime() {
@@ -128,6 +140,7 @@ class TimerViewModel: NSObject {
         startTime = Date()
         endTime = Date(timeInterval: TimeInterval(exactly: Double(pickedTime.getTotalTimeInSeconds()))!, since: startTime!)
         countdownTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(decremenCountdownTimer), userInfo: nil, repeats: true)
+        scheduleAlarmNotification()
     }
     
     private func resumeTimer() {
@@ -135,19 +148,22 @@ class TimerViewModel: NSObject {
         let pauseInterval = pausedTime?.distance(to: Date())
         endTime?.addTimeInterval(pauseInterval!)
         countdownTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(decremenCountdownTimer), userInfo: nil, repeats: true)
+        scheduleAlarmNotification()
     }
     
     private func stopTimer() {
         verifyPicketTime()
         countdownTimer.invalidate()
+        cancelNotificationAlarm()
     }
     
     private func pauseTimer() {
         timerState = .paused
         pausedTime = Date()
         countdownTimer.invalidate()
+        cancelNotificationAlarm()
     }
-    
+        
     func pressCancelButton() {
         guard timerState == .running || timerState == .paused else {
             return
