@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        askForNotificationPermission()
         // Set default tune if not set
         if UserDefaults.standard.object(forKey: DEFAULT_TUNE_KEY) as? Data == nil {
             setDefaultTune(FALLBACK_DEFAULT_TUNE)
@@ -37,6 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(encodedData, forKey: DEFAULT_TUNE_KEY)
     }
 
+    private func askForNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Granted!")
+            } else {
+                print("Not granted")
+            }
+        }
+    }
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
