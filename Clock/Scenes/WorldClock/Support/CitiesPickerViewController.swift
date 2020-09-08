@@ -31,6 +31,7 @@ class CitiesPickerViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = .clear
         tableView.dataSource = self
+        tableView.delegate = self
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,5 +77,13 @@ extension CitiesPickerViewController: UITableViewDataSource {
 extension CitiesPickerViewController: CitiesPickerViewModelDelegate {
     func timezoneListChanged(timezones: [TimeZone]) {
         tableView.reloadData()
+    }
+}
+
+extension CitiesPickerViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Todo: Add row to core data
+        searchController.dismiss(animated: false, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
