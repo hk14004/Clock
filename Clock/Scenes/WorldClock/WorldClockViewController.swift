@@ -89,6 +89,16 @@ class WorldClockViewController: UIViewController {
         tableView.alpha = 1
     }
     
+    private func prepareVCForEmptyTable() {
+        hideTableView()
+        noClockLabel.isHidden = false
+    }
+    
+    private func prepareVCForNotEmptyTable() {
+        showTableView()
+        noClockLabel.isHidden = true
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -110,6 +120,11 @@ extension WorldClockViewController: UITableViewDataSource {
 
 extension WorldClockViewController: WorldClockViewModelDelegate {
     func timeZoneListChanged(list: [TimeZone]) {
+        if list.isEmpty {
+            prepareVCForEmptyTable()
+        } else {
+            prepareVCForNotEmptyTable()
+        }
         tableView.reloadData()
     }
 }
