@@ -15,14 +15,11 @@ class CitiesPickerViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     
     private let tableView: UITableView = UITableView()
-    
-    private var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
+        
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Primary")
         citiesPickerViewModel.delegate = self
+        searchController.searchBar.delegate = self
         setupNavigationBar()
         setupTableView()
     }
@@ -43,6 +40,7 @@ class CitiesPickerViewController: UIViewController {
     
     private func setupNavigationBar() {
         title = "Choose a City"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.barStyle = .black
@@ -51,6 +49,10 @@ class CitiesPickerViewController: UIViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    @objc func cancelTapped() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -83,6 +85,13 @@ extension CitiesPickerViewController: CitiesPickerViewModelDelegate {
 extension CitiesPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         citiesPickerViewModel.addTimezone(indexPath: indexPath)
+        searchController.dismiss(animated: false, completion: nil)
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension CitiesPickerViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.dismiss(animated: false, completion: nil)
         dismiss(animated: true, completion: nil)
     }
