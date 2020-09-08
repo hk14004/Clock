@@ -10,12 +10,15 @@ import UIKit
 
 class WorldClockViewController: UIViewController {
         
+    private let worldClockViewModel: WorldClockViewModel = WorldClockViewModel()
+    
     private var tableView: UITableView = UITableView()
     
     private let noClockLabel: UILabel = UILabel()
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Secondary")
+        worldClockViewModel.delegate = self
         setupNavigationBar()
         setupTableView()
         setupNoClockLabel()
@@ -37,13 +40,15 @@ class WorldClockViewController: UIViewController {
     }
     
     @objc func addTapped() {
-        print("add")
         let nav = UINavigationController(rootViewController: CitiesPickerViewController())
         nav.modalPresentationStyle = .popover
         present(nav, animated: true, completion: nil)
     }
     
     private func setupNoClockLabel() {
+        if  worldClockViewModel.visibleTimeZones.count != 0 {
+            noClockLabel.isHidden = true
+        }
         noClockLabel.text = "No World Clocks"
         noClockLabel.textColor = .gray
         noClockLabel.font = noClockLabel.font.withSize(30)
@@ -55,8 +60,16 @@ class WorldClockViewController: UIViewController {
     }
     
     private func setupTableView() {
+        tableView.allowsSelection = false
         tableView.backgroundColor = .clear
-        hideTableView()
+        tableView.register(WordlClockTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+
+        if  worldClockViewModel.visibleTimeZones.count == 0 {
+            hideTableView()
+        }
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,10 +97,25 @@ class WorldClockViewController: UIViewController {
 extension WorldClockViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WordlClockTableViewCell
+        cell.setup(with: worldClockViewModel.visibleTimeZones[indexPath.row])
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return worldClockViewModel.visibleTimeZones.count
+    }
+}
+
+extension WorldClockViewController: WorldClockViewModelDelegate {
+    func timeZoneListChanged(list: [TimeZone]) {
+        tableView.reloadData()
+    }
+}
+
+extension WorldClockViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 88
     }
 }
