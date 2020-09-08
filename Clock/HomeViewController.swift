@@ -61,9 +61,10 @@ class HomeViewController: UITabBarController {
             item.image = UIImage(systemName: "globe")
             return item
         }()
+        let worldClockNavVC = UINavigationController(rootViewController: worldClockVC)
         
-        viewControllers = [worldClockVC, alarmVC, bedtimeVC, stopwatch, timer]
+        viewControllers = [worldClockNavVC, alarmVC, bedtimeVC, stopwatch, timer]
         
-        selectedViewController = stopwatch
+        selectedViewController = worldClockNavVC
     }
 }

@@ -12,6 +12,8 @@
 		D41FEF6C24EBFAC400C6DE27 /* TimeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEF6B24EBFAC400C6DE27 /* TimeStruct.swift */; };
 		D41FEF6E24EBFB9400C6DE27 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEF6D24EBFB9400C6DE27 /* Constants.swift */; };
 		D41FEF7024EC042600C6DE27 /* TimerClockFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FEF6F24EC042600C6DE27 /* TimerClockFaceView.swift */; };
+		D42F84FA2506A41E00B20115 /* WorldClockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F84F92506A41E00B20115 /* WorldClockViewModel.swift */; };
+		D42F84FD2506A64A00B20115 /* CitiesPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F84FC2506A64A00B20115 /* CitiesPickerViewController.swift */; };
 		D430670024F946AC00DEB487 /* Tune.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43066FF24F946AC00DEB487 /* Tune.swift */; };
 		D430670224F9483000DEB487 /* TuneSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */; };
 		D430670424F9668D00DEB487 /* TuneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430670324F9668D00DEB487 /* TuneCellViewModel.swift */; };
@@ -20,6 +22,7 @@
 		D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */; };
 		D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */; };
 		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
+		D438F4142506B65600E3D0B7 /* CitiesPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */; };
 		D43A2A0524EA736800315B5D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A2A0424EA736800315B5D /* Functions.swift */; };
 		D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B424E80E5500ACCC4E /* AppDelegate.swift */; };
 		D441D3B924E80E5500ACCC4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B824E80E5500ACCC4E /* HomeViewController.swift */; };
@@ -68,6 +71,8 @@
 		D41FEF6B24EBFAC400C6DE27 /* TimeStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStruct.swift; sourceTree = "<group>"; };
 		D41FEF6D24EBFB9400C6DE27 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D41FEF6F24EC042600C6DE27 /* TimerClockFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockFaceView.swift; sourceTree = "<group>"; };
+		D42F84F92506A41E00B20115 /* WorldClockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockViewModel.swift; sourceTree = "<group>"; };
+		D42F84FC2506A64A00B20115 /* CitiesPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPickerViewController.swift; sourceTree = "<group>"; };
 		D43066FF24F946AC00DEB487 /* Tune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tune.swift; sourceTree = "<group>"; };
 		D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionViewModel.swift; sourceTree = "<group>"; };
 		D430670324F9668D00DEB487 /* TuneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneCellViewModel.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCell.swift; sourceTree = "<group>"; };
 		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPickerViewModel.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		D43C5DFE2503A29300089881 /* Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clock.entitlements; sourceTree = "<group>"; };
 		D441D3B124E80E5500ACCC4E /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +152,25 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		D42F6763250520F3001A58FA /* WorldClock */ = {
+			isa = PBXGroup;
+			children = (
+				D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */,
+				D42F84F92506A41E00B20115 /* WorldClockViewModel.swift */,
+				D42F84FB2506A5B800B20115 /* Support */,
+			);
+			path = WorldClock;
+			sourceTree = "<group>";
+		};
+		D42F84FB2506A5B800B20115 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D42F84FC2506A64A00B20115 /* CitiesPickerViewController.swift */,
+				D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		D431BE5224EBCCEB00F989BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +182,7 @@
 		D4368EA024EBD50F00D7B5C9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D42F6763250520F3001A58FA /* WorldClock */,
 				D448654624FD577300EF1505 /* Stopwatch */,
 				D4368EA124EBD51F00D7B5C9 /* Timer */,
 			);
@@ -213,7 +239,6 @@
 				D441D3B824E80E5500ACCC4E /* HomeViewController.swift */,
 				D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */,
 				D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */,
-				D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */,
 				D441D3C024E80E5900ACCC4E /* Assets.xcassets */,
 				D441D3C224E80E5900ACCC4E /* LaunchScreen.storyboard */,
 				D441D3C524E80E5900ACCC4E /* Info.plist */,
@@ -427,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D446179125025FC900A2551F /* StopwatchCellViewModel.swift in Sources */,
+				D42F84FA2506A41E00B20115 /* WorldClockViewModel.swift in Sources */,
 				D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */,
 				D41FEF6824EBFA0600C6DE27 /* TimeStateEnum.swift in Sources */,
 				D448654924FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift in Sources */,
@@ -443,6 +469,7 @@
 				D430670424F9668D00DEB487 /* TuneCellViewModel.swift in Sources */,
 				D463897C24FE79E60000673D /* StopwatchState.swift in Sources */,
 				D43A2A0524EA736800315B5D /* Functions.swift in Sources */,
+				D42F84FD2506A64A00B20115 /* CitiesPickerViewController.swift in Sources */,
 				D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */,
 				D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */,
 				D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */,
@@ -451,6 +478,7 @@
 				D41FEF7024EC042600C6DE27 /* TimerClockFaceView.swift in Sources */,
 				D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */,
 				D430670224F9483000DEB487 /* TuneSelectionViewModel.swift in Sources */,
+				D438F4142506B65600E3D0B7 /* CitiesPickerViewModel.swift in Sources */,
 				D448654D24FD871B00EF1505 /* StopwatchDigitalClockFaceCell.swift in Sources */,
 				D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */,
 				D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */,
