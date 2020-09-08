@@ -82,7 +82,7 @@ extension CitiesPickerViewController: CitiesPickerViewModelDelegate {
 
 extension CitiesPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Todo: Add row to core data
+        citiesPickerViewModel.addTimezone(indexPath: indexPath)
         searchController.dismiss(animated: false, completion: nil)
         dismiss(animated: true, completion: nil)
     }

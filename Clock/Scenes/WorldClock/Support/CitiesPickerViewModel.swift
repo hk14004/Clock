@@ -6,22 +6,45 @@
 //  Copyright © 2020 Hardijs. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
-class CitiesPickerViewModel {
+class CitiesPickerViewModel: NSObject {
     
     weak var delegate: CitiesPickerViewModelDelegate?
     
-    private(set) var visibleTimeZones: [TimeZone] {
+    private(set) var visibleTimeZones: [TimeZone] = [] {
         didSet {
             delegate?.timezoneListChanged(timezones: visibleTimeZones)
         }
     }
     
-    private var allTimezones: [TimeZone]
+    private var allTimezones: [TimeZone] = []
         
-    required init() {
-        allTimezones = TimeZone.knownTimeZoneIdentifiers.compactMap { TimeZone(identifier: $0) }
+    private lazy var persistentContainer: NSPersistentContainer = {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }()
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController<TimeZoneEntity> = {
+        let request = NSFetchRequest<TimeZoneEntity>(entityName: "TimeZoneEntity")
+        let sort = NSSortDescriptor(key: "identifier", ascending: false)
+        request.sortDescriptors = [sort]
+        let controller = NSFetchedResultsController(fetchRequest: request,
+                                          managedObjectContext: persistentContainer.viewContext,
+                                          sectionNameKeyPath: nil, cacheName: nil)
+        return controller
+    }()
+    
+    required override init() {
+        super.init()
+        try! fetchedResultsController.performFetch()
+        let savedTimeZonesIds: [String] = fetchedResultsController.fetchedObjects?.compactMap { $0.identifier } ?? []
+        allTimezones = TimeZone.knownTimeZoneIdentifiers.compactMap {
+            if !savedTimeZonesIds.contains($0) {
+                return TimeZone(identifier: $0)
+            }
+            return nil
+        }
         visibleTimeZones = allTimezones
     }
     
@@ -36,6 +59,16 @@ class CitiesPickerViewModel {
         }
         
         visibleTimeZones = allTimezones.filter { $0.identifier.lowercased().contains(query.lowercased())}
+    }
+    
+    func addTimezone(indexPath: IndexPath) {
+        let new = TimeZoneEntity(context: persistentContainer.viewContext)
+        new.identifier = visibleTimeZones[indexPath.row].identifier
+        save()
+    }
+    
+    private func save() {
+        try! persistentContainer.viewContext.save()
     }
 }
 
