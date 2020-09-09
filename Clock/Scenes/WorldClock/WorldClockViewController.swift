@@ -26,7 +26,6 @@ class WorldClockViewController: UIViewController {
     
     private func setupNavigationBar() {
         title = "World Clock"
-        navigationItem.leftBarButtonItem = editButtonItem
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -34,14 +33,13 @@ class WorldClockViewController: UIViewController {
         
         // Navigation items
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        //let edit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(addTapped))
-
         navigationItem.rightBarButtonItem = add
-        //navigationItem.leftBarButtonItem = edit
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: true)
+        worldClockViewModel.setEditing(editing)
         tableView.setEditing(editing, animated: true)
     }
     
@@ -114,7 +112,7 @@ extension WorldClockViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WordlClockTableViewCell
-        cell.setup(with: worldClockViewModel.visibleTimeZones[indexPath.row])
+        cell.setup(with: worldClockViewModel.timeZoneCellViewModels[indexPath.row])
         
         return cell
     }
@@ -148,4 +146,8 @@ extension WorldClockViewController: UITableViewDelegate {
             tableView.endUpdates()
         }
     }
+    
+     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+           print("moveRowAt called from \(sourceIndexPath) to \(destinationIndexPath)")
+       }
 }

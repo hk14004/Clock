@@ -15,9 +15,12 @@ class WorldClockViewModel: NSObject {
     
     private(set) var visibleTimeZones: [TimeZone] = [] {
         didSet {
+            timeZoneCellViewModels = visibleTimeZones.compactMap { WordlClockTableViewCellModel(timeZoneId: $0.identifier) }
             delegate?.timeZoneListChanged(list: visibleTimeZones)
         }
     }
+    
+    private(set) var timeZoneCellViewModels: [WordlClockTableViewCellModel] = []
     
     private var timeZoneDAO = TimeZoneEntityDAO()
 
@@ -27,11 +30,17 @@ class WorldClockViewModel: NSObject {
             guard let fetchedID = $0.identifier else { return nil }
             return TimeZone(identifier: fetchedID)
         }
+        timeZoneCellViewModels = visibleTimeZones.compactMap { WordlClockTableViewCellModel(timeZoneId: $0.identifier) }
+
         timeZoneDAO.delegate = self
     }
     
     func deleteTimeZone(at: IndexPath) {
         timeZoneDAO.delete(at: at)
+    }
+    
+    func setEditing(_ editing: Bool) {
+        timeZoneCellViewModels.forEach { $0.hideTime = editing }
     }
 }
 

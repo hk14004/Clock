@@ -14,7 +14,14 @@ class WordlClockTableViewCell: UITableViewCell {
     
     private var timeOffsetLabel: UILabel = UILabel()
     
-    private var timeLabel: UILabel = UILabel()
+    private(set) var timeLabel: UILabel = UILabel()
+    
+    private var viewModel: WordlClockTableViewCellModel? {
+        didSet {
+            oldValue?.wordlClockTableViewCell = nil
+            viewModel?.wordlClockTableViewCell = self
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,7 +40,7 @@ class WordlClockTableViewCell: UITableViewCell {
         timeOffsetLabel.bottomAnchor.constraint(equalTo: cityNameLabel.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
     }
     
-    func setup(with timezone: TimeZone) {
+    private func setup(with timezone: TimeZone) {
         cityNameLabel.text = "\(timezone.identifier.split(separator: "/").last ?? "")".replacingOccurrences(of: "_", with: " ")
         let seconds = timezone.secondsFromGMT() - TimeZone.current.secondsFromGMT()
         let hours = seconds/3600
@@ -43,6 +50,12 @@ class WordlClockTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "hh:mm"
         dateFormatter.timeZone = timezone
         timeLabel.text = dateFormatter.string(from: Date())
+    }
+    
+    func setup(with viewModel: WordlClockTableViewCellModel) {
+        self.viewModel = viewModel
+        setup(with: viewModel.timezone)
+        timeLabel.isHidden = viewModel.hideTime
     }
     
     private func setupTimeLabel() {
