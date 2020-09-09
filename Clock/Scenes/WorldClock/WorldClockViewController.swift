@@ -136,7 +136,9 @@ extension WorldClockViewController: WorldClockViewModelDelegate {
         } else {
             prepareVCForNotEmptyTable()
         }
-        tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.tableView.reloadData()
+        }
     }
 }
 
