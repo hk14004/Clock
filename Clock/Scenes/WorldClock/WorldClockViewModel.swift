@@ -23,6 +23,8 @@ class WorldClockViewModel: NSObject {
     private(set) var timeZoneCellViewModels: [WordlClockTableViewCellModel] = []
     
     private var timeZoneDAO = TimeZoneEntityDAO()
+    
+    private var timer: Timer!
 
     required override init() {
         super.init()
@@ -33,6 +35,15 @@ class WorldClockViewModel: NSObject {
         timeZoneCellViewModels = visibleTimeZones.compactMap { WordlClockTableViewCellModel(timeZoneId: $0.identifier) }
 
         timeZoneDAO.delegate = self
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateClockTimes), userInfo: nil, repeats: true)
+    }
+    
+    deinit {
+        timer.invalidate()
+    }
+    
+    @objc func updateClockTimes(timer: Timer) {
+        timeZoneCellViewModels.forEach { $0.currentTime = Date() }
     }
     
     func deleteTimeZone(at: IndexPath) {

@@ -13,11 +13,21 @@ class WordlClockTableViewCellModel {
     
     weak var wordlClockTableViewCell: WordlClockTableViewCell?
     
-    var timezone: TimeZone
+    var timezone: TimeZone {
+        didSet {
+            wordlClockTableViewCell?.setTime(currentTime, timezone: timezone)
+        }
+    }
     
     var hideTime = false {
         didSet {
             wordlClockTableViewCell?.timeLabel.isHidden = hideTime
+        }
+    }
+    
+    var currentTime: Date = Date() {
+        didSet {
+            wordlClockTableViewCell?.setTime(currentTime, timezone: timezone)
         }
     }
     

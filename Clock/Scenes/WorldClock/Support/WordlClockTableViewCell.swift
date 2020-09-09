@@ -32,16 +32,7 @@ class WordlClockTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
-        backgroundColor = .clear
-        setupTimeOffsetLabel()
-        setupCityNameLabel()
-        setupTimeLabel()
-        timeOffsetLabel.bottomAnchor.constraint(equalTo: cityNameLabel.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-    }
-    
-    private func setup(with timezone: TimeZone) {
-        cityNameLabel.text = "\(timezone.identifier.split(separator: "/").last ?? "")".replacingOccurrences(of: "_", with: " ")
+    func setTime(_ time: Date, timezone: TimeZone) {
         let seconds = timezone.secondsFromGMT() - TimeZone.current.secondsFromGMT()
         let hours = seconds/3600
         let minutes = abs(seconds/60) % 60
@@ -49,12 +40,21 @@ class WordlClockTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm"
         dateFormatter.timeZone = timezone
-        timeLabel.text = dateFormatter.string(from: Date())
+        timeLabel.text = dateFormatter.string(from: viewModel?.currentTime ?? Date())
     }
     
+    private func setup() {
+        backgroundColor = .clear
+        setupTimeOffsetLabel()
+        setupCityNameLabel()
+        setupTimeLabel()
+        timeOffsetLabel.bottomAnchor.constraint(equalTo: cityNameLabel.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+    }
+
     func setup(with viewModel: WordlClockTableViewCellModel) {
         self.viewModel = viewModel
-        setup(with: viewModel.timezone)
+        cityNameLabel.text = "\(viewModel.timezone.identifier.split(separator: "/").last ?? "")".replacingOccurrences(of: "_", with: " ")
+        setTime(viewModel.currentTime, timezone: viewModel.timezone)
         timeLabel.isHidden = viewModel.hideTime
     }
     
