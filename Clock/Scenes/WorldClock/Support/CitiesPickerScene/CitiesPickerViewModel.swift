@@ -13,6 +13,8 @@ class CitiesPickerViewModel: NSObject {
     
     weak var delegate: CitiesPickerViewModelDelegate?
     
+    private var timeZoneEntityDAO = TimeZoneEntityDAO()
+    
     private(set) var visibleTimeZones: [TimeZone] = [] {
         didSet {
             delegate?.timezoneListChanged(timezones: visibleTimeZones)
@@ -20,25 +22,12 @@ class CitiesPickerViewModel: NSObject {
     }
     
     private var allTimezones: [TimeZone] = []
-        
-    private lazy var persistentContainer: NSPersistentContainer = {
-        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
-    }()
-    
-    private lazy var fetchedResultsController: NSFetchedResultsController<TimeZoneEntity> = {
-        let request = NSFetchRequest<TimeZoneEntity>(entityName: "TimeZoneEntity")
-        let sort = NSSortDescriptor(key: "identifier", ascending: false)
-        request.sortDescriptors = [sort]
-        let controller = NSFetchedResultsController(fetchRequest: request,
-                                          managedObjectContext: persistentContainer.viewContext,
-                                          sectionNameKeyPath: nil, cacheName: nil)
-        return controller
-    }()
+            
+    private lazy var latestItemOrder: Int = 0
     
     required override init() {
         super.init()
-        try! fetchedResultsController.performFetch()
-        let savedTimeZonesIds: [String] = fetchedResultsController.fetchedObjects?.compactMap { $0.identifier } ?? []
+        let savedTimeZonesIds: [String] = timeZoneEntityDAO.loadData().compactMap { $0.identifier }
         allTimezones = TimeZone.knownTimeZoneIdentifiers.compactMap {
             if !savedTimeZonesIds.contains($0) {
                 return TimeZone(identifier: $0)
@@ -46,6 +35,7 @@ class CitiesPickerViewModel: NSObject {
             return nil
         }
         visibleTimeZones = allTimezones
+        latestItemOrder = getLatestIndex()
     }
     
     private var isSearching: Bool = false
@@ -62,13 +52,18 @@ class CitiesPickerViewModel: NSObject {
     }
     
     func addTimezone(indexPath: IndexPath) {
-        let new = TimeZoneEntity(context: persistentContainer.viewContext)
-        new.identifier = visibleTimeZones[indexPath.row].identifier
-        save()
+        timeZoneEntityDAO.addTimezone { (created) in
+            created.identifier = visibleTimeZones[indexPath.row].identifier
+            created.order = Int64(latestItemOrder + 1)
+        }
     }
     
-    private func save() {
-        try! persistentContainer.viewContext.save()
+    func getLatestIndex() -> Int {
+        let request: NSFetchRequest<TimeZoneEntity> = TimeZoneEntity.fetchRequest()
+        request.fetchLimit = 1
+        request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: false)]
+        let result = try! timeZoneEntityDAO.persistentConatiner.viewContext.fetch(request)
+        return Int(result.first?.order ?? 0)
     }
 }
 

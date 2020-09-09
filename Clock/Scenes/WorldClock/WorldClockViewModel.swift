@@ -34,7 +34,9 @@ class WorldClockViewModel: NSObject {
 
     required override init() {
         super.init()
-        visibleTimeZones = timeZoneDAO.loadData().compactMap {
+        visibleTimeZones = timeZoneDAO.loadData(requestModifier: { (request) in
+            request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
+        }).compactMap {
             guard let fetchedID = $0.identifier else { return nil }
             return TimeZone(identifier: fetchedID)
         }

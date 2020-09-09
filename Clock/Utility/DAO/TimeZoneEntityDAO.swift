@@ -17,7 +17,7 @@ class TimeZoneEntityDAO {
         }
     }
     
-    private var persistentConatiner: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    private(set) var persistentConatiner: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     
     private(set) var fetchedController: NSFetchedResultsController<TimeZoneEntity>?
     
@@ -25,7 +25,7 @@ class TimeZoneEntityDAO {
         try! persistentConatiner.viewContext.save()
     }
     
-    func loadData(requestModifier: ((NSFetchRequest<TimeZoneEntity>)->Void)? = nil ) -> [TimeZoneEntity] {
+    func loadData(requestModifier: ((NSFetchRequest<TimeZoneEntity>) -> Void)? = nil ) -> [TimeZoneEntity] {
         // Default request
         let request: NSFetchRequest<TimeZoneEntity> = TimeZoneEntity.fetchRequest()
         request.sortDescriptors = []
@@ -45,6 +45,12 @@ class TimeZoneEntityDAO {
             return
         }
         persistentConatiner.viewContext.delete(toBeDeleted)
+        save()
+    }
+    
+    func addTimezone(entityModifier: (TimeZoneEntity) -> Void) {
+        let new = TimeZoneEntity(context: persistentConatiner.viewContext)
+        entityModifier(new)
         save()
     }
 }
