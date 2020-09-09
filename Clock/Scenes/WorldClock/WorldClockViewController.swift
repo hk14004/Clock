@@ -26,6 +26,7 @@ class WorldClockViewController: UIViewController {
     
     private func setupNavigationBar() {
         title = "World Clock"
+        navigationItem.leftBarButtonItem = editButtonItem
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -37,6 +38,11 @@ class WorldClockViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = add
         //navigationItem.leftBarButtonItem = edit
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        tableView.setEditing(editing, animated: true)
     }
     
     @objc func addTapped() {
