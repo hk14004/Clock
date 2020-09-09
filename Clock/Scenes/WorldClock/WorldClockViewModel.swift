@@ -15,7 +15,7 @@ class WorldClockViewModel: NSObject {
     
     private(set) var visibleTimeZones: [TimeZone] = [] {
         didSet {
-            timeZoneCellViewModels = visibleTimeZones.compactMap { WordlClockTableViewCellModel(timeZoneId: $0.identifier) }
+            timeZoneCellViewModels = visibleTimeZones.compactMap { WordlClockTableViewCellModel(timeZoneId: $0.identifier, isEditing: isEditing) }
             delegate?.timeZoneListChanged(list: visibleTimeZones)
         }
     }
@@ -25,6 +25,12 @@ class WorldClockViewModel: NSObject {
     private var timeZoneDAO = TimeZoneEntityDAO()
     
     private var timer: Timer!
+    
+    private var isEditing: Bool = false {
+        didSet {
+            timeZoneCellViewModels.forEach { $0.isEditing = isEditing }
+        }
+    }
 
     required override init() {
         super.init()
@@ -32,7 +38,7 @@ class WorldClockViewModel: NSObject {
             guard let fetchedID = $0.identifier else { return nil }
             return TimeZone(identifier: fetchedID)
         }
-        timeZoneCellViewModels = visibleTimeZones.compactMap { WordlClockTableViewCellModel(timeZoneId: $0.identifier) }
+        timeZoneCellViewModels = visibleTimeZones.compactMap { WordlClockTableViewCellModel(timeZoneId: $0.identifier, isEditing: isEditing) }
 
         timeZoneDAO.delegate = self
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateClockTimes), userInfo: nil, repeats: true)
@@ -51,7 +57,7 @@ class WorldClockViewModel: NSObject {
     }
     
     func setEditing(_ editing: Bool) {
-        timeZoneCellViewModels.forEach { $0.hideTime = editing }
+        isEditing = editing
     }
 }
 

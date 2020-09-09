@@ -19,7 +19,13 @@ class WordlClockTableViewCellModel {
         }
     }
     
-    var hideTime = false {
+    var isEditing: Bool {
+        didSet {
+            hideTime = isEditing
+        }
+    }
+    
+    var hideTime: Bool {
         didSet {
             wordlClockTableViewCell?.timeLabel.isHidden = hideTime
         }
@@ -31,8 +37,10 @@ class WordlClockTableViewCellModel {
         }
     }
     
-   required init?(timeZoneId: String = "") {
+    required init?(timeZoneId: String = "", isEditing: Bool) {
         guard let timeZone = TimeZone(identifier: timeZoneId) else { return nil }
         self.timezone = timeZone
+        self.hideTime = isEditing
+        self.isEditing = isEditing
     }
 }
