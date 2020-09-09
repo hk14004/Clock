@@ -39,4 +39,12 @@ class TimeZoneEntityDAO {
         
         return fetchedController?.fetchedObjects ?? []
     }
+    
+    func delete(at: IndexPath) {
+        guard let toBeDeleted = fetchedController?.fetchedObjects?[at.row] else {
+            return
+        }
+        persistentConatiner.viewContext.delete(toBeDeleted)
+        save()
+    }
 }

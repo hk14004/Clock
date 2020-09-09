@@ -29,6 +29,10 @@ class WorldClockViewModel: NSObject {
         }
         timeZoneDAO.delegate = self
     }
+    
+    func deleteTimeZone(at: IndexPath) {
+        timeZoneDAO.delete(at: at)
+    }
 }
 
 extension WorldClockViewModel: NSFetchedResultsControllerDelegate {
