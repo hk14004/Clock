@@ -22,6 +22,11 @@ class WorldClockViewController: UIViewController {
         setupNavigationBar()
         setupTableView()
         setupNoClockLabel()
+        if worldClockViewModel.visibleTimeZones.isEmpty {
+            prepareVCForEmptyTable()
+        } else {
+            prepareVCForNotEmptyTable()
+        }
     }
     
     private func setupNavigationBar() {
@@ -96,11 +101,13 @@ class WorldClockViewController: UIViewController {
     private func prepareVCForEmptyTable() {
         hideTableView()
         noClockLabel.isHidden = false
+        navigationItem.leftBarButtonItem = nil
     }
     
     private func prepareVCForNotEmptyTable() {
         showTableView()
         noClockLabel.isHidden = true
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
