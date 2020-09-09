@@ -9,7 +9,7 @@
 import UIKit
 
 class WorldClockViewController: UIViewController {
-        
+    
     private let worldClockViewModel: WorldClockViewModel = WorldClockViewModel()
     
     private var tableView: UITableView = UITableView()
@@ -75,7 +75,7 @@ class WorldClockViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.delegate = self
-
+        
         if  worldClockViewModel.visibleTimeZones.count == 0 {
             hideTableView()
         }
@@ -116,7 +116,7 @@ class WorldClockViewController: UIViewController {
 }
 
 extension WorldClockViewController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WordlClockTableViewCell
         cell.setup(with: worldClockViewModel.timeZoneCellViewModels[indexPath.row])
@@ -145,16 +145,33 @@ extension WorldClockViewController: UITableViewDelegate {
         return 88
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            tableView.beginUpdates()
-            worldClockViewModel.deleteTimeZone(at: indexPath)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            tableView.endUpdates()
-        }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("moveRowAt called from \(sourceIndexPath) to \(destinationIndexPath)")
     }
     
-     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-           print("moveRowAt called from \(sourceIndexPath) to \(destinationIndexPath)")
-       }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
+            tableView.beginUpdates()
+            self.worldClockViewModel.deleteTimeZone(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+            super.setEditing(false, animated: true)
+            complete(true)
+        }
+        
+        deleteAction.backgroundColor = .red
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = true
+        
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        super.setEditing(false, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        super.setEditing(true, animated: true)
+    }
 }
