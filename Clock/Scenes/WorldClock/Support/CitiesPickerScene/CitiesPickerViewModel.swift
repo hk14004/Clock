@@ -23,7 +23,7 @@ class CitiesPickerViewModel: NSObject {
     
     private var allTimezones: [TimeZone] = []
             
-    private lazy var latestItemOrder: Int = 0
+    private var latestItemOrder: Int64?
     
     required override init() {
         super.init()
@@ -54,16 +54,21 @@ class CitiesPickerViewModel: NSObject {
     func addTimezone(indexPath: IndexPath) {
         timeZoneEntityDAO.addTimezone { (created) in
             created.identifier = visibleTimeZones[indexPath.row].identifier
-            created.order = Int64(latestItemOrder + 1)
+            if let latestOrder = latestItemOrder {
+                created.order = latestOrder + 1
+            } else {
+                created.order = 0
+            }
         }
     }
     
-    func getLatestIndex() -> Int {
+    func getLatestIndex() -> Int64? {
         let request: NSFetchRequest<TimeZoneEntity> = TimeZoneEntity.fetchRequest()
         request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: false)]
         let result = try! timeZoneEntityDAO.persistentConatiner.viewContext.fetch(request)
-        return Int(result.first?.order ?? 0)
+        guard let lastItem = result.first else { return nil }
+        return lastItem.order
     }
 }
 

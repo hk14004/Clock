@@ -148,7 +148,7 @@ extension WorldClockViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("moveRowAt called from \(sourceIndexPath) to \(destinationIndexPath)")
+        worldClockViewModel.changeOrderOfClock(at: sourceIndexPath, to: destinationIndexPath)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -157,7 +157,6 @@ extension WorldClockViewController: UITableViewDelegate {
             self.worldClockViewModel.deleteTimeZone(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
-            super.setEditing(false, animated: true)
             complete(true)
         }
         

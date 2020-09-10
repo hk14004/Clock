@@ -61,6 +61,27 @@ class WorldClockViewModel: NSObject {
     func setEditing(_ editing: Bool) {
         isEditing = editing
     }
+    
+    func changeOrderOfClock(at: IndexPath, to: IndexPath) {
+        // Make sure move is worth processing
+        guard at.row != to.row else { return }
+        
+        // Process related order changes for other objects
+        if at.row < to.row {
+            for n in at.row...to.row {
+                timeZoneDAO.fetchedController?.fetchedObjects?[n].order -= 1
+            }
+        } else {
+            for n in to.row...at.row {
+                timeZoneDAO.fetchedController?.fetchedObjects?[n].order += 1
+            }
+        }
+        
+        // Set moved item order
+        timeZoneDAO.fetchedController?.fetchedObjects?[at.row].order = Int64(to.row)
+
+        timeZoneDAO.save()
+    }
 }
 
 extension WorldClockViewModel: NSFetchedResultsControllerDelegate {
