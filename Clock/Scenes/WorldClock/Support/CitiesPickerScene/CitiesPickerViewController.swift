@@ -63,13 +63,17 @@ extension CitiesPickerViewController: UISearchResultsUpdating {
 }
 
 extension CitiesPickerViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return citiesPickerViewModel.visibleTimeZones.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return citiesPickerViewModel.visibleTimeZones[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let empty = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        empty.textLabel?.text = citiesPickerViewModel.visibleTimeZones[indexPath.row].cityName
+        empty.textLabel?.text = citiesPickerViewModel.visibleTimeZones[indexPath.section][indexPath.row].cityName
         empty.backgroundColor = .clear
         empty.textLabel?.textColor = .white
         return empty
@@ -77,7 +81,7 @@ extension CitiesPickerViewController: UITableViewDataSource {
 }
 
 extension CitiesPickerViewController: CitiesPickerViewModelDelegate {
-    func timezoneListChanged(timezones: [TimeZone]) {
+    func timezoneListChanged(timezones: [[TimeZone]]) {
         tableView.reloadData()
     }
 }
@@ -87,6 +91,20 @@ extension CitiesPickerViewController: UITableViewDelegate {
         citiesPickerViewModel.addTimezone(indexPath: indexPath)
         searchController.dismiss(animated: false, completion: nil)
         dismiss(animated: true, completion: nil)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView()
+        returnedView.backgroundColor = UIColor.systemGray
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        returnedView.addSubview(label)
+        label.leadingAnchor.constraint(equalTo: returnedView.leadingAnchor, constant: 15).isActive = true
+        label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor, constant: 0).isActive = true
+        label.textColor = .white
+        label.text = citiesPickerViewModel.sectionsData.titles[section]
+
+        return returnedView
     }
 }
 

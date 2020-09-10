@@ -15,13 +15,15 @@ class CitiesPickerViewModel: NSObject {
     
     private var timeZoneEntityDAO = TimeZoneEntityDAO()
     
-    private(set) var visibleTimeZones: [TimeZone] = [] {
+    private(set) var visibleTimeZones: [[TimeZone]] = [[]] {
         didSet {
             delegate?.timezoneListChanged(timezones: visibleTimeZones)
         }
     }
     
     private var allTimezones: [TimeZone] = []
+    
+    private(set) var sectionsData = SectionsData<TimeZone>(titles: [], data: [])
             
     private var latestItemOrder: Int64?
     
@@ -34,31 +36,48 @@ class CitiesPickerViewModel: NSObject {
             }
             return nil
         }
-        visibleTimeZones = allTimezones.sorted { $0.cityName < $1.cityName }
+        let sorted = allTimezones.sorted { $0.cityName < $1.cityName }
+        visibleTimeZones = groupInSections(data: sorted)
+        sectionsData.titles = visibleTimeZones.compactMap { $0.first?.cityName.first }.compactMap { String($0) }
+        sectionsData.data = visibleTimeZones
     }
     
     private var isSearching: Bool = false
     
-    func filter(query: String) {
-        isSearching = !query.isEmpty
-        
-        guard !query.isEmpty else {
-            visibleTimeZones = allTimezones
-            return
+    private func groupInSections(data: [TimeZone]) -> [[TimeZone]] {
+        return data.reduce([[TimeZone]]()) {
+            guard var last = $0.last else { return [[$1]] }
+            var collection = $0
+            if last.first!.cityName.first == $1.cityName.first {
+                last += [$1]
+                collection[collection.count - 1] = last
+            } else {
+                collection += [[$1]]
+            }
+            return collection
         }
-        
-        visibleTimeZones = allTimezones.filter { $0.identifier.lowercased().contains(query.lowercased())}
+    }
+    
+    func filter(query: String) {
+//        isSearching = !query.isEmpty
+//
+//        guard !query.isEmpty else {
+//            visibleTimeZones = allTimezones
+//            return
+//        }
+//
+//        visibleTimeZones = allTimezones.filter { $0.identifier.lowercased().contains(query.lowercased())}
     }
     
     func addTimezone(indexPath: IndexPath) {
-        timeZoneEntityDAO.addTimezone { (created) in
-            created.identifier = visibleTimeZones[indexPath.row].identifier
-            if let latestOrder = latestItemOrder {
-                created.order = latestOrder + 1
-            } else {
-                created.order = 0
-            }
-        }
+//        timeZoneEntityDAO.addTimezone { (created) in
+//            created.identifier = visibleTimeZones[indexPath.row].identifier
+//            if let latestOrder = latestItemOrder {
+//                created.order = latestOrder + 1
+//            } else {
+//                created.order = 0
+//            }
+//        }
     }
     
     func getLatestIndex() -> Int64? {
@@ -72,5 +91,20 @@ class CitiesPickerViewModel: NSObject {
 }
 
 protocol CitiesPickerViewModelDelegate: class {
-    func timezoneListChanged(timezones: [TimeZone])
+    func timezoneListChanged(timezones: [[TimeZone]])
+}
+
+
+struct SectionsData<T> {
+    var titles: [String]
+    var data : [[T]]
+
+    
+    subscript(sectionIndex: Int) -> [T] {
+        return data[sectionIndex]
+    }
+    
+    subscript(sectionIndex: Int, rowIndex: Int) -> T {
+        return data[sectionIndex][rowIndex]
+    }
 }
