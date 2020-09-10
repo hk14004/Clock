@@ -69,7 +69,7 @@ extension CitiesPickerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let empty = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        empty.textLabel?.text = citiesPickerViewModel.visibleTimeZones[indexPath.row].identifier
+        empty.textLabel?.text = citiesPickerViewModel.visibleTimeZones[indexPath.row].cityName
         empty.backgroundColor = .clear
         empty.textLabel?.textColor = .white
         return empty

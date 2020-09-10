@@ -34,8 +34,7 @@ class CitiesPickerViewModel: NSObject {
             }
             return nil
         }
-        visibleTimeZones = allTimezones
-        latestItemOrder = getLatestIndex()
+        visibleTimeZones = allTimezones.sorted { $0.cityName < $1.cityName }
     }
     
     private var isSearching: Bool = false

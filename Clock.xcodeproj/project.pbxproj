@@ -20,6 +20,7 @@
 		D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D431BE5324EBCD0900F989BD /* UIButton.swift */; };
 		D43274E924FE33FF001A1C8E /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */; };
 		D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */; };
+		D4336E6A250A8A1D006159EA /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4336E69250A8A1D006159EA /* TimeZone.swift */; };
 		D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */; };
 		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
 		D438F4142506B65600E3D0B7 /* CitiesPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */; };
@@ -83,6 +84,7 @@
 		D431BE5324EBCD0900F989BD /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
 		D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCell.swift; sourceTree = "<group>"; };
+		D4336E69250A8A1D006159EA /* TimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
 		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPickerViewModel.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				D431BE5324EBCD0900F989BD /* UIButton.swift */,
 				D4CA75F0250838E100FEA9BE /* TimeZoneEntity.swift */,
+				D4336E69250A8A1D006159EA /* TimeZone.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				D441D3B924E80E5500ACCC4E /* HomeViewController.swift in Sources */,
 				D46EAA6824F4059F00321B41 /* TuneSelectionViewController.swift in Sources */,
 				D41FEF6C24EBFAC400C6DE27 /* TimeStruct.swift in Sources */,
+				D4336E6A250A8A1D006159EA /* TimeZone.swift in Sources */,
 				D430670024F946AC00DEB487 /* Tune.swift in Sources */,
 				D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */,
 				D4461793250299ED00A2551F /* LapState.swift in Sources */,
