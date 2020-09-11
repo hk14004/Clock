@@ -40,19 +40,16 @@ class CitiesPickerViewController: UIViewController {
     
     private func setupNavigationBar() {
         title = "Choose a City"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.barStyle = .black
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
+        navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
-        definesPresentationContext = true
-    }
-    
-    @objc func cancelTapped() {
-        dismiss(animated: true, completion: nil)
+        searchController.searchBar.setShowsCancelButton(true, animated: true)
+        searchController.hidesNavigationBarDuringPresentation = false
     }
 }
 
@@ -110,7 +107,6 @@ extension CitiesPickerViewController: UITableViewDelegate {
 
 extension CitiesPickerViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchController.dismiss(animated: false, completion: nil)
         dismiss(animated: true, completion: nil)
     }
 }
