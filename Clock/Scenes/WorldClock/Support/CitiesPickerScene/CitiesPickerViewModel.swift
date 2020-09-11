@@ -70,14 +70,14 @@ class CitiesPickerViewModel: NSObject {
     }
     
     func addTimezone(indexPath: IndexPath) {
-//        timeZoneEntityDAO.addTimezone { (created) in
-//            created.identifier = visibleTimeZones[indexPath.row].identifier
-//            if let latestOrder = latestItemOrder {
-//                created.order = latestOrder + 1
-//            } else {
-//                created.order = 0
-//            }
-//        }
+        timeZoneEntityDAO.addTimezone { (created) in
+            created.identifier = sectionsData[indexPath.section][indexPath.row].identifier
+            if let latestOrder = latestItemOrder {
+                created.order = latestOrder + 1
+            } else {
+                created.order = 0
+            }
+        }
     }
     
     func getLatestIndex() -> Int64? {
