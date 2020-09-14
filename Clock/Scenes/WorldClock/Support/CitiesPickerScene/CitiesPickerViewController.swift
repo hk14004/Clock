@@ -20,6 +20,8 @@ class CitiesPickerViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Primary")
         citiesPickerViewModel.delegate = self
         searchController.searchBar.delegate = self
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+
         setupNavigationBar()
         setupTableView()
     }
@@ -51,6 +53,14 @@ class CitiesPickerViewController: UIViewController {
         navigationItem.searchController = searchController
         searchController.searchBar.setShowsCancelButton(true, animated: true)
         searchController.hidesNavigationBarDuringPresentation = false
+    }
+    
+    @objc func keyboardWillShow(notif: NSNotification){
+        if let newFrame = (notif.userInfo?[ UIResponder.keyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
+            let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
+            tableView.contentInset = insets
+            tableView.scrollIndicatorInsets = insets
+        }
     }
 }
 
