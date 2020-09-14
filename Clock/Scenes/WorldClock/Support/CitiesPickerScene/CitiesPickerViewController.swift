@@ -84,6 +84,11 @@ extension CitiesPickerViewController: CitiesPickerViewModelDelegate {
 }
 
 extension CitiesPickerViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return citiesPickerViewModel.isSearching ? 0 : UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         citiesPickerViewModel.addTimezone(indexPath: indexPath)
         searchController.dismiss(animated: false, completion: nil)
@@ -91,6 +96,7 @@ extension CitiesPickerViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard !citiesPickerViewModel.isSearching else { return nil }
         let returnedView = UIView()
         returnedView.backgroundColor = UIColor.systemGray
         let label = UILabel()

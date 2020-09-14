@@ -42,7 +42,7 @@ class CitiesPickerViewModel: NSObject {
         sectionsData.data = visibleTimeZones
     }
     
-    private var isSearching: Bool = false
+    private(set) var isSearching: Bool = false
     
     private func groupInSections(data: [TimeZone]) -> [[TimeZone]] {
         return data.reduce([[TimeZone]]()) {
@@ -59,19 +59,25 @@ class CitiesPickerViewModel: NSObject {
     }
     
     func filter(query: String) {
-//        isSearching = !query.isEmpty
-//
-//        guard !query.isEmpty else {
-//            visibleTimeZones = allTimezones
-//            return
-//        }
-//
-//        visibleTimeZones = allTimezones.filter { $0.identifier.lowercased().contains(query.lowercased())}
+        isSearching = !query.isEmpty
+
+        // Make sure user typed something
+        guard !query.isEmpty else {
+            visibleTimeZones = sectionsData.data
+            return
+        }
+
+        // Filter timezones and set results
+        var filtered: [[TimeZone]] = [[]]
+        /// Search results dont require multiple sections
+        filtered[0] = allTimezones.filter { $0.identifier.lowercased().contains(query.lowercased())}
+        
+        visibleTimeZones = filtered
     }
     
     func addTimezone(indexPath: IndexPath) {
         timeZoneEntityDAO.addTimezone { (created) in
-            created.identifier = sectionsData[indexPath.section][indexPath.row].identifier
+            created.identifier = visibleTimeZones[indexPath.section][indexPath.row].identifier
             if let latestOrder = latestItemOrder {
                 created.order = latestOrder + 1
             } else {
