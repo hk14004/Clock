@@ -29,6 +29,7 @@ class CitiesPickerViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.sectionIndexColor = .orange
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +85,13 @@ extension CitiesPickerViewController: CitiesPickerViewModelDelegate {
 }
 
 extension CitiesPickerViewController: UITableViewDelegate {
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        citiesPickerViewModel.isSearching ? [] : citiesPickerViewModel.sectionsData.titles
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return index
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return citiesPickerViewModel.isSearching ? 0 : UITableView.automaticDimension
