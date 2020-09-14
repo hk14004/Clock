@@ -98,7 +98,7 @@ extension CitiesPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard !citiesPickerViewModel.isSearching else { return nil }
         let returnedView = UIView()
-        returnedView.backgroundColor = UIColor.systemGray
+        returnedView.backgroundColor = UIColor(displayP3Red: 50/255, green: 50/255, blue: 52/255, alpha: 1)
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         returnedView.addSubview(label)
