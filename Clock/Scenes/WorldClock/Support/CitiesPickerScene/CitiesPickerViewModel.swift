@@ -40,6 +40,7 @@ class CitiesPickerViewModel: NSObject {
         visibleTimeZones = groupInSections(data: sorted)
         sectionsData.titles = visibleTimeZones.compactMap { $0.first?.cityName.first }.compactMap { String($0) }
         sectionsData.data = visibleTimeZones
+        latestItemOrder = getLatestIndex()
     }
     
     private(set) var isSearching: Bool = false
