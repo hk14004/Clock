@@ -38,7 +38,7 @@ class WordlClockTableViewCell: UITableViewCell {
         let minutes = abs(seconds/60) % 60
         timeOffsetLabel.text = String(format: "%+.2d:%.2d", hours, minutes)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeZone = timezone
         timeLabel.text = dateFormatter.string(from: viewModel?.currentTime ?? Date())
     }
