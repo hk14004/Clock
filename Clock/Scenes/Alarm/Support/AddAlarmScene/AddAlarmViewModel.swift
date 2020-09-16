@@ -31,6 +31,7 @@ class AddAlarmViewModel {
             new.label = "Alarm \(pickedTime.hours) \(pickedTime.minutes)"
             new.time = Date()
             new.bedtime = false
+            new.enabled = true
         }
     }
 }

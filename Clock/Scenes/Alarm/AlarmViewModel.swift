@@ -11,13 +11,25 @@ import CoreData
 
 class AlarmViewModel {
     
-    private(set) var sectionData: SectionsData = SectionsData(titles: [], data: [[]])
+    private(set) var sectionsData: SectionsData<AlarmEntity>!
     
     private let alarmDAO = EntityDAO<AlarmEntity>()
     
     init() {
-        let loaded = alarmDAO.loadData()
+        loadAlarmSections()
+    }
+    
+    private func loadAlarmSections() {
+        // Bedtime alarms
+        let bedtimeAlarms = alarmDAO.loadData { (request) in
+            request.predicate = NSPredicate(format: "bedtime == %@", NSNumber(true))
+        }
         
-        print("Stored alarms: ", loaded)
+        // Other alarms
+        let otherAlarms = alarmDAO.loadData { (request) in
+            request.predicate = NSPredicate(format: "bedtime == %@", NSNumber(false))
+        }
+
+        sectionsData = SectionsData(titles: ["Bedtime".uppercased(), "Other Alarms".uppercased()], data: [bedtimeAlarms, otherAlarms])
     }
 }

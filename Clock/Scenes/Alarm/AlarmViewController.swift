@@ -12,8 +12,8 @@ class AlarmViewController: UIViewController {
     
     private let alarmViewmodel = AlarmViewModel()
     
-    private var tableView = UITableView()
-
+    private var tableView = UITableView(frame: .zero, style: .grouped)
+    
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Secondary")
         setupNavigationBar()
@@ -41,7 +41,7 @@ class AlarmViewController: UIViewController {
     private func setupTableView() {
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
-        //tableView.register(WordlClockTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.delegate = self
@@ -57,15 +57,70 @@ class AlarmViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    private func createBedtimeSectionTitleView() -> UIView {
+        let returnedView = UIView()
+        returnedView.backgroundColor = UIColor(named: "Secondary")
+        
+        let imageView = UIImageView(image: UIImage(systemName: "bed.double.fill"))
+        returnedView.addSubview(imageView)
+        imageView.tintColor = .gray
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: returnedView.leadingAnchor, constant: 15).isActive = true
+        
+        let label = UILabel()
+        label.text = alarmViewmodel.sectionsData.titles[0]
+        returnedView.addSubview(label)
+        label.textColor = .gray
+        label.font = label.font.withSize(12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
+        label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5).isActive = true
+        
+        return returnedView
+    }
+    
+    private func createOtherSectionTitleView() -> UIView {
+        let returnedView = UIView()
+        returnedView.backgroundColor = UIColor(named: "Secondary")
+        
+        let label = UILabel()
+        label.text = alarmViewmodel.sectionsData.titles[1]
+        returnedView.addSubview(label)
+        label.textColor = .gray
+        label.font = label.font.withSize(12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
+        label.leadingAnchor.constraint(equalTo: returnedView.leadingAnchor, constant: 15).isActive = true
+        
+        return returnedView
+    }
 }
 
 extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return alarmViewmodel.sectionsData.data.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return alarmViewmodel.sectionsData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        cell.backgroundColor = .clear
+        cell.textLabel?.text = "fff"
+        cell.textLabel?.textColor = .white
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return createBedtimeSectionTitleView()
+        } else {
+            return createOtherSectionTitleView()
+        }
     }
 }
