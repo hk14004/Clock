@@ -47,6 +47,7 @@ class HomeViewController: UITabBarController {
         }()
         
         let alarmVC = AlarmViewController()
+        let alarmNavVC = UINavigationController(rootViewController: alarmVC)
         alarmVC.tabBarItem = {
             let item = UITabBarItem()
             item.title = "Alarm"
@@ -55,16 +56,16 @@ class HomeViewController: UITabBarController {
         }()
         
         let worldClockVC = WorldClockViewController()
+        let worldClockNavVC = UINavigationController(rootViewController: worldClockVC)
         worldClockVC.tabBarItem = {
             let item = UITabBarItem()
             item.title = "World Clock"
             item.image = UIImage(systemName: "globe")
             return item
         }()
-        let worldClockNavVC = UINavigationController(rootViewController: worldClockVC)
         
-        viewControllers = [worldClockNavVC, alarmVC, bedtimeVC, stopwatch, timer]
+        viewControllers = [worldClockNavVC, alarmNavVC, bedtimeVC, stopwatch, timer]
         
-        selectedViewController = worldClockNavVC
+        selectedViewController = alarmNavVC
     }
 }

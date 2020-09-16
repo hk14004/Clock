@@ -195,6 +195,7 @@
 		D4368EA024EBD50F00D7B5C9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D43D49672512169200216152 /* Alarm */,
 				D42F6763250520F3001A58FA /* WorldClock */,
 				D448654624FD577300EF1505 /* Stopwatch */,
 				D4368EA124EBD51F00D7B5C9 /* Timer */,
@@ -219,6 +220,14 @@
 				D43A2A0424EA736800315B5D /* Functions.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		D43D49672512169200216152 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */,
+			);
+			path = Alarm;
 			sourceTree = "<group>";
 		};
 		D441D3A824E80E5500ACCC4E = {
@@ -252,7 +261,6 @@
 				D441D3B424E80E5500ACCC4E /* AppDelegate.swift */,
 				D441D3B824E80E5500ACCC4E /* HomeViewController.swift */,
 				D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */,
-				D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */,
 				D441D3C024E80E5900ACCC4E /* Assets.xcassets */,
 				D441D3C224E80E5900ACCC4E /* LaunchScreen.storyboard */,
 				D441D3C524E80E5900ACCC4E /* Info.plist */,
