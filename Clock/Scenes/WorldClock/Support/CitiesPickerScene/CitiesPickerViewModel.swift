@@ -77,7 +77,7 @@ class CitiesPickerViewModel: NSObject {
     }
     
     func addTimezone(indexPath: IndexPath) {
-        timeZoneEntityDAO.addTimezone { (created) in
+        timeZoneEntityDAO.createEntity { (created) in
             created.identifier = visibleTimeZones[indexPath.section][indexPath.row].identifier
             if let latestOrder = latestItemOrder {
                 created.order = latestOrder + 1

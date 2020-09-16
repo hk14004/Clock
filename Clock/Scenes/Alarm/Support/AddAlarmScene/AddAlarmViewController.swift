@@ -44,7 +44,7 @@ class AddAlarmViewController: UIViewController {
     }
     
     @objc func saveTapped() {
-        // TODO: Perform save
+        addAlarmViewModel.addAlarm()
         dismiss(animated: true, completion: nil)
     }
     
@@ -98,5 +98,11 @@ extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return timePickerView.frame.size.width / 3
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let h = HOURS[timePickerView.selectedRow(inComponent: 0)]
+        let m = MINUTES[timePickerView.selectedRow(inComponent: 1)]
+        addAlarmViewModel.setPickedTime(h: h, m: m)
     }
 }

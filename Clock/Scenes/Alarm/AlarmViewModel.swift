@@ -17,6 +17,7 @@ class AlarmViewModel {
     
     init() {
         let loaded = alarmDAO.loadData()
+        
         print("Stored alarms: ", loaded)
     }
 }

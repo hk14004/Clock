@@ -40,6 +40,7 @@ class EntityDAO<T: NSManagedObject> {
         return fetchedController?.fetchedObjects ?? []
     }
     
+    // TODO: Add try block
     func delete(at: IndexPath) {
         guard let toBeDeleted = fetchedController?.fetchedObjects?[at.row] else {
             return
@@ -48,7 +49,12 @@ class EntityDAO<T: NSManagedObject> {
         save()
     }
     
-    func addTimezone(entityModifier: (T) -> Void) {
+    func delete(_ toBeDeleted: [T]) {
+        toBeDeleted.forEach {persistentConatiner.viewContext.delete($0)}
+        save()
+    }
+    
+    func createEntity(entityModifier: (T) -> Void) {
         let new = T(context: persistentConatiner.viewContext)
         entityModifier(new)
         save()
