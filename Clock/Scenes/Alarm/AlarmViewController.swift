@@ -10,10 +10,12 @@ import UIKit
 
 class AlarmViewController: UIViewController {
     
-    private var tableView: UITableView = UITableView()
+    private let alarmViewmodel = AlarmViewModel()
+    
+    private var tableView = UITableView()
 
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(named: "Secondary")
+        view.backgroundColor = UIColor(named: "Secondary")
         setupNavigationBar()
         setupTableView()
     }
@@ -31,7 +33,7 @@ class AlarmViewController: UIViewController {
     }
     
     @objc func addTapped() {
-        let nav = UINavigationController(rootViewController: CitiesPickerViewController())
+        let nav = UINavigationController(rootViewController: AddAlarmViewController())
         nav.modalPresentationStyle = .popover
         present(nav, animated: true, completion: nil)
     }

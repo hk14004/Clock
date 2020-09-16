@@ -12,9 +12,23 @@ class AddAlarmViewController: UIViewController {
     
     private let addAlarmViewModel = AddAlarmViewModel()
     
+    private let timePickerView = UIPickerView()
+    
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Secondary")
         setupNavigationBar()
+        setupTimePicker()
+    }
+    
+    private func setupTimePicker() {
+        timePickerView.dataSource = self
+        timePickerView.delegate = self
+        
+        view.addSubview(timePickerView)
+        timePickerView.translatesAutoresizingMaskIntoConstraints = false
+        timePickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+        timePickerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+        timePickerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
     }
     
     private func setupNavigationBar() {
@@ -36,5 +50,53 @@ class AddAlarmViewController: UIViewController {
     
     @objc func cancelTapped() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return HOURS.count
+        case 1:
+            return MINUTES.count
+        default:
+            return 0
+        }
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        // Find seperator and change color
+        for view in pickerView.subviews where view.frame.size.height < 1 {
+            view.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        }
+        
+        // Create picker labels
+        let label = UILabel()
+        label.textAlignment = NSTextAlignment.center
+        label.textColor = .white
+        
+        func getPickerLabel(time: Int) -> String {
+            return  time < 10 ? "0\(time)" : "\(time)"
+        }
+        
+        switch component {
+        case 0:
+            label.text = "\(getPickerLabel(time: HOURS[row]))"
+        case 1:
+            label.text = "\(getPickerLabel(time: MINUTES[row]))"
+        default:
+            return label
+        }
+        
+        return label
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return timePickerView.frame.size.width / 3
     }
 }
