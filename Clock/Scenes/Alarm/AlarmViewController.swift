@@ -123,4 +123,12 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
             return createOtherSectionTitleView()
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
 }
