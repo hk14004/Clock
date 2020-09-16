@@ -7,10 +7,16 @@
 //
 
 import Foundation
+import CoreData
 
 class AlarmViewModel {
     
-    let sectionData: SectionsData = SectionsData(titles: [], data: [[]])
+    private(set) var sectionData: SectionsData = SectionsData(titles: [], data: [[]])
     
+    private let alarmDAO = EntityDAO<AlarmEntity>()
     
+    init() {
+        let loaded = alarmDAO.loadData()
+        print("Stored alarms: ", loaded)
+    }
 }

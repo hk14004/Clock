@@ -49,6 +49,8 @@
 		D4CBD6B02503B867001FE005 /* Radar.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4CBD6AF2503B867001FE005 /* Radar.caf */; };
 		D4D273E825121A2E00E15A76 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D273E725121A2E00E15A76 /* AlarmViewModel.swift */; };
 		D4D273EA25121BCA00E15A76 /* EntityDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D273E925121BCA00E15A76 /* EntityDAO.swift */; };
+		D4D273EE2512244200E15A76 /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D273ED2512244200E15A76 /* AddAlarmViewController.swift */; };
+		D4D273F0251225C900E15A76 /* AddAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D273EF251225C900E15A76 /* AddAlarmViewModel.swift */; };
 		D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */; };
 		D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */; };
 		D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */; };
@@ -121,6 +123,8 @@
 		D4CBD6AF2503B867001FE005 /* Radar.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Radar.caf; sourceTree = "<group>"; };
 		D4D273E725121A2E00E15A76 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		D4D273E925121BCA00E15A76 /* EntityDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityDAO.swift; sourceTree = "<group>"; };
+		D4D273ED2512244200E15A76 /* AddAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewController.swift; sourceTree = "<group>"; };
+		D4D273EF251225C900E15A76 /* AddAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewModel.swift; sourceTree = "<group>"; };
 		D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewController.swift; sourceTree = "<group>"; };
 		D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 			children = (
 				D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */,
 				D4D273E725121A2E00E15A76 /* AlarmViewModel.swift */,
+				D4D273EB251223AA00E15A76 /* Support */,
 			);
 			path = Alarm;
 			sourceTree = "<group>";
@@ -351,6 +356,23 @@
 				D4CBD6AF2503B867001FE005 /* Radar.caf */,
 			);
 			path = Alerts;
+			sourceTree = "<group>";
+		};
+		D4D273EB251223AA00E15A76 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D4D273EC251223C400E15A76 /* AddAlarmScene */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		D4D273EC251223C400E15A76 /* AddAlarmScene */ = {
+			isa = PBXGroup;
+			children = (
+				D4D273ED2512244200E15A76 /* AddAlarmViewController.swift */,
+				D4D273EF251225C900E15A76 /* AddAlarmViewModel.swift */,
+			);
+			path = AddAlarmScene;
 			sourceTree = "<group>";
 		};
 		D4D5C7B425082D2500D34B77 /* DAO */ = {
@@ -504,7 +526,9 @@
 				D441D3B924E80E5500ACCC4E /* HomeViewController.swift in Sources */,
 				D46EAA6824F4059F00321B41 /* TuneSelectionViewController.swift in Sources */,
 				D41FEF6C24EBFAC400C6DE27 /* TimeStruct.swift in Sources */,
+				D4D273F0251225C900E15A76 /* AddAlarmViewModel.swift in Sources */,
 				D4336E6A250A8A1D006159EA /* TimeZone.swift in Sources */,
+				D4D273EE2512244200E15A76 /* AddAlarmViewController.swift in Sources */,
 				D430670024F946AC00DEB487 /* Tune.swift in Sources */,
 				D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */,
 				D4461793250299ED00A2551F /* LapState.swift in Sources */,
