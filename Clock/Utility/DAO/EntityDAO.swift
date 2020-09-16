@@ -1,5 +1,5 @@
 //
-//  TimeZoneEntityDAO.swift
+//  EntityDAO.swift
 //  Clock
 //
 //  Created by Hardijs on 09/09/2020.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TimeZoneEntityDAO {
+class EntityDAO<T: NSManagedObject> {
     
     weak var delegate: NSFetchedResultsControllerDelegate? {
         didSet {
@@ -19,15 +19,15 @@ class TimeZoneEntityDAO {
     
     private(set) var persistentConatiner: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     
-    private(set) var fetchedController: NSFetchedResultsController<TimeZoneEntity>?
+    private(set) var fetchedController: NSFetchedResultsController<T>?
     
     func save() {
         try! persistentConatiner.viewContext.save()
     }
     
-    func loadData(requestModifier: ((NSFetchRequest<TimeZoneEntity>) -> Void)? = nil ) -> [TimeZoneEntity] {
+    func loadData(requestModifier: ((NSFetchRequest<T>) -> Void)? = nil ) -> [T] {
         // Default request
-        let request: NSFetchRequest<TimeZoneEntity> = TimeZoneEntity.fetchRequest()
+        let request: NSFetchRequest<T> = NSFetchRequest<T>(entityName: T.entity().name!)
         request.sortDescriptors = []
         
         // Modify request if necessary
@@ -48,8 +48,8 @@ class TimeZoneEntityDAO {
         save()
     }
     
-    func addTimezone(entityModifier: (TimeZoneEntity) -> Void) {
-        let new = TimeZoneEntity(context: persistentConatiner.viewContext)
+    func addTimezone(entityModifier: (T) -> Void) {
+        let new = T(context: persistentConatiner.viewContext)
         entityModifier(new)
         save()
     }

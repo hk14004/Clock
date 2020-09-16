@@ -13,7 +13,7 @@ class CitiesPickerViewModel: NSObject {
     
     weak var delegate: CitiesPickerViewModelDelegate?
     
-    private var timeZoneEntityDAO = TimeZoneEntityDAO()
+    private var timeZoneEntityDAO = EntityDAO<TimeZoneEntity>()
     
     private(set) var visibleTimeZones: [[TimeZone]] = [[]] {
         didSet {

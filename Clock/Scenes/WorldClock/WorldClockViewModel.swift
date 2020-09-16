@@ -22,7 +22,7 @@ class WorldClockViewModel: NSObject {
     
     private(set) var timeZoneCellViewModels: [WordlClockTableViewCellModel] = []
     
-    private var timeZoneDAO = TimeZoneEntityDAO()
+    private var timeZoneDAO = EntityDAO<TimeZoneEntity>()
     
     private var timer: Timer!
     
