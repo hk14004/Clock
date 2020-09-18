@@ -11,7 +11,11 @@ import CoreData
 
 class EntityDAO<T: NSManagedObject> {
     
-    weak var delegate: NSFetchedResultsControllerDelegate?
+    weak var delegate: NSFetchedResultsControllerDelegate? {
+        didSet {
+            fetchedController?.delegate = delegate
+        }
+    }
     
     private(set) var persistentConatiner: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     
