@@ -47,6 +47,17 @@ class AlarmTableViewCell: UITableViewCell {
         enabledToggle.setOn(viewModel.enabled, animated: false)
         enabledToggle.removeTarget(nil, action: nil, for: UIControl.Event.valueChanged)
         enabledToggle.addTarget(viewModel, action: #selector(AlarmTableViewCellViewModel.switchChanged), for: UIControl.Event.valueChanged)
+        setAlarm(enabled: viewModel.enabled)
+    }
+    
+    private func setAlarm(enabled: Bool) {
+        if !enabled {
+            timeLabel.textColor = .gray
+            notesLabel.textColor = .gray
+        } else {
+            timeLabel.textColor = .white
+            notesLabel.textColor = .white
+        }
     }
     
     private func setup() {
