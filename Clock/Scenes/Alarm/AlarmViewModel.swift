@@ -50,6 +50,11 @@ class AlarmViewModel: NSObject {
         alarmViewmodels[indexPath] = viewModel
         return viewModel
     }
+    
+    func deleteAlarm(at: IndexPath) {
+        let toBeDeleted = sectionsData[at.section][at.row]
+        alarmDAO.delete([toBeDeleted])
+    }
 }
 
 extension AlarmViewModel: NSFetchedResultsControllerDelegate {

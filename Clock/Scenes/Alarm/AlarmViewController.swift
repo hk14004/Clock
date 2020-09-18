@@ -150,12 +150,12 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         guard  indexPath.section != 0 else {
             return nil
         }
-
+        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
-            //            tableView.beginUpdates()
-            //             TODO: Delete alarm from DB
-            //            tableView.deleteRows(at: [indexPath], with: .automatic)
-            //            tableView.endUpdates()
+            tableView.beginUpdates()
+            self.alarmViewmodel.deleteAlarm(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
             complete(true)
         }
         
