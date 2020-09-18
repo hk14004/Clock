@@ -14,8 +14,11 @@ class AlarmTableViewCellViewModel {
     
     private(set) var notesString: String
     
+    private(set) var enabled: Bool
+    
     init(alarm: AlarmEntity) {
         timeString = alarm.timeString ?? ""
         notesString = alarm.label ?? ""
+        enabled = alarm.enabled
     }
 }

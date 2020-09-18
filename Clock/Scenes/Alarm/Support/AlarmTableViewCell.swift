@@ -25,6 +25,12 @@ class AlarmTableViewCell: UITableViewCell {
         notesLabel.font = notesLabel.font.withSize(12)
         return notesLabel
     }()
+    
+    private lazy var enabledToggle: UISwitch = {
+       let toggle = UISwitch()
+        contentView.addSubview(toggle)
+        return toggle
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,14 +44,15 @@ class AlarmTableViewCell: UITableViewCell {
     func setup(with viewModel: AlarmTableViewCellViewModel) {
         timeLabel.text = viewModel.timeString
         notesLabel.text = viewModel.notesString
+        enabledToggle.setOn(viewModel.enabled, animated: false)
     }
     
     private func setup() {
         backgroundColor = .clear
-        layoutLabels()
+        layoutViews()
     }
 
-    private func layoutLabels() {
+    private func layoutViews() {
         // Time label
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
@@ -56,5 +63,10 @@ class AlarmTableViewCell: UITableViewCell {
         notesLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 0).isActive = false
         notesLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         notesLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        
+        // Toggle
+        enabledToggle.translatesAutoresizingMaskIntoConstraints = false
+        enabledToggle.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor).isActive = true
+    enabledToggle.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
     }
 }
