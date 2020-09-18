@@ -10,11 +10,7 @@ import Foundation
 
 class AddAlarmViewModel {
     
-    private var pickedTime: TimeStruct {
-        didSet {
-            // Delegate time
-        }
-    }
+    private var pickedTime: TimeStruct
     
     private let alarmDAO = EntityDAO<AlarmEntity>()
     
@@ -30,9 +26,13 @@ class AddAlarmViewModel {
     func addAlarm() {
         alarmDAO.createEntity { (new) in
             new.label = "Alarm 1"
-            new.timeString = "\(pickedTime.hours):\(pickedTime.minutes)"
+            new.timeString = "\(getPickerLabel(pickedTime.hours)):\(getPickerLabel(pickedTime.minutes))"
             new.bedtime = false
             new.enabled = true
         }
+    }
+    
+    func getPickerLabel(_ time: Int) -> String {
+        return  time < 10 ? "0\(time)" : "\(time)"
     }
 }

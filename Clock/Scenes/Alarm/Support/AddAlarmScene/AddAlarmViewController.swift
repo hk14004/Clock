@@ -79,16 +79,12 @@ extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let label = UILabel()
         label.textAlignment = NSTextAlignment.center
         label.textColor = .white
-        
-        func getPickerLabel(time: Int) -> String {
-            return  time < 10 ? "0\(time)" : "\(time)"
-        }
-        
+                
         switch component {
         case 0:
-            label.text = "\(getPickerLabel(time: HOURS[row]))"
+            label.text = "\(addAlarmViewModel.getPickerLabel(HOURS[row]))"
         case 1:
-            label.text = "\(getPickerLabel(time: MINUTES[row]))"
+            label.text = "\(addAlarmViewModel.getPickerLabel(MINUTES[row]))"
         default:
             return label
         }
