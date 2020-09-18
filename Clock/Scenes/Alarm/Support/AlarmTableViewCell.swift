@@ -27,11 +27,11 @@ class AlarmTableViewCell: UITableViewCell {
     }()
     
     private lazy var enabledToggle: UISwitch = {
-       let toggle = UISwitch()
+        let toggle = UISwitch()
         contentView.addSubview(toggle)
         return toggle
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -53,7 +53,7 @@ class AlarmTableViewCell: UITableViewCell {
         backgroundColor = .clear
         layoutViews()
     }
-
+    
     private func layoutViews() {
         // Time label
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -66,9 +66,11 @@ class AlarmTableViewCell: UITableViewCell {
         notesLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         notesLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
         
+        
         // Toggle
         enabledToggle.translatesAutoresizingMaskIntoConstraints = false
         enabledToggle.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor).isActive = true
-    enabledToggle.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        enabledToggle.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        notesLabel.trailingAnchor.constraint(equalTo: enabledToggle.leadingAnchor, constant: -15).isActive = true
     }
 }
