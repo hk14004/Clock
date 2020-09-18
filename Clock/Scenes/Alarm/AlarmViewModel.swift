@@ -12,8 +12,10 @@ import CoreData
 class AlarmViewModel {
     
     private(set) var sectionsData: SectionsData<AlarmEntity>!
-    
+
     private let alarmDAO = EntityDAO<AlarmEntity>()
+    
+    private(set) var alarmViewmodels: [IndexPath: AlarmTableViewCellViewModel] = [:]
     
     init() {
         loadAlarmSections()
@@ -31,5 +33,12 @@ class AlarmViewModel {
         }
 
         sectionsData = SectionsData(titles: ["Bedtime".uppercased(), "Other Alarms".uppercased()], data: [bedtimeAlarms, otherAlarms])
+    }
+    
+    func getAlarmCellViewModel(at indexPath: IndexPath) -> AlarmTableViewCellViewModel {
+        let entity = sectionsData[indexPath.section][indexPath.row]
+        let viewModel = AlarmTableViewCellViewModel(alarm: entity)
+        alarmViewmodels[indexPath] = viewModel
+        return viewModel
     }
 }

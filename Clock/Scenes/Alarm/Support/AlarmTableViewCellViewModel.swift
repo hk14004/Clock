@@ -6,7 +6,7 @@
 //  Copyright © 2020 Hardijs. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class AlarmTableViewCellViewModel {
     
@@ -16,9 +16,20 @@ class AlarmTableViewCellViewModel {
     
     private(set) var enabled: Bool
     
+    private let alarmDAO = EntityDAO<AlarmEntity>()
+    
+    private let alarmEntity: AlarmEntity
+    
     init(alarm: AlarmEntity) {
+        alarmEntity = alarm
         timeString = alarm.timeString ?? ""
         notesString = alarm.label ?? ""
         enabled = alarm.enabled
+    }
+    
+    @objc func switchChanged(enabledSwitch: UISwitch) {
+        enabled = enabledSwitch.isOn
+        alarmEntity.enabled = enabled
+        alarmDAO.save()
     }
 }

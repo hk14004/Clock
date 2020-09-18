@@ -112,8 +112,7 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AlarmTableViewCell
         
-        let model = alarmViewmodel.sectionsData[indexPath.section][indexPath.row]
-        cell.setup(with: AlarmTableViewCellViewModel(alarm: model))
+        cell.setup(with: alarmViewmodel.getAlarmCellViewModel(at: indexPath))
         return cell
     }
     

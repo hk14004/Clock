@@ -45,6 +45,8 @@ class AlarmTableViewCell: UITableViewCell {
         timeLabel.text = viewModel.timeString
         notesLabel.text = viewModel.notesString
         enabledToggle.setOn(viewModel.enabled, animated: false)
+        enabledToggle.removeTarget(nil, action: nil, for: UIControl.Event.valueChanged)
+        enabledToggle.addTarget(viewModel, action: #selector(AlarmTableViewCellViewModel.switchChanged), for: UIControl.Event.valueChanged)
     }
     
     private func setup() {
