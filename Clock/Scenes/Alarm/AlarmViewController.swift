@@ -98,6 +98,11 @@ class AlarmViewController: UIViewController {
         
         return returnedView
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
 }
 
 extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
@@ -117,6 +122,10 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return indexPath.section == 0 ? .none : .delete
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return createBedtimeSectionTitleView()
@@ -132,10 +141,45 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 0 ? false : true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard  indexPath.section != 0 else {
+            return nil
+        }
+
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
+            //            tableView.beginUpdates()
+            //             TODO: Delete alarm from DB
+            //            tableView.deleteRows(at: [indexPath], with: .automatic)
+            //            tableView.endUpdates()
+            complete(true)
+        }
+        
+        deleteAction.backgroundColor = .red
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = true
+        
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        super.setEditing(false, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        super.setEditing(true, animated: true)
+    }
 }
 
 extension AlarmViewController: AlarmViewModelDelegate {
     func alarmListChanged() {
-        tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.tableView.reloadData()
+        }
     }
 }

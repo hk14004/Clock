@@ -44,24 +44,27 @@ class AlarmTableViewCell: UITableViewCell {
     func setup(with viewModel: AlarmTableViewCellViewModel) {
         timeLabel.text = viewModel.timeString
         notesLabel.text = viewModel.notesString
-        enabledToggle.setOn(viewModel.enabled, animated: false)
         enabledToggle.removeTarget(nil, action: nil, for: UIControl.Event.valueChanged)
         enabledToggle.addTarget(viewModel, action: #selector(AlarmTableViewCellViewModel.switchChanged), for: UIControl.Event.valueChanged)
         setAlarm(enabled: viewModel.enabled)
     }
     
     private func setAlarm(enabled: Bool) {
-        if !enabled {
-            timeLabel.textColor = .gray
-            notesLabel.textColor = .gray
-        } else {
-            timeLabel.textColor = .white
-            notesLabel.textColor = .white
-        }
+        let textColor: UIColor = enabled ? .white : .gray
+        timeLabel.textColor = textColor
+        notesLabel.textColor = textColor
+        enabledToggle.setOn(enabled, animated: true)
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        enabledToggle.isHidden = editing
     }
     
     private func setup() {
         backgroundColor = .clear
+        editingAccessoryType = .disclosureIndicator
+        
         layoutViews()
     }
     
@@ -76,7 +79,6 @@ class AlarmTableViewCell: UITableViewCell {
         notesLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 0).isActive = false
         notesLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         notesLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
-        
         
         // Toggle
         enabledToggle.translatesAutoresizingMaskIntoConstraints = false
