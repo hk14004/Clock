@@ -16,6 +16,7 @@ class AlarmViewController: UIViewController {
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Secondary")
+        alarmViewmodel.delegate = self
         setupNavigationBar()
         setupTableView()
     }
@@ -130,5 +131,11 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
+    }
+}
+
+extension AlarmViewController: AlarmViewModelDelegate {
+    func alarmListChanged() {
+        tableView.reloadData()
     }
 }
