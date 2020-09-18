@@ -42,6 +42,7 @@ class AlarmViewController: UIViewController {
     private func setupTableView() {
         tableView.rowHeight = 88
         tableView.allowsSelection = false
+        tableView.allowsSelectionDuringEditing = true
         tableView.backgroundColor = .clear
         tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
@@ -173,6 +174,16 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         super.setEditing(true, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nav = UINavigationController(rootViewController: AddAlarmViewController())
+        nav.modalPresentationStyle = .popover
+        present(nav, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.tableView.deselectRow(at: indexPath, animated: false)
+            self.setEditing(false, animated: false)
+        }
     }
 }
 

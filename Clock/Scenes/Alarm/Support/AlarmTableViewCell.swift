@@ -76,6 +76,11 @@ class AlarmTableViewCell: UITableViewCell {
     private func setup() {
         backgroundColor = .clear
         editingAccessoryType = .disclosureIndicator
+        selectedBackgroundView = {
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+            return backgroundView
+        }()
         layoutViews()
     }
     
