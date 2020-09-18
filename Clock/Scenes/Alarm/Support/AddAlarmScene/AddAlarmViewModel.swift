@@ -24,12 +24,13 @@ class AddAlarmViewModel {
     
     func setPickedTime(h: Int, m: Int) {
         print(h,m)
+        pickedTime = TimeStruct(hours: h, minutes: m, seconds: 0)
     }
     
     func addAlarm() {
         alarmDAO.createEntity { (new) in
-            new.label = "Alarm \(pickedTime.hours) \(pickedTime.minutes)"
-            new.time = Date()
+            new.label = "Alarm 1"
+            new.timeString = "\(pickedTime.hours):\(pickedTime.minutes)"
             new.bedtime = false
             new.enabled = true
         }

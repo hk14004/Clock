@@ -39,9 +39,10 @@ class AlarmViewController: UIViewController {
     }
     
     private func setupTableView() {
+        tableView.rowHeight = 88
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.delegate = self
@@ -109,10 +110,10 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.backgroundColor = .clear
-        cell.textLabel?.text = "fff"
-        cell.textLabel?.textColor = .white
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AlarmTableViewCell
+        
+        let model = alarmViewmodel.sectionsData[indexPath.section][indexPath.row]
+        cell.setup(with: AlarmTableViewCellViewModel(alarm: model))
         return cell
     }
     

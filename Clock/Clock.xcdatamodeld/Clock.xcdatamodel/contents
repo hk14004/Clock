@@ -7,7 +7,7 @@
         <attribute name="label" optional="YES" attributeType="String"/>
         <attribute name="snooze" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="sound" optional="YES" attributeType="String"/>
-        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timeString" optional="YES" attributeType="String"/>
     </entity>
     <entity name="TimeZoneEntity" representedClassName="TimeZoneEntity" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" optional="YES" attributeType="String"/>

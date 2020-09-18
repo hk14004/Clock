@@ -23,6 +23,8 @@
 		D4336E6A250A8A1D006159EA /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4336E69250A8A1D006159EA /* TimeZone.swift */; };
 		D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */; };
 		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
+		D438C9B0251286D0006E3A1D /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438C9AF251286D0006E3A1D /* AlarmTableViewCell.swift */; };
+		D438C9B2251286E8006E3A1D /* AlarmTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438C9B1251286E8006E3A1D /* AlarmTableViewCellViewModel.swift */; };
 		D438F4142506B65600E3D0B7 /* CitiesPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */; };
 		D43A2A0524EA736800315B5D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A2A0424EA736800315B5D /* Functions.swift */; };
 		D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B424E80E5500ACCC4E /* AppDelegate.swift */; };
@@ -90,6 +92,8 @@
 		D4336E69250A8A1D006159EA /* TimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
 		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		D438C9AF251286D0006E3A1D /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
+		D438C9B1251286E8006E3A1D /* AlarmTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPickerViewModel.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		D43C5DFE2503A29300089881 /* Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clock.entitlements; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 			isa = PBXGroup;
 			children = (
 				D4D273EC251223C400E15A76 /* AddAlarmScene */,
+				D438C9AF251286D0006E3A1D /* AlarmTableViewCell.swift */,
+				D438C9B1251286E8006E3A1D /* AlarmTableViewCellViewModel.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 				D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */,
 				D4CA75F1250838E100FEA9BE /* TimeZoneEntity.swift in Sources */,
 				D4D273E825121A2E00E15A76 /* AlarmViewModel.swift in Sources */,
+				D438C9B0251286D0006E3A1D /* AlarmTableViewCell.swift in Sources */,
 				D4D273EA25121BCA00E15A76 /* EntityDAO.swift in Sources */,
 				D41FEF6824EBFA0600C6DE27 /* TimeStateEnum.swift in Sources */,
 				D448654924FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift in Sources */,
@@ -553,6 +560,7 @@
 				D448654D24FD871B00EF1505 /* StopwatchDigitalClockFaceCell.swift in Sources */,
 				D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */,
 				D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */,
+				D438C9B2251286E8006E3A1D /* AlarmTableViewCellViewModel.swift in Sources */,
 				D441D3BF24E80E5500ACCC4E /* Clock.xcdatamodeld in Sources */,
 				D448654F24FD874600EF1505 /* StopwatchAnalogClockFaceCell.swift in Sources */,
 				D473F86625091FBB0077D628 /* WordlClockTableViewCellModel.swift in Sources */,
