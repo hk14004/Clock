@@ -14,6 +14,7 @@ class EditAlarmSnoozeCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setup()
     }
     
     required init?(coder: NSCoder) {
@@ -23,6 +24,16 @@ class EditAlarmSnoozeCell: UITableViewCell {
     func setup(with viewModel: AddAlarmViewModel) {
         toggle.setOn(viewModel.editableAlarm?.snooze ?? false, animated: false)
         toggle.addTarget(viewModel, action: #selector(AddAlarmViewModel.snoozeStateChanged(snoozeSwitch:)), for: .valueChanged)
+    }
+    
+    private func setup() {
+        backgroundColor = UIColor(named: "Primary")
+        textLabel?.text = "Snooze"
+        textLabel?.textColor = .white
+        contentView.addSubview(toggle)
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        toggle.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        toggle.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
     }
 }
 
