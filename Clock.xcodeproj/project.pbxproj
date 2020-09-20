@@ -20,6 +20,7 @@
 		D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D431BE5324EBCD0900F989BD /* UIButton.swift */; };
 		D43274E924FE33FF001A1C8E /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */; };
 		D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */; };
+		D432ED2E2516334600DAFCE2 /* EditAlarmSnoozeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432ED2D2516334600DAFCE2 /* EditAlarmSnoozeCell.swift */; };
 		D4336E6A250A8A1D006159EA /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4336E69250A8A1D006159EA /* TimeZone.swift */; };
 		D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */; };
 		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
@@ -89,6 +90,7 @@
 		D431BE5324EBCD0900F989BD /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D43274E824FE33FF001A1C8E /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
 		D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCell.swift; sourceTree = "<group>"; };
+		D432ED2D2516334600DAFCE2 /* EditAlarmSnoozeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmSnoozeCell.swift; sourceTree = "<group>"; };
 		D4336E69250A8A1D006159EA /* TimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
 		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
@@ -200,6 +202,14 @@
 				D4336E69250A8A1D006159EA /* TimeZone.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D432ED2C251632DA00DAFCE2 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D432ED2D2516334600DAFCE2 /* EditAlarmSnoozeCell.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		D4368EA024EBD50F00D7B5C9 /* Scenes */ = {
@@ -377,6 +387,7 @@
 			children = (
 				D4D273ED2512244200E15A76 /* AddAlarmViewController.swift */,
 				D4D273EF251225C900E15A76 /* AddAlarmViewModel.swift */,
+				D432ED2C251632DA00DAFCE2 /* Support */,
 			);
 			path = AddAlarmScene;
 			sourceTree = "<group>";
@@ -546,6 +557,7 @@
 				D430670424F9668D00DEB487 /* TuneCellViewModel.swift in Sources */,
 				D463897C24FE79E60000673D /* StopwatchState.swift in Sources */,
 				D43A2A0524EA736800315B5D /* Functions.swift in Sources */,
+				D432ED2E2516334600DAFCE2 /* EditAlarmSnoozeCell.swift in Sources */,
 				D42F84FD2506A64A00B20115 /* CitiesPickerViewController.swift in Sources */,
 				D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */,
 				D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */,

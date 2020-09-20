@@ -14,15 +14,26 @@ class AddAlarmViewController: UIViewController {
     
     private let timePickerView = UIPickerView()
     
+    private let tableView: UITableView = UITableView()
+    
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Secondary")
+        addAlarmViewModel.delegate = self
         setupNavigationBar()
         setupTimePicker()
+    }
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
     }
     
     private func setupTimePicker() {
         timePickerView.dataSource = self
         timePickerView.delegate = self
+        timePickerView.selectRow(addAlarmViewModel.pickedTime.hours, inComponent: 0, animated: false)
+        timePickerView.selectRow(addAlarmViewModel.pickedTime.minutes, inComponent: 1, animated: false)
         
         view.addSubview(timePickerView)
         timePickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,12 +55,16 @@ class AddAlarmViewController: UIViewController {
     }
     
     @objc func saveTapped() {
-        addAlarmViewModel.addAlarm()
+        addAlarmViewModel.savePressed()
         dismiss(animated: true, completion: nil)
     }
     
     @objc func cancelTapped() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func prepareForEditing(alarm: AlarmEntity) {
+        addAlarmViewModel.edit(alarm: alarm)
     }
 }
 
@@ -101,4 +116,23 @@ extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let m = MINUTES[timePickerView.selectedRow(inComponent: 1)]
         addAlarmViewModel.setPickedTime(h: h, m: m)
     }
+}
+
+extension AddAlarmViewController: AddAlarmViewModelDelegate {
+    func pickedTimeChanged(time: TimeStruct) {
+        timePickerView.selectRow(time.hours, inComponent: 0, animated: false)
+        timePickerView.selectRow(time.minutes, inComponent: 1, animated: false)
+    }
+}
+
+extension AddAlarmViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    
 }

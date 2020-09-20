@@ -84,6 +84,20 @@ class AlarmViewController: UIViewController {
         return returnedView
     }
     
+    private func presentBedtimeEditPopOver() {
+        let nav = UINavigationController(rootViewController: BedtimeViewController())
+        nav.modalPresentationStyle = .popover
+        present(nav, animated: true, completion: nil)
+    }
+    
+    private func presentEditPopOver(for alarm: AlarmEntity) {
+        let alarmVC = AddAlarmViewController()
+        alarmVC.prepareForEditing(alarm: alarm)
+        let nav = UINavigationController(rootViewController: alarmVC)
+        nav.modalPresentationStyle = .popover
+        present(nav, animated: true, completion: nil)
+    }
+    
     private func createOtherSectionTitleView() -> UIView {
         let returnedView = UIView()
         returnedView.backgroundColor = UIColor(named: "Secondary")
@@ -177,9 +191,12 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nav = UINavigationController(rootViewController: AddAlarmViewController())
-        nav.modalPresentationStyle = .popover
-        present(nav, animated: true, completion: nil)
+        if indexPath.section == 0 {
+            presentBedtimeEditPopOver()
+        } else {
+            presentEditPopOver(for: alarmViewmodel.sectionsData[indexPath.section][indexPath.row])
+        }
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.tableView.deselectRow(at: indexPath, animated: false)
             self.setEditing(false, animated: false)
