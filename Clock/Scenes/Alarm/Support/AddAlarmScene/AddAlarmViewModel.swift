@@ -10,6 +10,7 @@ import UIKit
 
 protocol AddAlarmViewModelDelegate: class {
     func pickedTimeChanged(time: TimeStruct)
+    func menuItemLabelChanged(label: String)
 }
 
 class AddAlarmViewModel {
@@ -32,7 +33,11 @@ class AddAlarmViewModel {
     
     private(set) var snooze: Bool = false
     
-    private(set) var label: String = "Alarm"
+    var label: String = "Alarm" {
+        didSet {
+            delegate?.menuItemLabelChanged(label: label)
+        }
+    }
     
     init() {
         pickedTime = TimeStruct(hours: 0, minutes: 0, seconds: 0)

@@ -16,15 +16,17 @@ class AddAlarmViewController: UIViewController {
     
     private let tableView: UITableView = UITableView()
     
-    private lazy var menuItems: [[UITableViewCell]] = {
-        return [
-            [createRepeatMenuCell(),
-             createLabelMenuCell(),
-             createSoundMenuCell(),
-             createSnoozeCell()],
-            [createDeleteMenuCell()]
-        ]
-    }()
+    private lazy var tableViewMenuItems: [[TableViewMenuItem]] = createTableViewMenuItems()
+    
+    private lazy var repeatMenuCell = createRepeatMenuCell()
+
+    private lazy var labelMenuCell = createLabelMenuCell()
+    
+    private lazy var soundMenuCell = createSoundMenuCell()
+    
+    private lazy var snoozeMenuCell = createSnoozeCell()
+    
+    private lazy var deleteMenuCell = createDeleteMenuCell()
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Secondary")
@@ -32,6 +34,39 @@ class AddAlarmViewController: UIViewController {
         setupNavigationBar()
         setupTimePicker()
         setupTableView()
+    }
+    
+    private func createTableViewMenuItems() -> [[TableViewMenuItem]] {
+        let repeatItem = TableViewMenuItem(tableViewCell: repeatMenuCell) {
+           print("REPEAT ACTION")
+        }
+        
+        let labelItem = TableViewMenuItem(tableViewCell: labelMenuCell) {
+            self.segueToEditLabelView()
+        }
+        
+        let soundItem = TableViewMenuItem(tableViewCell: soundMenuCell) {
+           print("SOUND ACTION")
+        }
+        
+        let snoozeItem = TableViewMenuItem(tableViewCell: snoozeMenuCell) {
+           print("Snooze ACTION")
+        }
+        
+        let deleteItem = TableViewMenuItem(tableViewCell: createDeleteMenuCell()) {
+            self.addAlarmViewModel.deleteAlarm()
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        return [[repeatItem, labelItem, soundItem, snoozeItem],[deleteItem]]
+    }
+    
+    private func segueToEditLabelView() {
+        let editVC = EditLabelViewController()
+        editVC.editLabel(addAlarmViewModel.label) { edited in
+            self.addAlarmViewModel.label = edited
+        }
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
     private func setupTableView() {
@@ -177,6 +212,10 @@ extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 extension AddAlarmViewController: AddAlarmViewModelDelegate {
+    func menuItemLabelChanged(label: String) {
+        labelMenuCell.detailTextLabel?.text = label
+    }
+    
     func pickedTimeChanged(time: TimeStruct) {
         timePickerView.selectRow(time.hours, inComponent: 0, animated: false)
         timePickerView.selectRow(time.minutes, inComponent: 1, animated: false)
@@ -190,11 +229,11 @@ extension AddAlarmViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems[section].count
+        return tableViewMenuItems[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return menuItems[indexPath.section][indexPath.row]
+        return tableViewMenuItems[indexPath.section][indexPath.row].tableViewCell
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -202,12 +241,26 @@ extension AddAlarmViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 1:
-            addAlarmViewModel.deleteAlarm()
-            dismiss(animated: true, completion: nil)
-        default:
-            return
-        }
+        tableViewMenuItems[indexPath.section][indexPath.row].performAction()
+    }
+}
+
+class TableViewMenuItem {
+    
+    private(set) var tableViewCell: UITableViewCell
+    
+    private var itemAction: (() -> Void)? = nil
+    
+    init(tableViewCell: UITableViewCell, itemAction: (() -> Void)? = nil) {
+        self.tableViewCell = tableViewCell
+        self.itemAction = itemAction
+    }
+    
+    func setAction(_ action: @escaping () -> Void) {
+        itemAction = action
+    }
+    
+    func performAction() {
+        itemAction?()
     }
 }

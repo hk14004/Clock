@@ -38,6 +38,8 @@
 		D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3E724E8288800ACCC4E /* TimerViewController.swift */; };
 		D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */; };
 		D4435669251792F500A5AA3E /* AddEditAlarmMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4435668251792F500A5AA3E /* AddEditAlarmMenuCell.swift */; };
+		D443566C2517A91100A5AA3E /* EditLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443566B2517A91100A5AA3E /* EditLabelViewController.swift */; };
+		D443566F2517BFB300A5AA3E /* TintTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443566E2517BFB300A5AA3E /* TintTextField.swift */; };
 		D446179125025FC900A2551F /* StopwatchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D446179025025FC900A2551F /* StopwatchCellViewModel.swift */; };
 		D4461793250299ED00A2551F /* LapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4461792250299ED00A2551F /* LapState.swift */; };
 		D448654924FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D448654824FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift */; };
@@ -116,6 +118,8 @@
 		D441D3E724E8288800ACCC4E /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		D441D3E924E8299800ACCC4E /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		D4435668251792F500A5AA3E /* AddEditAlarmMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditAlarmMenuCell.swift; sourceTree = "<group>"; };
+		D443566B2517A91100A5AA3E /* EditLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabelViewController.swift; sourceTree = "<group>"; };
+		D443566E2517BFB300A5AA3E /* TintTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintTextField.swift; sourceTree = "<group>"; };
 		D446179025025FC900A2551F /* StopwatchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCellViewModel.swift; sourceTree = "<group>"; };
 		D4461792250299ED00A2551F /* LapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapState.swift; sourceTree = "<group>"; };
 		D448654824FD5EB400EF1505 /* StopwatchFaceCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFaceCollectionViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 		D432ED2C251632DA00DAFCE2 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				D443566A2517A7D500A5AA3E /* EditLabelScene */,
 				D432ED2D2516334600DAFCE2 /* EditAlarmSnoozeCell.swift */,
 				D4435668251792F500A5AA3E /* AddEditAlarmMenuCell.swift */,
 			);
@@ -281,6 +286,7 @@
 				D4CBD6AA2503B75E001FE005 /* Alerts */,
 				D43C5DFE2503A29300089881 /* Clock.entitlements */,
 				D4368EA024EBD50F00D7B5C9 /* Scenes */,
+				D443566D2517BF7D00A5AA3E /* CustomViews */,
 				D431BE5224EBCCEB00F989BD /* Extensions */,
 				D43A2A0324EA734200315B5D /* Utility */,
 				D441D3B424E80E5500ACCC4E /* AppDelegate.swift */,
@@ -311,6 +317,22 @@
 				D441D3DB24E80E5900ACCC4E /* Info.plist */,
 			);
 			path = ClockUITests;
+			sourceTree = "<group>";
+		};
+		D443566A2517A7D500A5AA3E /* EditLabelScene */ = {
+			isa = PBXGroup;
+			children = (
+				D443566B2517A91100A5AA3E /* EditLabelViewController.swift */,
+			);
+			path = EditLabelScene;
+			sourceTree = "<group>";
+		};
+		D443566D2517BF7D00A5AA3E /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				D443566E2517BFB300A5AA3E /* TintTextField.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		D448654624FD577300EF1505 /* Stopwatch */ = {
@@ -566,12 +588,14 @@
 				D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */,
 				D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */,
 				D441D3EA24E8299800ACCC4E /* StopwatchViewController.swift in Sources */,
+				D443566F2517BFB300A5AA3E /* TintTextField.swift in Sources */,
 				D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */,
 				D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */,
 				D41FEF7024EC042600C6DE27 /* TimerClockFaceView.swift in Sources */,
 				D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */,
 				D430670224F9483000DEB487 /* TuneSelectionViewModel.swift in Sources */,
 				D44B9C0025081FA400C53677 /* WordlClockTableViewCell.swift in Sources */,
+				D443566C2517A91100A5AA3E /* EditLabelViewController.swift in Sources */,
 				D438F4142506B65600E3D0B7 /* CitiesPickerViewModel.swift in Sources */,
 				D448654D24FD871B00EF1505 /* StopwatchDigitalClockFaceCell.swift in Sources */,
 				D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */,
