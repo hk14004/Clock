@@ -130,7 +130,7 @@ class AddAlarmViewController: UIViewController {
     private func createLabelMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Label"
-        cell.accessoryType = .disclosureIndicator
+        cell.accessoryView = cell.chevronView
         cell.detailTextLabel?.text = addAlarmViewModel.label
         return cell
     }
@@ -139,7 +139,7 @@ class AddAlarmViewController: UIViewController {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Repeat"
         cell.detailTextLabel?.text = "Never"
-        cell.accessoryType = .disclosureIndicator
+        cell.accessoryView = cell.chevronView
         return cell
     }
     
@@ -147,7 +147,7 @@ class AddAlarmViewController: UIViewController {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Sounds"
         cell.detailTextLabel?.text = "Radar"
-        cell.accessoryType = .disclosureIndicator
+        cell.accessoryView = cell.chevronView
         return cell
     }
     
