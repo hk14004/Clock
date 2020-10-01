@@ -57,7 +57,6 @@
 		D4D273EA25121BCA00E15A76 /* EntityDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D273E925121BCA00E15A76 /* EntityDAO.swift */; };
 		D4D273EE2512244200E15A76 /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D273ED2512244200E15A76 /* AddAlarmViewController.swift */; };
 		D4D273F0251225C900E15A76 /* AddAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D273EF251225C900E15A76 /* AddAlarmViewModel.swift */; };
-		D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */; };
 		D4D8200E24E92515001BF1A0 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */; };
 		D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */; };
 /* End PBXBuildFile section */
@@ -137,7 +136,6 @@
 		D4D273E925121BCA00E15A76 /* EntityDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityDAO.swift; sourceTree = "<group>"; };
 		D4D273ED2512244200E15A76 /* AddAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewController.swift; sourceTree = "<group>"; };
 		D4D273EF251225C900E15A76 /* AddAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewModel.swift; sourceTree = "<group>"; };
-		D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedtimeViewController.swift; sourceTree = "<group>"; };
 		D4D8200D24E92515001BF1A0 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		D4D8200F24E92534001BF1A0 /* WorldClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,7 +289,6 @@
 				D43A2A0324EA734200315B5D /* Utility */,
 				D441D3B424E80E5500ACCC4E /* AppDelegate.swift */,
 				D441D3B824E80E5500ACCC4E /* HomeViewController.swift */,
-				D4D8200B24E924DC001BF1A0 /* BedtimeViewController.swift */,
 				D441D3C024E80E5900ACCC4E /* Assets.xcassets */,
 				D441D3C224E80E5900ACCC4E /* LaunchScreen.storyboard */,
 				D441D3C524E80E5900ACCC4E /* Info.plist */,
@@ -592,7 +589,6 @@
 				D431BE5424EBCD0900F989BD /* UIButton.swift in Sources */,
 				D4D8201024E92534001BF1A0 /* WorldClockViewController.swift in Sources */,
 				D41FEF7024EC042600C6DE27 /* TimerClockFaceView.swift in Sources */,
-				D4D8200C24E924DC001BF1A0 /* BedtimeViewController.swift in Sources */,
 				D430670224F9483000DEB487 /* TuneSelectionViewModel.swift in Sources */,
 				D44B9C0025081FA400C53677 /* WordlClockTableViewCell.swift in Sources */,
 				D443566C2517A91100A5AA3E /* EditLabelViewController.swift in Sources */,

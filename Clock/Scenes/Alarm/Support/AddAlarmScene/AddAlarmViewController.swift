@@ -29,7 +29,7 @@ class AddAlarmViewController: UIViewController {
     private lazy var deleteMenuCell = createDeleteMenuCell()
     
     override func viewDidLoad() {
-        view.backgroundColor = UIColor(named: "Secondary")
+        view.backgroundColor = UIColor(named: "Primary")
         addAlarmViewModel.delegate = self
         setupNavigationBar()
         setupTimePicker()
@@ -241,6 +241,7 @@ extension AddAlarmViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         tableViewMenuItems[indexPath.section][indexPath.row].performAction()
     }
 }

@@ -20,8 +20,12 @@ class AddEditAlarmMenuCell: UITableViewCell {
     }
 
     private func setup() {
-        backgroundColor = UIColor(named: "Primary")
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
+        selectedBackgroundView = bgColorView
+        backgroundColor = UIColor(named: "MenuItem")
         textLabel?.textColor = .white
+        detailTextLabel?.textColor = .systemGray
     }
 }
 

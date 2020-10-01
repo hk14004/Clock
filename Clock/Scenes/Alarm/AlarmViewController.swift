@@ -84,11 +84,7 @@ class AlarmViewController: UIViewController {
         return returnedView
     }
     
-    private func presentBedtimeEditPopOver() {
-        let nav = UINavigationController(rootViewController: BedtimeViewController())
-        nav.modalPresentationStyle = .popover
-        present(nav, animated: true, completion: nil)
-    }
+    private func presentBedtimeEditPopOver() {}
     
     private func presentEditPopOver(for alarm: AlarmEntity) {
         let alarmVC = AddAlarmViewController()

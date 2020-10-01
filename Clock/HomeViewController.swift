@@ -37,15 +37,7 @@ class HomeViewController: UITabBarController {
             item.image = UIImage(systemName: "stopwatch.fill")
             return item
         }()
-        
-        let bedtimeVC = BedtimeViewController()
-        bedtimeVC.tabBarItem = {
-            let item = UITabBarItem()
-            item.title = "Bedtime"
-            item.image = UIImage(systemName: "bed.double.fill")
-            return item
-        }()
-        
+                
         let alarmVC = AlarmViewController()
         let alarmNavVC = UINavigationController(rootViewController: alarmVC)
         alarmVC.tabBarItem = {
@@ -64,7 +56,7 @@ class HomeViewController: UITabBarController {
             return item
         }()
         
-        viewControllers = [worldClockNavVC, alarmNavVC, bedtimeVC, stopwatch, timer]
+        viewControllers = [worldClockNavVC, alarmNavVC, stopwatch, timer]
         
         selectedViewController = alarmNavVC
     }

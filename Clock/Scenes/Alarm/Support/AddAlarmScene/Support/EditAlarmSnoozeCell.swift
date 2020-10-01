@@ -27,7 +27,8 @@ class EditAlarmSnoozeCell: UITableViewCell {
     }
     
     private func setup() {
-        backgroundColor = UIColor(named: "Primary")
+        selectionStyle = .none
+        backgroundColor = UIColor(named: "MenuItem")
         textLabel?.text = "Snooze"
         textLabel?.textColor = .white
         contentView.addSubview(toggle)
