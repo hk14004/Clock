@@ -21,7 +21,7 @@ class EditLabelViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-            title = "Label"
+        title = "Label"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,28 +56,10 @@ class EditLabelViewController: UIViewController {
 }
 
 extension EditLabelViewController: UITextFieldDelegate {
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // became first responder
-        print("TextField did begin editing method called")
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-        print("TextField did end editing method called")
-    }
-
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        // called when clear button pressed. return NO to ignore (no notifications)
-        print("TextField should clear method called")
-        return true
-    }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // called when 'return' key pressed. return NO to ignore.
-        print("TextField should return method called")
-        // may be useful: textField.resignFirstResponder()
+        navigationController?.popViewController(animated: true)
         return true
     }
-
+    
 }
