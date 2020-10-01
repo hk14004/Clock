@@ -201,7 +201,7 @@ extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return timePickerView.frame.size.width / 3
+        return timePickerView.frame.size.width / 4
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
