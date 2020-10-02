@@ -50,6 +50,7 @@
 		D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6424F3F67100321B41 /* TunePickerButton.swift */; };
 		D46EAA6824F4059F00321B41 /* TuneSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */; };
 		D473F86625091FBB0077D628 /* WordlClockTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473F86525091FBB0077D628 /* WordlClockTableViewCellModel.swift */; };
+		D47AED6E2527865F008E5E8A /* AlarmBedtimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47AED6D2527865F008E5E8A /* AlarmBedtimeCell.swift */; };
 		D4CA75F1250838E100FEA9BE /* TimeZoneEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CA75F0250838E100FEA9BE /* TimeZoneEntity.swift */; };
 		D4CBD6AC2503B782001FE005 /* Beep.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4CBD6AB2503B782001FE005 /* Beep.caf */; };
 		D4CBD6B02503B867001FE005 /* Radar.caf in Resources */ = {isa = PBXBuildFile; fileRef = D4CBD6AF2503B867001FE005 /* Radar.caf */; };
@@ -129,6 +130,7 @@
 		D46EAA6424F3F67100321B41 /* TunePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunePickerButton.swift; sourceTree = "<group>"; };
 		D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionViewController.swift; sourceTree = "<group>"; };
 		D473F86525091FBB0077D628 /* WordlClockTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordlClockTableViewCellModel.swift; sourceTree = "<group>"; };
+		D47AED6D2527865F008E5E8A /* AlarmBedtimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmBedtimeCell.swift; sourceTree = "<group>"; };
 		D4CA75F0250838E100FEA9BE /* TimeZoneEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneEntity.swift; sourceTree = "<group>"; };
 		D4CBD6AB2503B782001FE005 /* Beep.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Beep.caf; sourceTree = "<group>"; };
 		D4CBD6AF2503B867001FE005 /* Radar.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Radar.caf; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				D4D273EC251223C400E15A76 /* AddAlarmScene */,
 				D438C9AF251286D0006E3A1D /* AlarmTableViewCell.swift */,
 				D438C9B1251286E8006E3A1D /* AlarmTableViewCellViewModel.swift */,
+				D47AED6D2527865F008E5E8A /* AlarmBedtimeCell.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 			files = (
 				D446179125025FC900A2551F /* StopwatchCellViewModel.swift in Sources */,
 				D42F84FA2506A41E00B20115 /* WorldClockViewModel.swift in Sources */,
+				D47AED6E2527865F008E5E8A /* AlarmBedtimeCell.swift in Sources */,
 				D441D3E824E8288800ACCC4E /* TimerViewController.swift in Sources */,
 				D4CA75F1250838E100FEA9BE /* TimeZoneEntity.swift in Sources */,
 				D4D273E825121A2E00E15A76 /* AlarmViewModel.swift in Sources */,

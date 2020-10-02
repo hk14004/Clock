@@ -44,7 +44,8 @@ class AlarmViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.allowsSelectionDuringEditing = true
         tableView.backgroundColor = .clear
-        tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "otherCell")
+        tableView.register(AlarmBedtimeCell.self, forCellReuseIdentifier: "bedtimeCell")
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.delegate = self
@@ -122,13 +123,17 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return alarmViewmodel.sectionsData[section].count
+        return section == 0 ? 1 : alarmViewmodel.sectionsData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AlarmTableViewCell
+        let otherCell: Bool = indexPath.section == 1
+        let cell = tableView.dequeueReusableCell(withIdentifier: otherCell ? "otherCell" : "bedtimeCell")!
         
-        cell.setup(with: alarmViewmodel.getAlarmCellViewModel(at: indexPath))
+        if let otherCell = cell as? AlarmTableViewCell {
+            otherCell.setup(with: alarmViewmodel.getAlarmCellViewModel(at: indexPath))
+        }
+        
         return cell
     }
     
