@@ -31,7 +31,7 @@ class AlarmViewModel: NSObject {
     
     private func loadAlarmSections() {
         let alarms = alarmDAO.loadData()
-        sectionsData = SectionsData(titles: ["Bedtime".uppercased(), "Other Alarms".uppercased()], data: createSections(from: alarms))
+        sectionsData = SectionsData(titles: ["Sleep | Wake Up", "Other"], data: createSections(from: alarms))
     }
     
     private func createSections(from alarms: [AlarmEntity]) -> [[AlarmEntity]] {

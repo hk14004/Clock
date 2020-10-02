@@ -67,7 +67,7 @@ class AlarmViewController: UIViewController {
         
         let imageView = UIImageView(image: UIImage(systemName: "bed.double.fill"))
         returnedView.addSubview(imageView)
-        imageView.tintColor = .gray
+        imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: returnedView.leadingAnchor, constant: 15).isActive = true
@@ -75,8 +75,8 @@ class AlarmViewController: UIViewController {
         let label = UILabel()
         label.text = alarmViewmodel.sectionsData.titles[0]
         returnedView.addSubview(label)
-        label.textColor = .gray
-        label.font = label.font.withSize(12)
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
         label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5).isActive = true
@@ -97,12 +97,11 @@ class AlarmViewController: UIViewController {
     private func createOtherSectionTitleView() -> UIView {
         let returnedView = UIView()
         returnedView.backgroundColor = UIColor(named: "Secondary")
-        
         let label = UILabel()
         label.text = alarmViewmodel.sectionsData.titles[1]
         returnedView.addSubview(label)
-        label.textColor = .gray
-        label.font = label.font.withSize(12)
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
         label.leadingAnchor.constraint(equalTo: returnedView.leadingAnchor, constant: 15).isActive = true
