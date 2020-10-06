@@ -1,5 +1,5 @@
 //
-//  TimeStateEnum.swift
+//  TimerStateEnum.swift
 //  Clock
 //
 //  Created by Hardijs on 18/08/2020.
