@@ -46,7 +46,7 @@ class AddAlarmViewController: UIViewController {
         }
         
         let soundItem = TableViewMenuItem(tableViewCell: soundMenuCell) {
-           print("SOUND ACTION")
+            self.segueToAlarmTuneSelectionView()
         }
         
         let snoozeItem = TableViewMenuItem(tableViewCell: snoozeMenuCell) {
@@ -67,6 +67,11 @@ class AddAlarmViewController: UIViewController {
             self.addAlarmViewModel.label = edited
         }
         navigationController?.pushViewController(editVC, animated: true)
+    }
+    
+    private func segueToAlarmTuneSelectionView() {
+        let alarmVC = AlarmTuneSelectionVC()
+        navigationController?.pushViewController(alarmVC, animated: true)
     }
     
     private func setupTableView() {
