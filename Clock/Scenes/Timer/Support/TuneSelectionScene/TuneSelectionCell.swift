@@ -20,6 +20,8 @@ extension TuneSelectionCell: TuneCellViewModelDelegate {
 
 class TuneSelectionCell: UITableViewCell {
     
+    static let identifier = "TuneSelectCell"
+    
     private var selectionImage: UIImageView = UIImageView(image: UIImage(systemName: "checkmark"))
     
     private var tuneName: UILabel = UILabel()

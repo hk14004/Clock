@@ -55,7 +55,7 @@ class TuneSelectionViewController: TuneSelectionBaseVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TuneSelectCell", for: indexPath) as! TuneSelectionCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TuneSelectionCell.identifier, for: indexPath) as! TuneSelectionCell
         cell.setup(viewModel: tuneSelectionViewModel.getTuneCellViewModel(at: indexPath.row))
         return cell
     }

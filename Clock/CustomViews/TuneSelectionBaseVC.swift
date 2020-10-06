@@ -41,7 +41,7 @@ class TuneSelectionBaseVC: UIViewController, UITableViewDelegate, UITableViewDat
     func dissappear() {}
     
     func setupTableView() {
-        tableView.register(TuneSelectionCell.self, forCellReuseIdentifier: "TuneSelectCell")
+        tableView.register(TuneSelectionCell.self, forCellReuseIdentifier: TuneSelectionCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(named: "Primary")
