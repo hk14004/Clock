@@ -23,7 +23,7 @@ class EditAlarmSnoozeCell: UITableViewCell {
     
     func setup(with viewModel: AddAlarmViewModel) {
         toggle.setOn(viewModel.editableAlarm?.snooze ?? false, animated: false)
-        toggle.addTarget(viewModel, action: #selector(AddAlarmViewModel.snoozeStateChanged(snoozeSwitch:)), for: .valueChanged)
+        toggle.addTarget(viewModel, action: #selector(AddAlarmViewModel.setSnooze(snoozeSwitch:)), for: .valueChanged)
     }
     
     private func setup() {

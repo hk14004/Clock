@@ -71,6 +71,10 @@ class AddAlarmViewController: UIViewController {
     
     private func segueToAlarmTuneSelectionView() {
         let alarmVC = AlarmTuneSelectionVC()
+        alarmVC.selectTune(addAlarmViewModel.tune)
+        alarmVC.onTuneSelected = { tune in
+            self.addAlarmViewModel.setTune(tune)
+        }
         navigationController?.pushViewController(alarmVC, animated: true)
     }
     
@@ -151,7 +155,7 @@ class AddAlarmViewController: UIViewController {
     private func createSoundMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Sounds"
-        cell.detailTextLabel?.text = "Radar"
+        cell.detailTextLabel?.text = AlarmTunes.shared.getDefaultTune().name
         cell.accessoryView = cell.chevronView
         return cell
     }
@@ -217,7 +221,12 @@ extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 extension AddAlarmViewController: AddAlarmViewModelDelegate {
-    func menuItemLabelChanged(label: String) {
+    
+    func tuneChanged(tune: Tune) {
+        soundMenuCell.detailTextLabel?.text = tune.name
+    }
+    
+    func alarmLabelChanged(label: String) {
         labelMenuCell.detailTextLabel?.text = label
     }
     

@@ -10,7 +10,8 @@ import UIKit
 
 protocol AddAlarmViewModelDelegate: class {
     func pickedTimeChanged(time: TimeStruct)
-    func menuItemLabelChanged(label: String)
+    func alarmLabelChanged(label: String)
+    func tuneChanged(tune: Tune)
 }
 
 class AddAlarmViewModel {
@@ -35,7 +36,13 @@ class AddAlarmViewModel {
     
     var label: String = "Alarm" {
         didSet {
-            delegate?.menuItemLabelChanged(label: label)
+            delegate?.alarmLabelChanged(label: label)
+        }
+    }
+    
+    private(set) var tune: Tune = AlarmTunes.shared.getDefaultTune() {
+        didSet {
+            delegate?.tuneChanged(tune: tune)
         }
     }
     
@@ -78,7 +85,7 @@ class AddAlarmViewModel {
         }
     }
     
-    @objc func snoozeStateChanged(snoozeSwitch: UISwitch) {
+    @objc func setSnooze(snoozeSwitch: UISwitch) {
         snooze = snoozeSwitch.isOn
     }
     
@@ -102,5 +109,9 @@ class AddAlarmViewModel {
         if let toBeDeleted = editableAlarm {
             alarmDAO.delete([toBeDeleted])
         }
+    }
+    
+    func setTune(_ tune: Tune) {
+        self.tune = tune
     }
 }
