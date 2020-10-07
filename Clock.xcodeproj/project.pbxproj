@@ -265,7 +265,6 @@
 				D4D5C7B425082D2500D34B77 /* DAO */,
 				D43A2A0424EA736800315B5D /* Functions.swift */,
 				D43C8699252CBF39006EBB60 /* AlarmTunes.swift */,
-				D43066FF24F946AC00DEB487 /* Tune.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -308,6 +307,7 @@
 				D4368EA024EBD50F00D7B5C9 /* Scenes */,
 				D443566D2517BF7D00A5AA3E /* CustomViews */,
 				D431BE5224EBCCEB00F989BD /* Extensions */,
+				D4C058C8252E5E7800176BF8 /* Models */,
 				D43A2A0324EA734200315B5D /* Utility */,
 				D441D3B424E80E5500ACCC4E /* AppDelegate.swift */,
 				D441D3B824E80E5500ACCC4E /* HomeViewController.swift */,
@@ -413,6 +413,14 @@
 				D43FDBAC252E042F0052D2C5 /* AlarmTuneSelectionVM.swift */,
 			);
 			path = AlarmTuneSelectionScene;
+			sourceTree = "<group>";
+		};
+		D4C058C8252E5E7800176BF8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D43066FF24F946AC00DEB487 /* Tune.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D4CBD6AA2503B75E001FE005 /* Alerts */ = {
