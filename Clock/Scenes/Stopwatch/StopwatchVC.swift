@@ -8,16 +8,16 @@
 
 import UIKit
 
-class StopwatchViewController: UIViewController {
+class StopwatchVC: UIViewController {
     
-    private lazy var clockFaceCollectionViewController: StopwatchFaceCollectionViewController = {
+    private lazy var clockFaceCollectionViewController: StopwatchFaceCollectionVC = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        let vc = StopwatchFaceCollectionViewController(collectionViewLayout: layout)
+        let vc = StopwatchFaceCollectionVC(collectionViewLayout: layout)
         return vc
     }()
     
-    private var stopwatchViewModel: StopwatchViewModel = StopwatchViewModel()
+    private var stopwatchViewModel: StopwatchVM = StopwatchVM()
     
     private var lapButton: UIButton = UIButton()
     
@@ -175,11 +175,11 @@ class StopwatchViewController: UIViewController {
     }
 }
 
-extension StopwatchViewController: UITableViewDelegate {
+extension StopwatchVC: UITableViewDelegate {
     
 }
 
-extension StopwatchViewController: UITableViewDataSource {
+extension StopwatchVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stopwatchViewModel.laps.count
     }
@@ -194,7 +194,7 @@ extension StopwatchViewController: UITableViewDataSource {
     }
 }
 
-extension StopwatchViewController: StopwatchViewModelDelegate {
+extension StopwatchVC: StopwatchVMDelegate {
     func lapsChanged() {
         tableView.reloadData()
     }

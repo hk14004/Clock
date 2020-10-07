@@ -31,7 +31,9 @@ class AlarmTuneSelectionVC: SelectionBaseVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell =  tableView.dequeueReusableCell(withIdentifier: SelectionCell.identifier) as! SelectionCell
-        cell.setup(viewModel: alarmTuneSelectionVM.getTuneCellViewModel(at: indexPath.row))
+        let viewModel = alarmTuneSelectionVM.getTuneCellViewModel(at: indexPath.row)
+        viewModel.delegate = cell
+        cell.setup(itemName: viewModel.tune.name, isSelected: viewModel.isSelected)
         return cell
     }
     

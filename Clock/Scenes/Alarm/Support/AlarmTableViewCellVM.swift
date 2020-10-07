@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmTableViewCellViewModel {
+class AlarmTableViewCellVM {
     
     private(set) var timeString: String
     

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TuneSelectionViewController: SelectionBaseVC {
+class TuneSelectionVC: SelectionBaseVC {
     
-    private let tuneSelectionViewModel: TuneSelectionViewModel = TuneSelectionViewModel()
+    private let tuneSelectionViewModel: TuneSelectionVM = TuneSelectionVM()
     
     private var cancelButton: UIButton = UIButton()
     
@@ -58,7 +58,9 @@ class TuneSelectionViewController: SelectionBaseVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SelectionCell.identifier, for: indexPath) as! SelectionCell
-        cell.setup(viewModel: tuneSelectionViewModel.getTuneCellViewModel(at: indexPath.row))
+        let viewModel = tuneSelectionViewModel.getTuneCellViewModel(at: indexPath.row)
+        viewModel.delegate = cell
+        cell.setup(itemName: viewModel.tune.name, isSelected: viewModel.isSelected)
         return cell
     }
 }

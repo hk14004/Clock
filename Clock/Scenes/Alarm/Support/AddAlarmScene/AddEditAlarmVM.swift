@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol AddAlarmViewModelDelegate: class {
+protocol AddEditAlarmVMDelegate: class {
     func pickedTimeChanged(time: TimeStruct)
     func alarmLabelChanged(label: String)
     func tuneChanged(tune: Tune)
 }
 
-class AddAlarmViewModel {
+class AddEditAlarmVM {
     
-    weak var delegate: AddAlarmViewModelDelegate?
+    weak var delegate: AddEditAlarmVMDelegate?
     
     private(set) var sceneTitle: String
     

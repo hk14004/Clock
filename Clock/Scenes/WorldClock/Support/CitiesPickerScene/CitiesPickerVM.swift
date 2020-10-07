@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CitiesPickerViewModel: NSObject {
+class CitiesPickerVM: NSObject {
     
     weak var delegate: CitiesPickerViewModelDelegate?
     

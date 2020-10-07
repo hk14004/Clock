@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol StopwatchViewModelDelegate: class {
+protocol StopwatchVMDelegate: class {
     func stopwatchStateChanged(state: StopwatchState)
     func stopwatchTimeChanged(timeString: String)
     func lapsChanged()
 }
 
-class StopwatchViewModel {
+class StopwatchVM {
     
-    weak var delegate: StopwatchViewModelDelegate?
+    weak var delegate: StopwatchVMDelegate?
     
     private(set) var stopwatchState: StopwatchState = .idle {
         didSet {
@@ -34,12 +34,12 @@ class StopwatchViewModel {
     
     private var stopwatchRunTime: TimeInterval = 0 {
         didSet {
-            delegate?.stopwatchTimeChanged(timeString: StopwatchViewModel.createRunTimeString(distance: stopwatchRunTime))
+            delegate?.stopwatchTimeChanged(timeString: StopwatchVM.createRunTimeString(distance: stopwatchRunTime))
             laps.first?.lapTime = stopwatchRunTime - lapOffsetTime
         }
     }
     
-    private(set) var laps: [StopwatchCellViewModel] = [] {
+    private(set) var laps: [StopwatchCellVM] = [] {
         didSet {
             delegate?.lapsChanged()
         }
@@ -113,7 +113,7 @@ class StopwatchViewModel {
     
     func addLap() {
         lapOffsetTime += laps.first?.lapTime ?? 0
-        laps.insert(StopwatchCellViewModel(), at: 0)
+        laps.insert(StopwatchCellVM(), at: 0)
         setFastestAndSlowestLap()
     }
     

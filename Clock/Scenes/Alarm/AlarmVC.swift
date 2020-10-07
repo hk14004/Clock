@@ -1,5 +1,5 @@
 //
-//  AlarmViewController.swift
+//  AlarmVC.swift
 //  Clock
 //
 //  Created by Hardijs on 16/08/2020.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AlarmViewController: UIViewController {
+class AlarmVC: UIViewController {
     
-    private let alarmViewmodel = AlarmViewModel()
+    private let alarmViewmodel = AlarmVM()
     
     private var tableView = UITableView(frame: .zero, style: .grouped)
     
@@ -34,7 +34,7 @@ class AlarmViewController: UIViewController {
     }
     
     @objc func addTapped() {
-        let nav = UINavigationController(rootViewController: AddAlarmViewController())
+        let nav = UINavigationController(rootViewController: AddEditAlarmVC())
         nav.modalPresentationStyle = .popover
         present(nav, animated: true, completion: nil)
     }
@@ -88,7 +88,7 @@ class AlarmViewController: UIViewController {
     private func presentBedtimeEditPopOver() {}
     
     private func presentEditPopOver(for alarm: AlarmEntity) {
-        let alarmVC = AddAlarmViewController()
+        let alarmVC = AddEditAlarmVC()
         alarmVC.prepareForEditing(alarm: alarm)
         let nav = UINavigationController(rootViewController: alarmVC)
         nav.modalPresentationStyle = .popover
@@ -116,7 +116,7 @@ class AlarmViewController: UIViewController {
     }
 }
 
-extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
+extension AlarmVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return alarmViewmodel.sectionsData.data.count
@@ -204,7 +204,7 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension AlarmViewController: AlarmViewModelDelegate {
+extension AlarmVC: AlarmViewModelDelegate {
     func alarmListChanged() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.tableView.reloadData()

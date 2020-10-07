@@ -9,11 +9,11 @@
 import Foundation
 import UserNotifications
 
-class TimerViewModel: NSObject {
+class TimerVM: NSObject {
     
     // Mark: Properties
     
-    weak var delegate: TimerViewModelDelegate? {
+    weak var delegate: TimerVMDelegate? {
         didSet {
             if delegate == nil { return }
             attach()

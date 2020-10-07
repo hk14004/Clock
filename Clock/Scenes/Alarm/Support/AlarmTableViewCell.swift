@@ -45,11 +45,11 @@ class AlarmTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with viewModel: AlarmTableViewCellViewModel) {
+    func setup(with viewModel: AlarmTableViewCellVM) {
         timeLabel.text = viewModel.timeString
         notesLabel.text = viewModel.notesString
         enabledToggle.removeTarget(nil, action: nil, for: UIControl.Event.valueChanged)
-        enabledToggle.addTarget(viewModel, action: #selector(AlarmTableViewCellViewModel.switchChanged), for: UIControl.Event.valueChanged)
+        enabledToggle.addTarget(viewModel, action: #selector(AlarmTableViewCellVM.switchChanged), for: UIControl.Event.valueChanged)
         setAlarm(enabled: viewModel.enabled)
     }
     

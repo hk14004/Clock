@@ -10,7 +10,7 @@ import UIKit
 
 class StopwatchCell: UITableViewCell {
     
-    private var viewModel: StopwatchCellViewModel?
+    private var viewModel: StopwatchCellVM?
     
     private(set) lazy var lapLabel: UILabel = {
         let label = UILabel()
@@ -65,7 +65,7 @@ class StopwatchCell: UITableViewCell {
         timeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
     }
     
-    func setup(with model: StopwatchCellViewModel) {
+    func setup(with model: StopwatchCellVM) {
         viewModel?.delegate = nil
         viewModel = model
         viewModel?.delegate = self
@@ -73,7 +73,7 @@ class StopwatchCell: UITableViewCell {
     }
 }
 
-extension StopwatchCell: StopwatchCellViewModelDelegate {
+extension StopwatchCell: StopwatchCellVMDelegate {
     func lapStateChanged(state: LapState) {
         switch state {
         case .fastest:

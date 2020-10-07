@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditLabelViewController: UIViewController {
+class EditLabelVC: UIViewController {
     
     private let labelEditTextField = TintTextField()
     
@@ -55,7 +55,7 @@ class EditLabelViewController: UIViewController {
     }
 }
 
-extension EditLabelViewController: UITextFieldDelegate {
+extension EditLabelVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         navigationController?.popViewController(animated: true)

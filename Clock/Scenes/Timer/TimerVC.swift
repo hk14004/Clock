@@ -8,11 +8,11 @@
 
 import UIKit
 
-class TimerViewController: UIViewController {
+class TimerVC: UIViewController {
     
     // MARK: Properties
     
-    private(set) var timerViewModel: TimerViewModel = TimerViewModel()
+    private(set) var timerViewModel = TimerVM()
     
     private lazy var timePickerView: UIPickerView = {
         var view = UIPickerView()
@@ -202,7 +202,7 @@ class TimerViewController: UIViewController {
     }
     
     @objc func showTunePickerPopoverView() {
-        let vc = TuneSelectionViewController()
+        let vc = TuneSelectionVC()
         let navVc = UINavigationController(rootViewController: vc)
         self.present(navVc, animated: true, completion: nil)
     }
@@ -222,7 +222,7 @@ class TimerViewController: UIViewController {
     }
 }
 
-extension TimerViewController: UIPickerViewDataSource {
+extension TimerVC: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
@@ -241,7 +241,7 @@ extension TimerViewController: UIPickerViewDataSource {
     }
 }
 
-extension TimerViewController: UIPickerViewDelegate {
+extension TimerVC: UIPickerViewDelegate {
     public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         // Find seperator and change color
         for view in pickerView.subviews where view.frame.size.height < 1 {
@@ -281,7 +281,7 @@ extension TimerViewController: UIPickerViewDelegate {
     }
 }
 
-extension TimerViewController: TimerViewModelDelegate {
+extension TimerVC: TimerVMDelegate {
     
     func defaultTuneChanged(tune: Tune) {
         changeTuneButton.setTuneName(tune.name)

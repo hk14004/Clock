@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StopwatchFaceCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class StopwatchFaceCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private lazy var pageControl: UIPageControl = UIPageControl()
     

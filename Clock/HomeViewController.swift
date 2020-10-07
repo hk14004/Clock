@@ -22,7 +22,7 @@ class HomeViewController: UITabBarController {
         tabBar.tintColor = .orange
         
         // Add tab bar items
-        let timer = TimerViewController()
+        let timer = TimerVC()
         timer.tabBarItem = {
             let item = UITabBarItem()
             item.title = "Timer"
@@ -30,7 +30,7 @@ class HomeViewController: UITabBarController {
             return item
         }()
         
-        let stopwatch = StopwatchViewController()
+        let stopwatch = StopwatchVC()
         stopwatch.tabBarItem = {
             let item = UITabBarItem()
             item.title = "Stopwatch"
@@ -38,7 +38,7 @@ class HomeViewController: UITabBarController {
             return item
         }()
                 
-        let alarmVC = AlarmViewController()
+        let alarmVC = AlarmVC()
         let alarmNavVC = UINavigationController(rootViewController: alarmVC)
         alarmVC.tabBarItem = {
             let item = UITabBarItem()
@@ -47,7 +47,7 @@ class HomeViewController: UITabBarController {
             return item
         }()
         
-        let worldClockVC = WorldClockViewController()
+        let worldClockVC = WorldClockVC()
         let worldClockNavVC = UINavigationController(rootViewController: worldClockVC)
         worldClockVC.tabBarItem = {
             let item = UITabBarItem()

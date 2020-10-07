@@ -1,5 +1,5 @@
 //
-//  AddAlarmViewController.swift
+//  AddEditAlarmVC.swift
 //  Clock
 //
 //  Created by Hardijs on 16/09/2020.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddAlarmViewController: UIViewController {
+class AddEditAlarmVC: UIViewController {
     
-    private let addAlarmViewModel = AddAlarmViewModel()
+    private let addAlarmViewModel = AddEditAlarmVM()
     
     private let timePickerView = UIPickerView()
     
@@ -62,7 +62,7 @@ class AddAlarmViewController: UIViewController {
     }
     
     private func segueToEditLabelView() {
-        let editVC = EditLabelViewController()
+        let editVC = EditLabelVC()
         editVC.editLabel(addAlarmViewModel.label) { edited in
             self.addAlarmViewModel.label = edited
         }
@@ -170,7 +170,7 @@ class AddAlarmViewController: UIViewController {
     
 }
 
-extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddEditAlarmVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -220,7 +220,7 @@ extension AddAlarmViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-extension AddAlarmViewController: AddAlarmViewModelDelegate {
+extension AddEditAlarmVC: AddEditAlarmVMDelegate {
     
     func tuneChanged(tune: Tune) {
         soundMenuCell.detailTextLabel?.text = tune.name
@@ -236,7 +236,7 @@ extension AddAlarmViewController: AddAlarmViewModelDelegate {
     }
 }
 
-extension AddAlarmViewController: UITableViewDelegate, UITableViewDataSource {
+extension AddEditAlarmVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return addAlarmViewModel.inEditMode ? 2 : 1

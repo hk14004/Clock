@@ -8,17 +8,17 @@
 
 import UIKit
 
-class StopwatchCellViewModel {
+class StopwatchCellVM {
         
-    weak var delegate: StopwatchCellViewModelDelegate? {
+    weak var delegate: StopwatchCellVMDelegate? {
         didSet {
-            delegate?.stopwatchTimeChanged(timeString: StopwatchViewModel.createRunTimeString(distance: lapTime))
+            delegate?.stopwatchTimeChanged(timeString: StopwatchVM.createRunTimeString(distance: lapTime))
         }
     }
     
     var lapTime: TimeInterval = 0 {
         didSet {
-            delegate?.stopwatchTimeChanged(timeString: StopwatchViewModel.createRunTimeString(distance: lapTime))
+            delegate?.stopwatchTimeChanged(timeString: StopwatchVM.createRunTimeString(distance: lapTime))
         }
     }
     
@@ -29,7 +29,7 @@ class StopwatchCellViewModel {
     }
 }
 
-protocol StopwatchCellViewModelDelegate: class {
+protocol StopwatchCellVMDelegate: class {
     func stopwatchTimeChanged(timeString: String)
     func lapStateChanged(state: LapState)
 }

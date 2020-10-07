@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CitiesPickerViewController: UIViewController {
+class CitiesPickerVC: UIViewController {
     
-    private let citiesPickerViewModel: CitiesPickerViewModel = CitiesPickerViewModel()
+    private let citiesPickerViewModel = CitiesPickerVM()
     
     private let searchController = UISearchController(searchResultsController: nil)
     
@@ -64,13 +64,13 @@ class CitiesPickerViewController: UIViewController {
     }
 }
 
-extension CitiesPickerViewController: UISearchResultsUpdating {
+extension CitiesPickerVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         citiesPickerViewModel.filter(query: searchController.searchBar.text!)
     }
 }
 
-extension CitiesPickerViewController: UITableViewDataSource {
+extension CitiesPickerVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return citiesPickerViewModel.visibleTimeZones.count
     }
@@ -88,13 +88,13 @@ extension CitiesPickerViewController: UITableViewDataSource {
     }
 }
 
-extension CitiesPickerViewController: CitiesPickerViewModelDelegate {
+extension CitiesPickerVC: CitiesPickerViewModelDelegate {
     func timezoneListChanged(timezones: [[TimeZone]]) {
         tableView.reloadData()
     }
 }
 
-extension CitiesPickerViewController: UITableViewDelegate {
+extension CitiesPickerVC: UITableViewDelegate {
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         citiesPickerViewModel.isSearching ? [] : citiesPickerViewModel.sectionsData.titles
     }
@@ -129,7 +129,7 @@ extension CitiesPickerViewController: UITableViewDelegate {
     }
 }
 
-extension CitiesPickerViewController: UISearchBarDelegate {
+extension CitiesPickerVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dismiss(animated: true, completion: nil)
     }

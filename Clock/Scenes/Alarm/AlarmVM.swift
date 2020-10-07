@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class AlarmViewModel: NSObject {
+class AlarmVM: NSObject {
     
     weak var delegate: AlarmViewModelDelegate?
     
@@ -21,7 +21,7 @@ class AlarmViewModel: NSObject {
 
     private let alarmDAO = EntityDAO<AlarmEntity>()
     
-    private(set) var alarmViewmodels: [IndexPath: AlarmTableViewCellViewModel] = [:]
+    private(set) var alarmViewmodels: [IndexPath: AlarmTableViewCellVM] = [:]
     
     override init() {
         super.init()
@@ -44,9 +44,9 @@ class AlarmViewModel: NSObject {
         return [bedtimeAlarms, otherAlarms]
     }
     
-    func getAlarmCellViewModel(at indexPath: IndexPath) -> AlarmTableViewCellViewModel {
+    func getAlarmCellViewModel(at indexPath: IndexPath) -> AlarmTableViewCellVM {
         let entity = sectionsData[indexPath.section][indexPath.row]
-        let viewModel = AlarmTableViewCellViewModel(alarm: entity)
+        let viewModel = AlarmTableViewCellVM(alarm: entity)
         alarmViewmodels[indexPath] = viewModel
         return viewModel
     }
@@ -57,7 +57,7 @@ class AlarmViewModel: NSObject {
     }
 }
 
-extension AlarmViewModel: NSFetchedResultsControllerDelegate {
+extension AlarmVM: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         sectionsData.data = createSections(from: controller.fetchedObjects as! [AlarmEntity])
     }

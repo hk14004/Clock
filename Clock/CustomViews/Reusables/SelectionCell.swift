@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension SelectionCell: TuneCellViewModelDelegate {
-    func defaultValueChanged(isDefault: Bool) {
-        if isDefault {
-            setSelectedd()
-        } else {
-            setUnSelectedd()
-        }
+protocol SelectionCellVMDelegate: class {
+    func stateChanged(selected: Bool)
+}
+
+extension SelectionCell: SelectionCellVMDelegate {
+    func stateChanged(selected: Bool) {
+        selected ? setSelected() : setUnSelected()
     }
 }
 
@@ -22,9 +22,9 @@ class SelectionCell: UITableViewCell {
     
     static let identifier = "SelectCell"
     
-    private var selectionImage: UIImageView = UIImageView(image: UIImage(systemName: "checkmark"))
+    private(set) var selectionImage: UIImageView = UIImageView(image: UIImage(systemName: "checkmark"))
     
-    private var tuneName: UILabel = UILabel()
+    private(set) var itemName: UILabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,15 +36,14 @@ class SelectionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(viewModel: TuneCellViewModel) {
-        self.tuneName.text = viewModel.tune.name
-        viewModel.delegate = self
-        defaultValueChanged(isDefault: viewModel.isdefault)
+    func setup(itemName: String, isSelected: Bool) {
+        self.itemName.text = itemName
+        stateChanged(selected: isSelected)
     }
     
     private func setupViews() {
         setupCheckImage()
-        setupTuneNameLabel()
+        setupItemNameLabel()
     }
     
     private func setupCheckImage() {
@@ -58,20 +57,20 @@ class SelectionCell: UITableViewCell {
         selectionImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
-    private func setupTuneNameLabel() {
-        tuneName.textColor = .white
-        contentView.addSubview(tuneName)
-        tuneName.translatesAutoresizingMaskIntoConstraints = false
-        tuneName.leadingAnchor.constraint(equalTo: selectionImage.trailingAnchor, constant: 15).isActive = true
-        tuneName.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 0).isActive = true
-        tuneName.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0).isActive = true
+    private func setupItemNameLabel() {
+        itemName.textColor = .white
+        contentView.addSubview(itemName)
+        itemName.translatesAutoresizingMaskIntoConstraints = false
+        itemName.leadingAnchor.constraint(equalTo: selectionImage.trailingAnchor, constant: 15).isActive = true
+        itemName.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 0).isActive = true
+        itemName.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0).isActive = true
     }
     
-    func setSelectedd() {
+    func setSelected() {
         selectionImage.isHidden = false
     }
     
-    func setUnSelectedd() {
+    func setUnSelected() {
         selectionImage.isHidden = true
     }
 }

@@ -21,9 +21,9 @@ class EditAlarmSnoozeCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with viewModel: AddAlarmViewModel) {
+    func setup(with viewModel: AddEditAlarmVM) {
         toggle.setOn(viewModel.editableAlarm?.snooze ?? false, animated: false)
-        toggle.addTarget(viewModel, action: #selector(AddAlarmViewModel.setSnooze(snoozeSwitch:)), for: .valueChanged)
+        toggle.addTarget(viewModel, action: #selector(AddEditAlarmVM.setSnooze(snoozeSwitch:)), for: .valueChanged)
     }
     
     private func setup() {

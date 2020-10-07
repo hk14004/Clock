@@ -8,9 +8,9 @@
 
 import UIKit
 
-class WorldClockViewController: UIViewController {
+class WorldClockVC: UIViewController {
     
-    private let worldClockViewModel: WorldClockViewModel = WorldClockViewModel()
+    private let worldClockViewModel: WorldClockVM = WorldClockVM()
     
     private var tableView: UITableView = UITableView()
     
@@ -49,7 +49,7 @@ class WorldClockViewController: UIViewController {
     }
     
     @objc func addTapped() {
-        let nav = UINavigationController(rootViewController: CitiesPickerViewController())
+        let nav = UINavigationController(rootViewController: CitiesPickerVC())
         nav.modalPresentationStyle = .popover
         present(nav, animated: true, completion: nil)
     }
@@ -115,7 +115,7 @@ class WorldClockViewController: UIViewController {
     }
 }
 
-extension WorldClockViewController: UITableViewDataSource {
+extension WorldClockVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WordlClockTableViewCell
@@ -129,7 +129,7 @@ extension WorldClockViewController: UITableViewDataSource {
     }
 }
 
-extension WorldClockViewController: WorldClockViewModelDelegate {
+extension WorldClockVC: WorldClockViewModelDelegate {
     func timeZoneListChanged(list: [TimeZone]) {
         if list.isEmpty {
             prepareVCForEmptyTable()
@@ -142,7 +142,7 @@ extension WorldClockViewController: WorldClockViewModelDelegate {
     }
 }
 
-extension WorldClockViewController: UITableViewDelegate {
+extension WorldClockVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
     }

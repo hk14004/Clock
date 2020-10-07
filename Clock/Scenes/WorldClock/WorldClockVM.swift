@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class WorldClockViewModel: NSObject {
+class WorldClockVM: NSObject {
     
     weak var delegate: WorldClockViewModelDelegate?
     
@@ -84,7 +84,7 @@ class WorldClockViewModel: NSObject {
     }
 }
 
-extension WorldClockViewModel: NSFetchedResultsControllerDelegate {
+extension WorldClockVM: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard controller === timeZoneDAO.fetchedController else { return }
         visibleTimeZones = timeZoneDAO.fetchedController?.fetchedObjects?.compactMap { $0.createTimeZoneObject() }  ?? []

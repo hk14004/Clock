@@ -15,35 +15,35 @@ class AlarmTuneSelectionVM {
     
     let defaultTune: Tune = AlarmTunes.shared.getDefaultTune()
     
-    var tuneCellViewModels: [TuneCellViewModel] = []
+    var tuneCellViewModels: [TuneCellVM] = []
     
      init() {
         tuneCellViewModels = createTuneCellViewModels()
     }
     
-    func getTuneCellViewModel(at: Int) -> TuneCellViewModel {
+    func getTuneCellViewModel(at: Int) -> TuneCellVM {
         return tuneCellViewModels[at]
     }
     
-    private func createTuneCellViewModels() -> [TuneCellViewModel] {
+    private func createTuneCellViewModels() -> [TuneCellVM] {
         return availableTunes.compactMap {
-            return TuneCellViewModel(tune: $0, isDefault: $0.name == defaultTune.name ? true : false)
+            return TuneCellVM(tune: $0, isDefault: $0.name == defaultTune.name ? true : false)
         }
     }
         
     func selectTune(at: Int) {
-        if let currentDefault = tuneCellViewModels.first(where: { $0.isdefault }) {
-            currentDefault.isdefault = false
+        if let currentDefault = tuneCellViewModels.first(where: { $0.isSelected }) {
+            currentDefault.isSelected = false
         }
-        tuneCellViewModels[at].isdefault = true
+        tuneCellViewModels[at].isSelected = true
     }
     
     func selectTune(_ tune: Tune) {
-        tuneCellViewModels.forEach { $0.isdefault = false }
-        tuneCellViewModels.first(where: { $0.tune.name == tune.name })?.isdefault = true
+        tuneCellViewModels.forEach { $0.isSelected = false }
+        tuneCellViewModels.first(where: { $0.tune.name == tune.name })?.isSelected = true
     }
     
     func getSelectedTune() -> Tune {
-        return tuneCellViewModels.first { $0.isdefault }!.tune
+        return tuneCellViewModels.first { $0.isSelected }!.tune
     }
 }

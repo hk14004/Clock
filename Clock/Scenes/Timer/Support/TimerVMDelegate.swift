@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TimerViewModelDelegate: class {
+protocol TimerVMDelegate: class {
     func timerStateChanged(state: TimerState)
     func timerPickedTimeChanged(time: TimeStruct)
     func countdownTimeChanged(timeString: String)
