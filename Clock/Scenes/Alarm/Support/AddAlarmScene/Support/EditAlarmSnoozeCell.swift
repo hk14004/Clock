@@ -37,5 +37,3 @@ class EditAlarmSnoozeCell: UITableViewCell {
         toggle.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
     }
 }
-
-
