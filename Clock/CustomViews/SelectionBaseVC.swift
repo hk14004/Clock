@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TuneSelectionBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SelectionBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var cancelButton: UIButton = UIButton()
     
@@ -29,19 +29,13 @@ class TuneSelectionBaseVC: UIViewController, UITableViewDelegate, UITableViewDat
         navigationController?.navigationBar.barTintColor = UIColor(named: "Primary")
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        title = "Tune selection"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(setTapped))
+        title = "Selection"
     }
-    
-    @objc func cancelTapped() {}
-    
-    @objc func setTapped() {}
     
     func dissappear() {}
     
     func setupTableView() {
-        tableView.register(TuneSelectionCell.self, forCellReuseIdentifier: TuneSelectionCell.identifier)
+        tableView.register(SelectionCell.self, forCellReuseIdentifier: SelectionCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(named: "Primary")

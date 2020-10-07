@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TuneSelectionViewController: TuneSelectionBaseVC {
+class TuneSelectionViewController: SelectionBaseVC {
     
     private let tuneSelectionViewModel: TuneSelectionViewModel = TuneSelectionViewModel()
     
@@ -30,19 +30,21 @@ class TuneSelectionViewController: TuneSelectionBaseVC {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "When Timer Ends"
+        let setButton = UIBarButtonItem()
+        setButton.title = "Set"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(setTapped))
     }
         
-    @objc override func setTapped() {
-        tuneSelectionViewModel.save()
+    @objc func setTapped() {
         dissappear()
     }
     
-    @objc override func cancelTapped() {
-        dissappear()
-    }
-
     override func dissappear() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tuneSelectionViewModel.save()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -55,7 +57,7 @@ class TuneSelectionViewController: TuneSelectionBaseVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TuneSelectionCell.identifier, for: indexPath) as! TuneSelectionCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SelectionCell.identifier, for: indexPath) as! SelectionCell
         cell.setup(viewModel: tuneSelectionViewModel.getTuneCellViewModel(at: indexPath.row))
         return cell
     }

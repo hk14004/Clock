@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension TuneSelectionCell: TuneCellViewModelDelegate {
+extension SelectionCell: TuneCellViewModelDelegate {
     func defaultValueChanged(isDefault: Bool) {
         if isDefault {
             setSelectedd()
@@ -18,9 +18,9 @@ extension TuneSelectionCell: TuneCellViewModelDelegate {
     }
 }
 
-class TuneSelectionCell: UITableViewCell {
+class SelectionCell: UITableViewCell {
     
-    static let identifier = "TuneSelectCell"
+    static let identifier = "SelectCell"
     
     private var selectionImage: UIImageView = UIImageView(image: UIImage(systemName: "checkmark"))
     

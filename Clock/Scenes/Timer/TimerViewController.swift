@@ -204,7 +204,6 @@ class TimerViewController: UIViewController {
     @objc func showTunePickerPopoverView() {
         let vc = TuneSelectionViewController()
         let navVc = UINavigationController(rootViewController: vc)
-        navVc.modalPresentationStyle = .popover
         self.present(navVc, animated: true, completion: nil)
     }
     

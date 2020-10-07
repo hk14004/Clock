@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmTuneSelectionVC: TuneSelectionBaseVC {
+class AlarmTuneSelectionVC: SelectionBaseVC {
     
     private var alarmTuneSelectionVM = AlarmTuneSelectionVM()
     
@@ -30,7 +30,7 @@ class AlarmTuneSelectionVC: TuneSelectionBaseVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell =  tableView.dequeueReusableCell(withIdentifier: TuneSelectionCell.identifier) as! TuneSelectionCell
+        let cell =  tableView.dequeueReusableCell(withIdentifier: SelectionCell.identifier) as! SelectionCell
         cell.setup(viewModel: alarmTuneSelectionVM.getTuneCellViewModel(at: indexPath.row))
         return cell
     }
@@ -41,15 +41,6 @@ class AlarmTuneSelectionVC: TuneSelectionBaseVC {
     
     override func viewWillDisappear(_ animated: Bool) {
         onTuneSelected?(alarmTuneSelectionVM.getSelectedTune())
-    }
-    @objc override func cancelTapped() {
-        print("Cancel")
-        dissappear()
-    }
-    
-    @objc override func setTapped() {
-        print("Set")
-        dissappear()
     }
     
     override func dissappear() {

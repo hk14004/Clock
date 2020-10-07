@@ -22,13 +22,13 @@
 		D43274EB24FE37C1001A1C8E /* StopwatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */; };
 		D432ED2E2516334600DAFCE2 /* EditAlarmSnoozeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432ED2D2516334600DAFCE2 /* EditAlarmSnoozeCell.swift */; };
 		D4336E6A250A8A1D006159EA /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4336E69250A8A1D006159EA /* TimeZone.swift */; };
-		D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */; };
+		D435C62F24F8369400E171C6 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D435C62E24F8369400E171C6 /* SelectionCell.swift */; };
 		D4368EA324EBD53C00D7B5C9 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */; };
 		D438C9B0251286D0006E3A1D /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438C9AF251286D0006E3A1D /* AlarmTableViewCell.swift */; };
 		D438C9B2251286E8006E3A1D /* AlarmTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438C9B1251286E8006E3A1D /* AlarmTableViewCellViewModel.swift */; };
 		D438F4142506B65600E3D0B7 /* CitiesPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */; };
 		D43A2A0524EA736800315B5D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A2A0424EA736800315B5D /* Functions.swift */; };
-		D43C8695252CBE31006EBB60 /* TuneSelectionBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8694252CBE31006EBB60 /* TuneSelectionBaseVC.swift */; };
+		D43C8695252CBE31006EBB60 /* SelectionBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8694252CBE31006EBB60 /* SelectionBaseVC.swift */; };
 		D43C869A252CBF39006EBB60 /* AlarmTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C8699252CBF39006EBB60 /* AlarmTunes.swift */; };
 		D43FDBAD252E042F0052D2C5 /* AlarmTuneSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43FDBAC252E042F0052D2C5 /* AlarmTuneSelectionVM.swift */; };
 		D441D3B524E80E5500ACCC4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441D3B424E80E5500ACCC4E /* AppDelegate.swift */; };
@@ -99,14 +99,14 @@
 		D43274EA24FE37C1001A1C8E /* StopwatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchCell.swift; sourceTree = "<group>"; };
 		D432ED2D2516334600DAFCE2 /* EditAlarmSnoozeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmSnoozeCell.swift; sourceTree = "<group>"; };
 		D4336E69250A8A1D006159EA /* TimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
-		D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionCell.swift; sourceTree = "<group>"; };
+		D435C62E24F8369400E171C6 /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
 		D4368EA224EBD53C00D7B5C9 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		D438C9AF251286D0006E3A1D /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		D438C9B1251286E8006E3A1D /* AlarmTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		D438F4132506B65600E3D0B7 /* CitiesPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPickerViewModel.swift; sourceTree = "<group>"; };
 		D43A2A0424EA736800315B5D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		D43C5DFE2503A29300089881 /* Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clock.entitlements; sourceTree = "<group>"; };
-		D43C8694252CBE31006EBB60 /* TuneSelectionBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionBaseVC.swift; sourceTree = "<group>"; };
+		D43C8694252CBE31006EBB60 /* SelectionBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionBaseVC.swift; sourceTree = "<group>"; };
 		D43C8699252CBF39006EBB60 /* AlarmTunes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTunes.swift; sourceTree = "<group>"; };
 		D43FDBAC252E042F0052D2C5 /* AlarmTuneSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTuneSelectionVM.swift; sourceTree = "<group>"; };
 		D441D3B124E80E5500ACCC4E /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				D443566E2517BFB300A5AA3E /* TintTextField.swift */,
-				D43C8694252CBE31006EBB60 /* TuneSelectionBaseVC.swift */,
+				D43C8694252CBE31006EBB60 /* SelectionBaseVC.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -392,7 +392,7 @@
 			children = (
 				D46EAA6724F4059F00321B41 /* TuneSelectionViewController.swift */,
 				D430670124F9483000DEB487 /* TuneSelectionViewModel.swift */,
-				D435C62E24F8369400E171C6 /* TuneSelectionCell.swift */,
+				D435C62E24F8369400E171C6 /* SelectionCell.swift */,
 				D430670324F9668D00DEB487 /* TuneCellViewModel.swift */,
 			);
 			path = TuneSelectionScene;
@@ -577,7 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43C8695252CBE31006EBB60 /* TuneSelectionBaseVC.swift in Sources */,
+				D43C8695252CBE31006EBB60 /* SelectionBaseVC.swift in Sources */,
 				D446179125025FC900A2551F /* StopwatchCellViewModel.swift in Sources */,
 				D42F84FA2506A41E00B20115 /* WorldClockViewModel.swift in Sources */,
 				D47AED6E2527865F008E5E8A /* AlarmBedtimeCell.swift in Sources */,
@@ -596,7 +596,7 @@
 				D4336E6A250A8A1D006159EA /* TimeZone.swift in Sources */,
 				D4D273EE2512244200E15A76 /* AddAlarmViewController.swift in Sources */,
 				D430670024F946AC00DEB487 /* Tune.swift in Sources */,
-				D435C62F24F8369400E171C6 /* TuneSelectionCell.swift in Sources */,
+				D435C62F24F8369400E171C6 /* SelectionCell.swift in Sources */,
 				D4461793250299ED00A2551F /* LapState.swift in Sources */,
 				D41FEF6A24EBFA5300C6DE27 /* TimerViewModelDelegate.swift in Sources */,
 				D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */,
