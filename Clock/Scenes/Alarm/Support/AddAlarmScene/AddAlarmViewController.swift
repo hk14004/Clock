@@ -155,7 +155,7 @@ class AddAlarmViewController: UIViewController {
     private func createSoundMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Sounds"
-        cell.detailTextLabel?.text = AlarmTunes.shared.getDefaultTune().name
+        cell.detailTextLabel?.text = addAlarmViewModel.tune.name
         cell.accessoryView = cell.chevronView
         return cell
     }

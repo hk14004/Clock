@@ -62,6 +62,7 @@ class AddAlarmViewModel {
             new.bedtime = false
             new.enabled = true
             new.snooze = snooze
+            new.sound = tune
         }
     }
     
@@ -83,6 +84,7 @@ class AddAlarmViewModel {
         if let labelDb = alarm.label {
             label = labelDb
         }
+        tune = alarm.sound as! Tune
     }
     
     @objc func setSnooze(snoozeSwitch: UISwitch) {
@@ -102,6 +104,7 @@ class AddAlarmViewModel {
         editableAlarm?.label = label
         editableAlarm?.snooze = snooze
         editableAlarm?.timeString = "\(getPickerLabel(pickedTime.hours)):\(getPickerLabel(pickedTime.minutes))"
+        editableAlarm?.sound = tune
         alarmDAO.save()
     }
     
