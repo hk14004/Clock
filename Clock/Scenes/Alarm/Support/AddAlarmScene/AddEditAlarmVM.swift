@@ -10,8 +10,9 @@ import UIKit
 
 protocol AddEditAlarmVMDelegate: class {
     func pickedTimeChanged(time: TimeStruct)
-    func alarmLabelChanged(label: String)
+    func alarmLabelChanged(text: String)
     func tuneChanged(tune: Tune)
+    func repeatTimeChanged(text: String)
 }
 
 class AddEditAlarmVM {
@@ -36,7 +37,7 @@ class AddEditAlarmVM {
     
     var label: String = "Alarm" {
         didSet {
-            delegate?.alarmLabelChanged(label: label)
+            delegate?.alarmLabelChanged(text: label)
         }
     }
     
@@ -46,9 +47,24 @@ class AddEditAlarmVM {
         }
     }
     
+    private(set) var selectedWeekDays: Set<WeekDay> = [] {
+        didSet {
+            delegate?.repeatTimeChanged(text: getRepeatTimeString())
+        }
+    }
+    
     init() {
         pickedTime = TimeStruct(hours: 0, minutes: 0, seconds: 0)
         sceneTitle = inEditMode ? "Edit Alarm" : "Add Alarm"
+    }
+    
+    private func getRepeatTimeString() -> String {
+        if selectedWeekDays.isEmpty { return "Never" }
+        if selectedWeekDays.count == WeekDay.allCases.count { return "Every day" }
+        var string = ""
+        let sorted = selectedWeekDays.sorted { $0.rawValue < $1.rawValue }
+        sorted.forEach { string += $0.getDayNameString().prefix(3) + " "}
+        return string
     }
     
     func setPickedTime(h: Int, m: Int) {
@@ -116,5 +132,9 @@ class AddEditAlarmVM {
     
     func setTune(_ tune: Tune) {
         self.tune = tune
+    }
+    
+    func setSelectedDays(_ selected: Set<WeekDay>) {
+        selectedWeekDays = selected
     }
 }

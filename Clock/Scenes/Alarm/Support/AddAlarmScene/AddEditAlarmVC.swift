@@ -38,7 +38,7 @@ class AddEditAlarmVC: UIViewController {
     
     private func createTableViewMenuItems() -> [[TableViewMenuItem]] {
         let repeatItem = TableViewMenuItem(tableViewCell: repeatMenuCell) {
-           print("REPEAT ACTION")
+            self.segueToEditRepeatView()
         }
         
         let labelItem = TableViewMenuItem(tableViewCell: labelMenuCell) {
@@ -67,6 +67,15 @@ class AddEditAlarmVC: UIViewController {
             self.addAlarmViewModel.label = edited
         }
         navigationController?.pushViewController(editVC, animated: true)
+    }
+    
+    private func segueToEditRepeatView() {
+        let repeatVC = RepeatSelectionVC()
+        repeatVC.setPreselectedDays(preSelected: addAlarmViewModel.selectedWeekDays)
+        repeatVC.onSelectionCompleted = { selected in
+            self.addAlarmViewModel.setSelectedDays(selected)
+        }
+        navigationController?.pushViewController(repeatVC, animated: true)
     }
     
     private func segueToAlarmTuneSelectionView() {
@@ -222,12 +231,16 @@ extension AddEditAlarmVC: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension AddEditAlarmVC: AddEditAlarmVMDelegate {
     
+    func repeatTimeChanged(text: String) {
+        repeatMenuCell.detailTextLabel?.text = text
+    }
+    
     func tuneChanged(tune: Tune) {
         soundMenuCell.detailTextLabel?.text = tune.name
     }
     
-    func alarmLabelChanged(label: String) {
-        labelMenuCell.detailTextLabel?.text = label
+    func alarmLabelChanged(text: String) {
+        labelMenuCell.detailTextLabel?.text = text
     }
     
     func pickedTimeChanged(time: TimeStruct) {
