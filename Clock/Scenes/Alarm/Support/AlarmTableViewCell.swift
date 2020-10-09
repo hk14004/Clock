@@ -14,7 +14,7 @@ class AlarmTableViewCell: UITableViewCell {
         let timeLabel = UILabel()
         contentView.addSubview(timeLabel)
         timeLabel.textColor = .white
-        timeLabel.font = timeLabel.font.withSize(50)
+        timeLabel.font = .systemFont(ofSize: 60, weight: .thin)
         return timeLabel
     }()
     
@@ -22,7 +22,7 @@ class AlarmTableViewCell: UITableViewCell {
         let notesLabel = UILabel()
         contentView.addSubview(notesLabel)
         notesLabel.textColor = .white
-        notesLabel.font = notesLabel.font.withSize(12)
+        notesLabel.font = .systemFont(ofSize: 15)
         return notesLabel
     }()
     
@@ -85,20 +85,23 @@ class AlarmTableViewCell: UITableViewCell {
     }
     
     private func layoutViews() {
+        // Toggle
+        enabledToggle.translatesAutoresizingMaskIntoConstraints = false
+        enabledToggle.centerYAnchor.constraint(equalTo: timeLabel.centerYAnchor).isActive = true
+        enabledToggle.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        
         // Time label
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
         timeLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         
         // Notes label
         notesLabel.translatesAutoresizingMaskIntoConstraints = false
-        notesLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 0).isActive = false
+        notesLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 0).isActive = true
         notesLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         notesLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
-        
-        // Toggle
-        enabledToggle.translatesAutoresizingMaskIntoConstraints = false
-        enabledToggle.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        enabledToggle.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        notesLabel.numberOfLines = 0
+        notesLabel.lineBreakMode = .byCharWrapping
+        notesLabel.trailingAnchor.constraint(equalTo: enabledToggle.leadingAnchor, constant: -15).isActive = true
     }
 }
