@@ -58,7 +58,7 @@ class AddEditAlarmVM {
         sceneTitle = inEditMode ? "Edit Alarm" : "Add Alarm"
     }
     
-    private func getRepeatTimeString() -> String {
+    func getRepeatTimeString() -> String {
         if selectedWeekDays.isEmpty { return "Never" }
         if selectedWeekDays.count == WeekDay.allCases.count { return "Every day" }
         var string = ""
@@ -79,6 +79,8 @@ class AddEditAlarmVM {
             new.enabled = true
             new.snooze = snooze
             new.sound = tune
+            let repeatData = try? JSONSerialization.data(withJSONObject: selectedWeekDays.compactMap { $0.rawValue }, options: [])
+            new.alarmRepeat = repeatData
         }
     }
     
@@ -101,6 +103,12 @@ class AddEditAlarmVM {
             label = labelDb
         }
         tune = alarm.sound as! Tune
+        if let alarmRepeatDays = alarm.alarmRepeat {
+            let de = try? JSONSerialization.jsonObject(with: alarmRepeatDays, options: []) as? [Int]
+            var set: Set<WeekDay> = []
+            set.formUnion(de?.compactMap { WeekDay(rawValue: $0)} ?? [])
+            selectedWeekDays = set
+        }
     }
     
     @objc func setSnooze(snoozeSwitch: UISwitch) {
@@ -110,17 +118,20 @@ class AddEditAlarmVM {
     func savePressed() {
         // Create new entry from selected values if not in edit mode, otherwise edit alarm
         if inEditMode {
-             editAlarm()
+             editAlarmWithSelectedValues()
         } else {
             addAlarm()
         }
     }
     
-    private func editAlarm() {
+    private func editAlarmWithSelectedValues() {
         editableAlarm?.label = label
         editableAlarm?.snooze = snooze
         editableAlarm?.timeString = "\(getPickerLabel(pickedTime.hours)):\(getPickerLabel(pickedTime.minutes))"
         editableAlarm?.sound = tune
+        editableAlarm?.alarmRepeat = try? JSONSerialization.data(withJSONObject:
+                                                                    selectedWeekDays.compactMap { $0.rawValue }, options: [])
+        
         alarmDAO.save()
     }
     

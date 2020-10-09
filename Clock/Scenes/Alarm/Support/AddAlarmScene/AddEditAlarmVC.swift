@@ -156,7 +156,7 @@ class AddEditAlarmVC: UIViewController {
     private func createRepeatMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Repeat"
-        cell.detailTextLabel?.text = "Never"
+        cell.detailTextLabel?.text = addAlarmViewModel.getRepeatTimeString()
         cell.accessoryView = cell.chevronView
         return cell
     }
