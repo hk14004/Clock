@@ -42,13 +42,13 @@ class CitiesPickerVC: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title = "Choose a City"
+        title = NSLocalizedString("Choose a City", comment: "")
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.barStyle = .black
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
         searchController.searchBar.setShowsCancelButton(true, animated: true)

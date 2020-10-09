@@ -22,7 +22,7 @@ class AlarmVC: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title =  "Alarm"
+        title =  NSLocalizedString("Alarm", comment: "")
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -166,7 +166,7 @@ extension AlarmVC: UITableViewDataSource, UITableViewDelegate {
             return nil
         }
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { _, _, complete in
             tableView.beginUpdates()
             self.alarmViewmodel.deleteAlarm(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)

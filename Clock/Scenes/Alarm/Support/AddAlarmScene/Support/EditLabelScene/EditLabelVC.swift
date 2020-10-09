@@ -21,7 +21,7 @@ class EditLabelVC: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title = "Label"
+        title = NSLocalizedString("Label", comment: "")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

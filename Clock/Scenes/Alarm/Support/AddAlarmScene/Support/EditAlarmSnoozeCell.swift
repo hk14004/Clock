@@ -29,7 +29,7 @@ class EditAlarmSnoozeCell: UITableViewCell {
     private func setup() {
         selectionStyle = .none
         backgroundColor = UIColor(named: "MenuItem")
-        textLabel?.text = "Snooze"
+        textLabel?.text = NSLocalizedString("Snooze", comment: "")
         textLabel?.textColor = .white
         contentView.addSubview(toggle)
         toggle.translatesAutoresizingMaskIntoConstraints = false

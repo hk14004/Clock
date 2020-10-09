@@ -29,10 +29,9 @@ class TuneSelectionVC: SelectionBaseVC {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        title = "When Timer Ends"
-        let setButton = UIBarButtonItem()
-        setButton.title = "Set"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set", style: .done, target: self, action: #selector(setTapped))
+        title = NSLocalizedString("When Timer Ends", comment: "")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Set", comment: ""),
+                                                                 style: .done, target: self, action: #selector(setTapped))
     }
         
     @objc func setTapped() {

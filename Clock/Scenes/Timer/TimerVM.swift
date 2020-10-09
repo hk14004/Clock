@@ -97,7 +97,7 @@ class TimerVM: NSObject {
     
     private func scheduleAlarmNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "Alarm"
+        content.title = NSLocalizedString("Alarm", comment: "")
         content.sound = UNNotificationSound(named: UNNotificationSoundName("\(defaultTune.name).\(defaultTune.format)"))
 
         let time = TimeInterval(countDownTimeLeft.getTotalTimeInSeconds())

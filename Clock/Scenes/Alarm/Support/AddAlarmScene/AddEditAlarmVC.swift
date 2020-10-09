@@ -147,7 +147,7 @@ class AddEditAlarmVC: UIViewController {
     
     private func createLabelMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "Label"
+        cell.textLabel?.text = NSLocalizedString("Label", comment: "")
         cell.accessoryView = cell.chevronView
         cell.detailTextLabel?.text = addAlarmViewModel.label
         return cell
@@ -155,7 +155,7 @@ class AddEditAlarmVC: UIViewController {
     
     private func createRepeatMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "Repeat"
+        cell.textLabel?.text = NSLocalizedString("Repeat", comment: "")
         cell.detailTextLabel?.text = addAlarmViewModel.getRepeatTimeString()
         cell.accessoryView = cell.chevronView
         return cell
@@ -163,7 +163,7 @@ class AddEditAlarmVC: UIViewController {
     
     private func createSoundMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "Sounds"
+        cell.textLabel?.text = NSLocalizedString("Sounds", comment: "")
         cell.detailTextLabel?.text = addAlarmViewModel.tune.name
         cell.accessoryView = cell.chevronView
         return cell
@@ -171,7 +171,7 @@ class AddEditAlarmVC: UIViewController {
     
     private func createDeleteMenuCell() -> AddEditAlarmMenuCell {
         let cell = AddEditAlarmMenuCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = "Delete Alarm"
+        cell.textLabel?.text = NSLocalizedString("Delete Alarm", comment: "")
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = .red
         return cell

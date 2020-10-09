@@ -31,7 +31,11 @@ class AlarmVM: NSObject {
     
     private func loadAlarmSections() {
         let alarms = alarmDAO.loadData()
-        sectionsData = SectionsData(titles: ["Sleep | Wake Up", "Other"], data: createSections(from: alarms))
+        let sleepText = NSLocalizedString("Sleep", comment: "")
+        let wakeUpText = NSLocalizedString("Wake Up", comment: "")
+        let otherText = NSLocalizedString("Other", comment: "")
+        sectionsData = SectionsData(titles: ["\(sleepText) | \(wakeUpText)","\(otherText)"],
+                                    data: createSections(from: alarms))
     }
     
     private func createSections(from alarms: [AlarmEntity]) -> [[AlarmEntity]] {

@@ -25,7 +25,7 @@ class HomeViewController: UITabBarController {
         let timer = TimerVC()
         timer.tabBarItem = {
             let item = UITabBarItem()
-            item.title = "Timer"
+            item.title = NSLocalizedString("Timer", comment: "")
             item.image = UIImage(systemName: "timer")
             return item
         }()
@@ -33,7 +33,7 @@ class HomeViewController: UITabBarController {
         let stopwatch = StopwatchVC()
         stopwatch.tabBarItem = {
             let item = UITabBarItem()
-            item.title = "Stopwatch"
+            item.title = NSLocalizedString("Stopwatch", comment: "")
             item.image = UIImage(systemName: "stopwatch.fill")
             return item
         }()
@@ -42,7 +42,7 @@ class HomeViewController: UITabBarController {
         let alarmNavVC = UINavigationController(rootViewController: alarmVC)
         alarmVC.tabBarItem = {
             let item = UITabBarItem()
-            item.title = "Alarm"
+            item.title = NSLocalizedString("Alarm", comment: "")
             item.image = UIImage(systemName: "alarm.fill")
             return item
         }()
@@ -51,7 +51,7 @@ class HomeViewController: UITabBarController {
         let worldClockNavVC = UINavigationController(rootViewController: worldClockVC)
         worldClockVC.tabBarItem = {
             let item = UITabBarItem()
-            item.title = "World Clock"
+            item.title = NSLocalizedString("World Clock", comment: "")
             item.image = UIImage(systemName: "globe")
             return item
         }()

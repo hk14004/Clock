@@ -16,7 +16,7 @@ class RepeatSelectionVC: SelectionBaseVC {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        title = "Repeat"
+        title = NSLocalizedString("Repeat", comment: "")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

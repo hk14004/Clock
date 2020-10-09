@@ -16,7 +16,7 @@ class AlarmTuneSelectionVC: SelectionBaseVC {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        title = "Sound"
+        title = NSLocalizedString("Sound", comment: "")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

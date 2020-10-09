@@ -20,19 +20,19 @@ enum WeekDay: Int, CaseIterable {
     func getDayNameString() -> String {
         switch self {
         case .monday:
-            return "Monday"
+            return NSLocalizedString("Monday", comment: "")
         case .tuesday:
-            return "Tuesday"
+            return NSLocalizedString("Tuesday", comment: "")
         case .wednesday:
-            return "Wednesday"
+            return NSLocalizedString("Wednesday", comment: "")
         case .thursday:
-            return "Thursday"
+            return NSLocalizedString("Thursday", comment: "")
         case .friday:
-            return "Friday"
+            return NSLocalizedString("Friday", comment: "")
         case .saturday:
-            return "Saturday"
+            return NSLocalizedString("Saturday", comment: "")
         case .sunday:
-            return "Sunday"
+            return NSLocalizedString("Sunday", comment: "")
         }
     }
 }

@@ -78,7 +78,7 @@ class TimerVC: UIViewController {
     func setupChangeTuneButton() {
         view.addSubview(changeTuneButton)
         
-        changeTuneButton.setTitle("When Timer Ends", for: .normal)
+        changeTuneButton.setTitle(NSLocalizedString("When Timer Ends", comment: ""), for: .normal)
         changeTuneButton.setTitleColor(.white, for: .normal)
         changeTuneButton.layer.cornerRadius = 10
         changeTuneButton.backgroundColor = UIColor(named: "Primary")
@@ -98,7 +98,7 @@ class TimerVC: UIViewController {
     
     func setupStartButton() {
         // Configure button
-        startButton.setTitle("Start", for: .normal)
+        startButton.setTitle(NSLocalizedString("Start", comment: ""), for: .normal)
         startButton.setTitleColor(.green, for: .normal)
         startButton.layer.cornerRadius = 38
         startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
@@ -120,7 +120,7 @@ class TimerVC: UIViewController {
     
     func setupResumeButton() {
         // Configure button
-        resumeButton.setTitle("Resume", for: .normal)
+        resumeButton.setTitle(NSLocalizedString("Resume", comment: ""), for: .normal)
         resumeButton.setTitleColor(.green, for: .normal)
         resumeButton.layer.cornerRadius = 38
         resumeButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
@@ -142,7 +142,7 @@ class TimerVC: UIViewController {
     
     func setupPauseButton() {
         // Configure button
-        pauseButton.setTitle("Pause", for: .normal)
+        pauseButton.setTitle(NSLocalizedString("Pause", comment: ""), for: .normal)
         pauseButton.setTitleColor(UIColor.systemOrange.withAlphaComponent(0.7), for: .normal)
         pauseButton.layer.cornerRadius = 38
         pauseButton.backgroundColor = UIColor(red: 41/255, green: 26/255, blue: 1/255, alpha: 1)
@@ -164,7 +164,7 @@ class TimerVC: UIViewController {
     
     func setupCancelButton() {
         // Configure button
-        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         cancelButton.setTitleColor(.gray, for: .normal)
         cancelButton.layer.cornerRadius = 38
         cancelButton.backgroundColor = UIColor(named: "Primary")

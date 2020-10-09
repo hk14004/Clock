@@ -29,7 +29,6 @@ class SelectionBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         navigationController?.navigationBar.barTintColor = UIColor(named: "Primary")
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        title = "Selection"
     }
     
     func dissappear() {}

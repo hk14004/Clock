@@ -14,7 +14,6 @@ class StopwatchCell: UITableViewCell {
     
     private(set) lazy var lapLabel: UILabel = {
         let label = UILabel()
-        label.text = "Lap X"
         label.textColor = cellTextColor
         return label
     }()

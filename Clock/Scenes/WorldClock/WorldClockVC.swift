@@ -30,7 +30,7 @@ class WorldClockVC: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title = "World Clock"
+        title = NSLocalizedString("World Clock", comment: "")
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .orange
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -58,7 +58,7 @@ class WorldClockVC: UIViewController {
         if  worldClockViewModel.visibleTimeZones.count != 0 {
             noClockLabel.isHidden = true
         }
-        noClockLabel.text = "No World Clocks"
+        noClockLabel.text = NSLocalizedString("No World Clocks", comment: "")
         noClockLabel.textColor = .gray
         noClockLabel.font = noClockLabel.font.withSize(30)
         

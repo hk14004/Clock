@@ -25,7 +25,7 @@ class WeekDaySelectionCellVM {
     init(weekDay: WeekDay, isSelected: Bool) {
         self.weekDay = weekDay
         self.isSelected = isSelected
-        self.itemName = "Every " + weekDay.getDayNameString()
+        self.itemName = NSLocalizedString("Every", comment: "") + " " + weekDay.getDayNameString()
     }
 }
 

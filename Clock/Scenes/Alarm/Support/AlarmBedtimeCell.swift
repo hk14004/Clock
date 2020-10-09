@@ -29,7 +29,7 @@ class AlarmBedtimeCell: UITableViewCell {
     private lazy var changeButton: UIButton = {
         let changeButton = UIButton()
         contentView.addSubview(changeButton)
-        changeButton.setTitle("CHANGE", for: .normal)
+        changeButton.setTitle(NSLocalizedString("CHANGE", comment: ""), for: .normal)
         changeButton.setTitleColor(.orange, for: .normal)
         changeButton.backgroundColor = UIColor(named: "Primary")
         changeButton.layer.masksToBounds = true
@@ -51,13 +51,12 @@ class AlarmBedtimeCell: UITableViewCell {
     func setup() {
         backgroundColor = .clear
         // Time label
-        timeLabel.text = "No Alarm"
+        timeLabel.text = NSLocalizedString("No Alarm", comment: "")
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         timeLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         
         // Notes label
-        notesLabel.text = "In progress"
         notesLabel.translatesAutoresizingMaskIntoConstraints = false
         notesLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 0).isActive = false
         notesLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true

@@ -12,7 +12,6 @@ class TunePickerButton: UIButton {
     
     private var tuneName: UILabel = {
        let label = UILabel()
-        label.text = ""
         label.textColor = .gray
         return label
     }()

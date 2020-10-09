@@ -19,7 +19,11 @@ class AddEditAlarmVM {
     
     weak var delegate: AddEditAlarmVMDelegate?
     
-    private(set) var sceneTitle: String
+    var sceneTitle: String {
+        get {
+            return inEditMode ? NSLocalizedString("Edit Alarm", comment: "") : NSLocalizedString("Add Alarm", comment: "")
+        }
+    }
     
     private(set) var pickedTime: TimeStruct {
         didSet {
@@ -35,7 +39,7 @@ class AddEditAlarmVM {
     
     private(set) var snooze: Bool = false
     
-    var label: String = "Alarm" {
+    var label: String = NSLocalizedString("Alarm", comment: "") {
         didSet {
             delegate?.alarmLabelChanged(text: label)
         }
@@ -55,12 +59,11 @@ class AddEditAlarmVM {
     
     init() {
         pickedTime = TimeStruct(hours: 0, minutes: 0, seconds: 0)
-        sceneTitle = inEditMode ? "Edit Alarm" : "Add Alarm"
     }
     
     func getRepeatTimeString() -> String {
-        if selectedWeekDays.isEmpty { return "Never" }
-        if selectedWeekDays.count == WeekDay.allCases.count { return "Every day" }
+        if selectedWeekDays.isEmpty { return NSLocalizedString("Never", comment: "") }
+        if selectedWeekDays.count == WeekDay.allCases.count { return NSLocalizedString("Every day", comment: "") }
         var string = ""
         let sorted = selectedWeekDays.sorted { $0.rawValue < $1.rawValue }
         sorted.forEach { string += $0.getDayNameString().prefix(3) + " "}
@@ -91,7 +94,6 @@ class AddEditAlarmVM {
     func enterEditMode(alarm: AlarmEntity) {
         editableAlarm = alarm
         inEditMode = true
-        sceneTitle = "Edit Alarm"
         let arr = alarm.timeString?.split(separator: ":").compactMap { Int(String($0)) }
         guard let h = arr?.first, let m = arr?.last, arr?.count == 2 else {
             // TODO: Warn user - edit failed

@@ -88,7 +88,7 @@ class StopwatchVC: UIViewController {
     private func setupStartButton() {
         // Configure button
         startButton.isHidden = stopwatchViewModel.stopwatchState == .running ? true : false
-        startButton.setTitle("Start", for: .normal)
+        startButton.setTitle(NSLocalizedString("Start", comment: ""), for: .normal)
         startButton.setTitleColor(.green, for: .normal)
         startButton.layer.cornerRadius = 38
         startButton.backgroundColor = UIColor(red: 26/255, green: 54/255, blue: 31/255, alpha: 1)
@@ -111,7 +111,7 @@ class StopwatchVC: UIViewController {
     private func setupStopButton() {
         // Configure button
         stopButton.isHidden = stopwatchViewModel.stopwatchState != .running ? true : false
-        stopButton.setTitle("Stop", for: .normal)
+        stopButton.setTitle(NSLocalizedString("Stop", comment: ""), for: .normal)
         stopButton.setTitleColor(.red, for: .normal)
         stopButton.layer.cornerRadius = 38
         stopButton.backgroundColor = UIColor(red: 61/255, green: 22/255, blue: 19/255, alpha: 1)
@@ -133,7 +133,7 @@ class StopwatchVC: UIViewController {
     
     private func setupResetButton() {
         resetButton.isHidden = stopwatchViewModel.stopwatchState == .stopped ? false : true
-        resetButton.setTitle("Reset", for: .normal)
+        resetButton.setTitle(NSLocalizedString("Reset", comment: ""), for: .normal)
         resetButton.setTitleColor(.gray, for: .normal)
         resetButton.layer.cornerRadius = 38
         resetButton.backgroundColor = UIColor(named: "Primary")
@@ -153,7 +153,7 @@ class StopwatchVC: UIViewController {
     private func setupLapButton() {
         lapButton.isEnabled = stopwatchViewModel.stopwatchState == .running ? true : false
         lapButton.isHidden = stopwatchViewModel.stopwatchState == .stopped ? true : false
-        lapButton.setTitle("Lap", for: .normal)
+        lapButton.setTitle(NSLocalizedString("Lap", comment: ""), for: .normal)
         lapButton.setTitleColor(.gray, for: .normal)
         lapButton.layer.cornerRadius = 38
         lapButton.backgroundColor = UIColor(named: "Primary")
@@ -187,7 +187,7 @@ extension StopwatchVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StopwatchCell", for: indexPath) as! StopwatchCell
 
-        cell.lapLabel.text = "Lap \( stopwatchViewModel.laps.count - indexPath.row)"
+        cell.lapLabel.text = "\(NSLocalizedString("Lap", comment: "")) \( stopwatchViewModel.laps.count - indexPath.row)"
         let cellViewModel =  stopwatchViewModel.laps[indexPath.row]
         cell.setup(with: cellViewModel)
         return cell
