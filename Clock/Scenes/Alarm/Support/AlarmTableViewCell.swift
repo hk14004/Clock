@@ -32,10 +32,6 @@ class AlarmTableViewCell: UITableViewCell {
         return toggle
     }()
     
-    private lazy var notesLabelTrailingToSafeArea = notesLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -15)
-    
-    private lazy var notesLabelTrailingToToggle = notesLabel.trailingAnchor.constraint(equalTo: enabledToggle.leadingAnchor, constant: -15)
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -62,14 +58,10 @@ class AlarmTableViewCell: UITableViewCell {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        enabledToggle.isHidden = editing
-        notesLabelTrailingToSafeArea.isActive = false
-        notesLabelTrailingToToggle.isActive = false
-        notesLabelTrailingToSafeArea.isActive = editing
-        notesLabelTrailingToToggle.isActive = !editing
         UIView.animate(withDuration: 0.3) {
-            self.layoutIfNeeded()
+            self.enabledToggle.isHidden = editing
             self.enabledToggle.alpha = editing ? 0 : 1
+            self.layoutIfNeeded()
         }
     }
     
@@ -102,6 +94,6 @@ class AlarmTableViewCell: UITableViewCell {
         notesLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
         notesLabel.numberOfLines = 0
         notesLabel.lineBreakMode = .byCharWrapping
-        notesLabel.trailingAnchor.constraint(equalTo: enabledToggle.leadingAnchor, constant: -15).isActive = true
+        notesLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -30 - self.enabledToggle.frame.width).isActive = true
     }
 }
