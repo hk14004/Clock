@@ -12,9 +12,9 @@ class WeekDaySelectionCellVM {
     
     weak var delegate: SelectionCellVMDelegate?
     
-    let weekDay: WeekDay
+    private(set) var weekDay: WeekDay = .monday
     
-    let itemName: String
+    private(set) var itemName: String = ""
     
     var isSelected: Bool {
         didSet {
@@ -22,10 +22,29 @@ class WeekDaySelectionCellVM {
         }
     }
     
-    init(weekDay: WeekDay, isSelected: Bool) {
+    required init(weekDay: WeekDay, isSelected: Bool) {
         self.weekDay = weekDay
         self.isSelected = isSelected
-        self.itemName = NSLocalizedString("Every", comment: "") + " " + weekDay.getDayNameString()
+        self.itemName = createItemName(from: weekDay)
+    }
+    
+    private func createItemName(from weekDay: WeekDay) -> String {
+        switch weekDay {
+        case .monday:
+            return NSLocalizedString("Every Monday", comment: "")
+        case .tuesday:
+            return NSLocalizedString("Every Tuesday", comment: "")
+        case .wednesday:
+            return NSLocalizedString("Every Wednesday", comment: "")
+        case .thursday:
+            return NSLocalizedString("Every Thrusrday", comment: "")
+        case .friday:
+            return NSLocalizedString("Every Friday", comment: "")
+        case .saturday:
+            return NSLocalizedString("Every Saturday", comment: "")
+        case .sunday:
+            return NSLocalizedString("Every Sunday", comment: "")
+        }
     }
 }
 
