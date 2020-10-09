@@ -1,2 +1,2 @@
 # Clock
-iOS 13 Clock applications clone
+iOS 14 Clock application (clone)
