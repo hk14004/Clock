@@ -72,7 +72,7 @@ class AlarmVC: UIViewController {
         returnedView.addSubview(imageView)
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor, constant: -10).isActive = true
         imageView.leadingAnchor.constraint(equalTo: returnedView.leadingAnchor, constant: 15).isActive = true
         
         let label = UILabel()
@@ -81,7 +81,7 @@ class AlarmVC: UIViewController {
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor, constant: -10).isActive = true
         label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5).isActive = true
         
         return returnedView
@@ -106,7 +106,7 @@ class AlarmVC: UIViewController {
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: returnedView.centerYAnchor, constant: -10).isActive = true
         label.leadingAnchor.constraint(equalTo: returnedView.leadingAnchor, constant: 15).isActive = true
         
         return returnedView
