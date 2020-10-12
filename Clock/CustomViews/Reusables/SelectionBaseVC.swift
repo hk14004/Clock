@@ -38,6 +38,7 @@ class SelectionBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(named: "Primary")
+        tableView.separatorInset = .init(top: 0, left: 55, bottom: 0, right: 0)
         view.addSubview(tableView)
         tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         tableView.translatesAutoresizingMaskIntoConstraints = false
