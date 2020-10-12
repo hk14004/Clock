@@ -65,9 +65,43 @@ class TimerVC: UIViewController {
         timerClockFace.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -30).isActive = true
     }
     
-    func setupTimePickerView() {
-        view.addSubview(timePickerView)
+    private func addTimePickerViewTitles() {
+        // Hours
+        let hoursTitle = UILabel()
+        hoursTitle.text = "hours"
+        hoursTitle.textColor = .white
+        hoursTitle.translatesAutoresizingMaskIntoConstraints = false
+        let pickerSelectionContainer = timePickerView.subviews[1]
+        pickerSelectionContainer.addSubview(hoursTitle)
+        hoursTitle.centerYAnchor.constraint(equalTo: pickerSelectionContainer.centerYAnchor).isActive = true
+        hoursTitle.widthAnchor.constraint(equalTo: pickerSelectionContainer.widthAnchor, multiplier: 0.5, constant: 1).isActive = true
+        hoursTitle.textAlignment = .center
+
+        // Minutes
+        let minutesTitle = UILabel()
+        minutesTitle.text = "min"
+        minutesTitle.textColor = .white
+        minutesTitle.translatesAutoresizingMaskIntoConstraints = false
+        pickerSelectionContainer.addSubview(minutesTitle)
+        minutesTitle.centerYAnchor.constraint(equalTo: pickerSelectionContainer.centerYAnchor).isActive = true
+        minutesTitle.widthAnchor.constraint(equalTo: pickerSelectionContainer.widthAnchor, multiplier: 1, constant: 55).isActive = true
+        minutesTitle.textAlignment = .center
         
+        // Seconds
+        let secondsTitle = UILabel()
+        secondsTitle.text = "sec"
+        secondsTitle.textColor = .white
+        secondsTitle.translatesAutoresizingMaskIntoConstraints = false
+        pickerSelectionContainer.addSubview(secondsTitle)
+        secondsTitle.centerYAnchor.constraint(equalTo: pickerSelectionContainer.centerYAnchor).isActive = true
+        secondsTitle.widthAnchor.constraint(equalTo: pickerSelectionContainer.widthAnchor, multiplier: 1, constant: -10).isActive = true
+        secondsTitle.textAlignment = .right
+    }
+    
+    private func setupTimePickerView() {
+        view.addSubview(timePickerView)
+        addTimePickerViewTitles()
+               
         // Contraints
         timePickerView.translatesAutoresizingMaskIntoConstraints = false
         timePickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
@@ -251,15 +285,16 @@ extension TimerVC: UIPickerViewDelegate {
         // Create picker labels
         let label = UILabel()
         label.textAlignment = NSTextAlignment.center
+        label.font = .systemFont(ofSize: 22, weight: .regular)
         label.textColor = .white
         
         switch component {
         case 0:
-            label.text = "\(HOURS[row]) hours"
+            label.text = "\(HOURS[row])"
         case 1:
-            label.text = "\(MINUTES[row]) min"
+            label.text = "\(MINUTES[row])"
         case 2:
-            label.text = "\(SECONDS[row]) sec"
+            label.text = "\(SECONDS[row])"
         default:
             return label
         }
