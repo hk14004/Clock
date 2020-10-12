@@ -32,7 +32,7 @@ class CitiesPickerVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.sectionIndexColor = .orange
-        
+        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true

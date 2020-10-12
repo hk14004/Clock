@@ -71,6 +71,7 @@ class WorldClockVC: UIViewController {
     private func setupTableView() {
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
+        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         tableView.register(WordlClockTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.tableFooterView = UIView()

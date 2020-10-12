@@ -65,6 +65,7 @@ class StopwatchVC: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 44
         tableView.delegate = self
+        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         tableView.backgroundColor = .clear
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false

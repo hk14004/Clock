@@ -41,6 +41,7 @@ class AlarmVC: UIViewController {
     
     private func setupTableView() {
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         tableView.estimatedRowHeight = 88
         tableView.allowsSelection = false
         tableView.allowsSelectionDuringEditing = true

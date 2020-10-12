@@ -90,6 +90,7 @@ class AddEditAlarmVC: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         tableView.rowHeight = 44
         tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false

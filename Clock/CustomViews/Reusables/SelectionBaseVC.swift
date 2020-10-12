@@ -39,7 +39,7 @@ class SelectionBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(named: "Primary")
         view.addSubview(tableView)
-        
+        tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
