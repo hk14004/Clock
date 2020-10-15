@@ -54,6 +54,7 @@
 		D44ADCFC252F1D0300124901 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44ADCFB252F1D0300124901 /* WeekDay.swift */; };
 		D44ADD01252F1ECD00124901 /* WeekDaySelectionCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44ADD00252F1ECD00124901 /* WeekDaySelectionCellVM.swift */; };
 		D44B9C0025081FA400C53677 /* WordlClockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B9BFF25081FA400C53677 /* WordlClockTableViewCell.swift */; };
+		D45B231E2534F025000378E2 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B231D2534F025000378E2 /* UIView.swift */; };
 		D463897C24FE79E60000673D /* StopwatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463897B24FE79E60000673D /* StopwatchState.swift */; };
 		D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6424F3F67100321B41 /* TunePickerButton.swift */; };
 		D46EAA6824F4059F00321B41 /* TuneSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EAA6724F4059F00321B41 /* TuneSelectionVC.swift */; };
@@ -145,6 +146,7 @@
 		D44ADCFB252F1D0300124901 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		D44ADD00252F1ECD00124901 /* WeekDaySelectionCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaySelectionCellVM.swift; sourceTree = "<group>"; };
 		D44B9BFF25081FA400C53677 /* WordlClockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordlClockTableViewCell.swift; sourceTree = "<group>"; };
+		D45B231D2534F025000378E2 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		D463897B24FE79E60000673D /* StopwatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchState.swift; sourceTree = "<group>"; };
 		D46EAA6424F3F67100321B41 /* TunePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunePickerButton.swift; sourceTree = "<group>"; };
 		D46EAA6724F4059F00321B41 /* TuneSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneSelectionVC.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				D431BE5324EBCD0900F989BD /* UIButton.swift */,
 				D4CA75F0250838E100FEA9BE /* TimeZoneEntity.swift */,
 				D4336E69250A8A1D006159EA /* TimeZone.swift */,
+				D45B231D2534F025000378E2 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				D435C62F24F8369400E171C6 /* SelectionCell.swift in Sources */,
 				D4461793250299ED00A2551F /* LapState.swift in Sources */,
 				D41FEF6A24EBFA5300C6DE27 /* TimerVMDelegate.swift in Sources */,
+				D45B231E2534F025000378E2 /* UIView.swift in Sources */,
 				D46EAA6524F3F67100321B41 /* TunePickerButton.swift in Sources */,
 				D43274E924FE33FF001A1C8E /* StopwatchVM.swift in Sources */,
 				D41FEF6E24EBFB9400C6DE27 /* Constants.swift in Sources */,

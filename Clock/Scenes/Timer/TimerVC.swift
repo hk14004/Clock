@@ -33,10 +33,15 @@ class TimerVC: UIViewController {
     
     private lazy var changeTuneButton: TunePickerButton = TunePickerButton()
     
+    private var scrollView = UIScrollView()
+    
+    private var contentView = UIView()
+    
     // MARK: UIViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupScrollView()
         self.view.backgroundColor = UIColor(named: "Secondary")
         timerViewModel.delegate = self
         setupTimePickerView()
@@ -47,6 +52,14 @@ class TimerVC: UIViewController {
     
     // MARK: Setup methods
     
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.pin(to: view)
+        scrollView.addSubview(contentView)
+        contentView.pin(to: scrollView)
+        contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+    }
+    
     private func setupTimerButtons() {
         setupStartButton()
         setupPauseButton()
@@ -55,13 +68,13 @@ class TimerVC: UIViewController {
     }
     
     func setupTimerClockFace() {
-        view.addSubview(timerClockFace)
+        contentView.addSubview(timerClockFace)
         
         // Contraints
         timerClockFace.translatesAutoresizingMaskIntoConstraints = false
-        timerClockFace.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
-        timerClockFace.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
-        timerClockFace.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+        timerClockFace.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
+        timerClockFace.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
+        timerClockFace.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         timerClockFace.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -30).isActive = true
     }
     
@@ -94,23 +107,22 @@ class TimerVC: UIViewController {
         secondsTitle.translatesAutoresizingMaskIntoConstraints = false
         pickerSelectionContainer.addSubview(secondsTitle)
         secondsTitle.centerYAnchor.constraint(equalTo: pickerSelectionContainer.centerYAnchor).isActive = true
-        secondsTitle.widthAnchor.constraint(equalTo: pickerSelectionContainer.widthAnchor, multiplier: 1, constant: -10).isActive = true
+        secondsTitle.widthAnchor.constraint(equalTo: pickerSelectionContainer.widthAnchor, multiplier: 1, constant: -5).isActive = true
         secondsTitle.textAlignment = .right
     }
     
     private func setupTimePickerView() {
-        view.addSubview(timePickerView)
+        contentView.addSubview(timePickerView)
         addTimePickerViewTitles()
                
         // Contraints
-        timePickerView.translatesAutoresizingMaskIntoConstraints = false
-        timePickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
-        timePickerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
-        timePickerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        timePickerView.pin(to: contentView, leading: 15)
+        timePickerView.pin(to: contentView, trailing: -15)
+        timePickerView.pin(to: contentView, top: 70)
     }
         
     func setupChangeTuneButton() {
-        view.addSubview(changeTuneButton)
+        contentView.addSubview(changeTuneButton)
         
         changeTuneButton.setTitle(NSLocalizedString("When Timer Ends", comment: ""), for: .normal)
         changeTuneButton.setTitleColor(.white, for: .normal)
@@ -124,10 +136,11 @@ class TimerVC: UIViewController {
         
         // Constraints
         changeTuneButton.translatesAutoresizingMaskIntoConstraints = false
-        changeTuneButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
-        changeTuneButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        changeTuneButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
+        changeTuneButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         changeTuneButton.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 30).isActive = true
         changeTuneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        changeTuneButton.pin(to: contentView, bottom: -20)
     }
     
     func setupStartButton() {
@@ -141,13 +154,13 @@ class TimerVC: UIViewController {
         startButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: startButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
-        view.addSubview(startButton)
+        contentView.addSubview(startButton)
         
         // Contraints
         startButton.translatesAutoresizingMaskIntoConstraints = false
         
         startButton.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
-        startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        startButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         startButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         startButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
@@ -163,13 +176,13 @@ class TimerVC: UIViewController {
         resumeButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: resumeButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
-        view.addSubview(resumeButton)
+        contentView.addSubview(resumeButton)
         
         // Contraints
         resumeButton.translatesAutoresizingMaskIntoConstraints = false
         
         resumeButton.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
-        resumeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        resumeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         resumeButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         resumeButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
@@ -185,13 +198,13 @@ class TimerVC: UIViewController {
         pauseButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: pauseButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
-        view.addSubview(pauseButton)
+        contentView.addSubview(pauseButton)
         
         // Contraints
         pauseButton.translatesAutoresizingMaskIntoConstraints = false
         
         pauseButton.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
-        pauseButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        pauseButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         pauseButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         pauseButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
@@ -207,12 +220,12 @@ class TimerVC: UIViewController {
         cancelButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: cancelButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
-        view.addSubview(cancelButton)
+        contentView.addSubview(cancelButton)
         
         // Contraints
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 100).isActive = true
-        cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+        cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
         cancelButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         cancelButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
