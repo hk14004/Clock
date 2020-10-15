@@ -29,7 +29,20 @@ class StopwatchVC: UIViewController {
     
     private var tableView: UITableView = UITableView()
     
+    private var baseScrollView = UIScrollView()
+    
+    private var contentView = UIView()
+    
+    private func setupScrollView() {
+        view.addSubview(baseScrollView)
+        baseScrollView.pin(to: view)
+        baseScrollView.addSubview(contentView)
+        contentView.pin(to: baseScrollView)
+        contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+    }
+    
     override func viewDidLoad() {
+        setupScrollView()
         view.backgroundColor = UIColor(named: "Secondary")
         stopwatchViewModel.delegate = self
         setupClocks()
@@ -68,22 +81,26 @@ class StopwatchVC: UIViewController {
         tableView.separatorColor = UIColor.gray.withAlphaComponent(0.3)
         tableView.backgroundColor = .clear
         tableView.separatorInset = .zero
-        view.addSubview(tableView)
+        contentView.addSubview(tableView)
+        view.layoutIfNeeded()
+        let tableHeight = view.frame.height - clockFaceCollectionViewController.view.frame.height - ((tabBarController?.tabBar.frame.height) ?? 0) - 0
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: 40).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        tableView.heightAnchor.constraint(equalToConstant: tableHeight).isActive = true
     }
     
     private func setupClocks() {
         addChild(clockFaceCollectionViewController)
-        view.addSubview(clockFaceCollectionViewController.view)
+        contentView.addSubview(clockFaceCollectionViewController.view)
         clockFaceCollectionViewController.didMove(toParent: self)
         clockFaceCollectionViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        clockFaceCollectionViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        clockFaceCollectionViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        clockFaceCollectionViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        clockFaceCollectionViewController.view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+        clockFaceCollectionViewController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
+        clockFaceCollectionViewController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         clockFaceCollectionViewController.view.heightAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
@@ -99,13 +116,13 @@ class StopwatchVC: UIViewController {
         startButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: startButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
-        view.addSubview(startButton)
+        contentView.addSubview(startButton)
         
         // Contraints
         startButton.translatesAutoresizingMaskIntoConstraints = false
         
         startButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
-        startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        startButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         startButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         startButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
@@ -122,13 +139,13 @@ class StopwatchVC: UIViewController {
         stopButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: stopButton.backgroundColor!, borderWidth: 2)
         
         // Add button via stroke to main view
-        view.addSubview(stopButton)
+        contentView.addSubview(stopButton)
         
         // Contraints
         stopButton.translatesAutoresizingMaskIntoConstraints = false
         
         stopButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
-        stopButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        stopButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         stopButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         stopButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
@@ -143,10 +160,10 @@ class StopwatchVC: UIViewController {
         resetButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: resetButton.backgroundColor!, borderWidth: 2)
         resetButton.addTarget(self, action: #selector(resetButtonPressed), for: .touchUpInside)
         
-        view.addSubview(resetButton)
+        contentView.addSubview(resetButton)
         
         resetButton.translatesAutoresizingMaskIntoConstraints = false
-        resetButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        resetButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
         resetButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
         resetButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         resetButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
@@ -163,10 +180,10 @@ class StopwatchVC: UIViewController {
         lapButton.addPaddedStroke(paddingColor: UIColor(named: "Secondary")!, strokeColor: lapButton.backgroundColor!, borderWidth: 2)
         lapButton.addTarget(self, action: #selector(lapButtonPressed), for: .touchUpInside)
         
-        view.addSubview(lapButton)
+        contentView.addSubview(lapButton)
         
         lapButton.translatesAutoresizingMaskIntoConstraints = false
-        lapButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        lapButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
         lapButton.topAnchor.constraint(equalTo: clockFaceCollectionViewController.view.bottomAnchor, constant: -60).isActive = true
         lapButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         lapButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
